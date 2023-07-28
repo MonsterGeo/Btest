@@ -160,13 +160,13 @@ margin-top: -80px;
 
 <!--title-->
     <h2 id="archtitle">
-        <a id="archtit" href="/2023/07/28/d/">A-star_Search</a>
+        <a id="archtit" href="/2023/07/28/A-star-Search/">A-star_Search</a>
     </h2>
     <!--date and author-->
     <strong id="archdate"><p>Posted on 2023-07-28</p>
     </strong>
     </section>
-
+%>
 <!-- 分页 -->
 <div id="fenye" class="container has-text-centered">
     
@@ -237,5 +237,21 @@ src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
         });
     });
 </script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
