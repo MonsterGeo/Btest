@@ -1,184 +1,287 @@
 <!DOCTYPE html>
-<html>
-
+<html lang=en>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="" />
-
-<link rel="shortcut icon" href="https://t1.picb.cc/uploads/2017/12/17/BnwnK.jpg">
-
-
-<title> A-star_Search</title>
-
-
-
-<link rel="stylesheet" href="/css/bulma.css">
-
-
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="A*寻路算法的基本思想和基本代码实现：关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。 A*算法是建立在曼哈顿度量（又名出租车度量或者出租车几何）他有个非常好的性质，相比欧几里得度量来说，出租车度量更适合现实的空间。所以，我们首先来介绍一下曼哈顿度量 度量空间和曼哈顿距离一个度量空间指的是具备距离的集合，它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A-star_Search">
+<meta property="og:url" content="http://example.com/2023/07/28/A-star-Search/index.html">
+<meta property="og:site_name" content="肉丸意粉的Blog">
+<meta property="og:description" content="A*寻路算法的基本思想和基本代码实现：关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。 A*算法是建立在曼哈顿度量（又名出租车度量或者出租车几何）他有个非常好的性质，相比欧几里得度量来说，出租车度量更适合现实的空间。所以，我们首先来介绍一下曼哈顿度量 度量空间和曼哈顿距离一个度量空间指的是具备距离的集合，它">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/07/28/A-star-Search/1.png">
+<meta property="og:image" content="http://example.com/2023/07/28/A-star-Search/2.png">
+<meta property="og:image" content="http://example.com/A-star-Search/3.png">
+<meta property="og:image" content="http://example.com/2023/07/28/A-star-Search/4.png">
+<meta property="article:published_time" content="2023-07-28T13:49:00.000Z">
+<meta property="article:modified_time" content="2023-07-28T18:19:15.251Z">
+<meta property="article:author" content="肉丸意粉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/07/28/A-star-Search/1.png">
     
-<link rel="stylesheet" href="/css/base.css">
-
-
-<body>
-
-  <style media="screen">
-hr {
-  height: 1px;
-    background-color: black;
-    margin-top: 0px;
-    border: none;
-    margin-bottom: 0px;
-}
-.black {
-
-
-background-color: hsl(0,0%,7%);;
-
-
-}
- #shadow {
-  text-shadow: 2px 3px 3px white;
-  margin-top: 3px;
-}
-h1 {
-  text-shadow: 2px 3px 3px black;
- }
-.menu {
-margin-top: -80px;
-
-
-
-
-}
-#nav {
-  margin-left: 2px;
-  margin-right: 2px;
-}
-  #banner {
-    position: relative;
-
-  }
-</style>
-<header>
-
-  <section class="section black is-medium" id="banner">
-    <div class="container">
-      <h1 id="sitetitle" class="title is-3 has-text-white-bis has-text-centered is-capitalized has-text-weight-bold">
-        
-        Hexo
-      </h1>
-
-      <h2 id="shadow" class="subtitle is-4 has-text-white is-capitalized has-text-centered">
-
-      </h2>
-
-    </div>
-
-    </div>
-  </section>
-<!--TOP Menu-->
-  <div class="menu level" >
-<div class="level-item has-text-centered"></div>
-    <nav class=".navbar level-item" >
+    
       
-        <a style="text-shadow: 2px 2px 3px grey" id="nav" class="button is-text is-outlined is-primary " href="
-
-
-            /
-            "> Home</a>
         
-        <a style="text-shadow: 2px 2px 3px grey" id="nav" class="button is-text is-outlined is-primary " href="
-
-
-            mailto:admin@varctrl.me
-            "> Email</a>
+          <link rel="shortcut icon" href="/images/favicon.ico">
         
-        <a style="text-shadow: 2px 2px 3px grey" id="nav" class="button is-text is-outlined is-primary " href="
-
-
-            https://github.com/varctrl/
-            "> Project</a>
+      
+      
         
-        <a style="text-shadow: 2px 2px 3px grey" id="nav" class="button is-text is-outlined is-primary " href="
-
-
-            /archives
-            "> Archive</a>
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
         
-        <a style="text-shadow: 2px 2px 3px grey" id="nav" class="button is-text is-outlined is-primary " href="
-
-
-            /about
-            "> About</a>
+      
+      
         
-    </nav>
-    <div class="level-item has-text-centered"></div>
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>A-star_Search</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/07/29/bqj/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/28/A-star-Search/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: http://example.com/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">A*寻路算法的基本思想和基本代码实现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">度量空间和曼哈顿距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E8%B7%9D%E7%A6%BB%EF%BC%88-l-2-%E8%B7%9D%E7%A6%BB%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">欧几里得距离（距离）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#h-n-%E5%AF%B9%E9%80%89%E6%8B%A9%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">对选择的影响</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%AF%BB%E8%B7%AF%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">具体的寻路过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E7%8E%AF%E8%8A%82"><span class="toc-number">3.</span> <span class="toc-text">代码编写环节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">3.2.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-star-%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">A-star 搜索实现</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
 </div>
 
-  <hr>
-
-
-
-
-
-
-</header>
-
-
-
-
-<link rel="stylesheet" href="/css/highlight.css">
-
-<style>
-    .markdown-body {
-        box-sizing: border-box;
-        min-width: 200px;
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 45px;
-    }
-
-    @media (max-width: 767px) {
-        .markdown-body {
-            padding: 15px;
-        }
-    }
-    #postsec {
-        clear: left;
-    }
-
-
-
-    .details {
-        float: left;
-        padding-left: 10px;
-        font-size: 18px;
-
-    }
-    div > span {
-       margin-left: 0px;
-      margin-top: 0px;
-    }
-</style>
-<section id="post_section" class="container markdown-body" >
-
-    <!--title,date,tags-->
-    <h2 id="hidden">
-        A-star_Search
-    </h2>
-
-    <section class="desec">
-
+    
+    <div class="content index py4 ">
         
-    </section>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        A-star_Search
+    </h1>
 
 
-    <!-- content -->
-    <section id="postsec"><h1 id="A-寻路算法的基本思想和基本代码实现："><a href="#A-寻路算法的基本思想和基本代码实现：" class="headerlink" title="A*寻路算法的基本思想和基本代码实现："></a>A*寻路算法的基本思想和基本代码实现：</h1><p>关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。</p>
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">肉丸意粉</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-28T13:49:00.000Z" class="dt-published" itemprop="datePublished">2023-07-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/computer/">computer</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="A-寻路算法的基本思想和基本代码实现："><a href="#A-寻路算法的基本思想和基本代码实现：" class="headerlink" title="A*寻路算法的基本思想和基本代码实现："></a>A*寻路算法的基本思想和基本代码实现：</h1><p>关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。</p>
 <p>A*算法是建立在曼哈顿度量（又名出租车度量或者出租车几何）他有个非常好的性质，相比欧几里得度量来说，出租车度量更适合现实的空间。所以，我们首先来介绍一下曼哈顿度量</p>
 <h2 id="度量空间和曼哈顿距离"><a href="#度量空间和曼哈顿距离" class="headerlink" title="度量空间和曼哈顿距离"></a>度量空间和曼哈顿距离</h2><p>一个度量空间<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.87ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2594.7 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(389,0)"><path data-c="1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"/></g><g data-mml-node="mo" transform="translate(1241,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mi" transform="translate(1685.7,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/></g><g data-mml-node="mo" transform="translate(2205.7,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>指的是具备距离<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="6.345ex" height="2.262ex" role="img" focusable="false" viewbox="0 -750 2804.7 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/></g><g data-mml-node="mo" transform="translate(520,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="mi" transform="translate(909,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mo" transform="translate(1481,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mi" transform="translate(1925.7,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mo" transform="translate(2415.7,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container>的集合<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.928ex" height="1.545ex" role="img" focusable="false" viewbox="0 -683 852 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44B" d="M42 0H40Q26 0 26 11Q26 15 29 27Q33 41 36 43T55 46Q141 49 190 98Q200 108 306 224T411 342Q302 620 297 625Q288 636 234 637H206Q200 643 200 645T202 664Q206 677 212 683H226Q260 681 347 681Q380 681 408 681T453 682T473 682Q490 682 490 671Q490 670 488 658Q484 643 481 640T465 637Q434 634 411 620L488 426L541 485Q646 598 646 610Q646 628 622 635Q617 635 609 637Q594 637 594 648Q594 650 596 664Q600 677 606 683H618Q619 683 643 683T697 681T738 680Q828 680 837 683H845Q852 676 852 672Q850 647 840 637H824Q790 636 763 628T722 611T698 593L687 584Q687 585 592 480L505 384Q505 383 536 304T601 142T638 56Q648 47 699 46Q734 46 734 37Q734 35 732 23Q728 7 725 4T711 1Q708 1 678 1T589 2Q528 2 496 2T461 1Q444 1 444 10Q444 11 446 25Q448 35 450 39T455 44T464 46T480 47T506 54Q523 62 523 64Q522 64 476 181L429 299Q241 95 236 84Q232 76 232 72Q232 53 261 47Q262 47 267 47T273 46Q276 46 277 46T280 45T283 42T284 35Q284 26 282 19Q279 6 276 4T261 1Q258 1 243 1T201 2T142 2Q64 2 42 0Z"/></g></g></g></svg></mjx-container>，它的元素是点。而其中距离也叫距离函数，在接下来的代码里面我们会给出一个简单的空间例子，但最主要的还是关注这个度量空间的距离函数。</p>
 <p>度量具备四个良好性质</p>
@@ -236,7 +339,7 @@ margin-top: -80px;
 
 <center>
 
-![节点](/A-star-Search/1.png)
+<img src="/2023/07/28/A-star-Search/1.png">
 
 </center>
 
@@ -285,7 +388,7 @@ margin-top: -80px;
 <h1 id="具体的寻路过程"><a href="#具体的寻路过程" class="headerlink" title="具体的寻路过程"></a>具体的寻路过程</h1><p>还是那个例子：</p>
 <center>
 
-<img src="/A-star-Search/2.png">
+<img src="/2023/07/28/A-star-Search/2.png">
 </center>
 
 <p>它们的估阶函数如下：</p>
@@ -300,7 +403,7 @@ margin-top: -80px;
 <p>第二步：我们走到第三个格子后，又产生了新的路径选择，如下图所示：</p>
 <center>
 
-![例子2](/A-star-Search/3.png)
+<img src="/A-star-Search/3.png">
 </center>
 
 <p>于是，我们再次计算格子的估阶函数，这次注意的是，<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="3.268ex" height="1.971ex" role="img" focusable="false" viewbox="0 -677 1444.7 871"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"/></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(944.7,0)"><path data-c="35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"/></g></g></g></svg></mjx-container> 是障碍，所以不需要考虑这两个格子。格子<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.131ex" height="1.557ex" role="img" focusable="false" viewbox="0 -666 500 688"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"/></g></g></g></svg></mjx-container>实际上就是起点，所以也不需要考虑，我们只需要考虑<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.439ex;" xmlns="http://www.w3.org/2000/svg" width="5.406ex" height="1.946ex" role="img" focusable="false" viewbox="0 -666 2389.3 860"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g><g data-mml-node="mo" transform="translate(500,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(944.7,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"/></g><g data-mml-node="mo" transform="translate(1444.7,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"/></g><g data-mml-node="mn" transform="translate(1889.3,0)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"/></g></g></g></svg></mjx-container>三个格子就行了，它们的估阶函数为：</p>
@@ -313,7 +416,7 @@ margin-top: -80px;
 <p>然后我们不断的重复这个步骤直到遍历到终点。</p>
 <center>
 
-![Case](/A-star-Search/4.png)
+<img src="/2023/07/28/A-star-Search/4.png">
 
 </center>
 
@@ -335,86 +438,139 @@ margin-top: -80px;
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">def a_star_search(grid,start,goal): #把地图，起点，终点当成参数</span><br><span class="line">    open_list = [] #储存待探索的节点</span><br><span class="line">    closed_list = []#储存已探索的节点</span><br><span class="line"></span><br><span class="line">    start_node = Node(start[0],start[1]) #start是一个包含两个元素的一维数组，这里是传入第一个和第二个元素作为点的坐标 </span><br><span class="line">    goal_node = Node(goal[0],goal[1])</span><br><span class="line">    heapq.heappush(open_list, (start_node.f(), start_node))  # 将起始节点加入 open_list</span><br><span class="line"></span><br><span class="line">    while open_list:</span><br><span class="line">        _, current_node = heapq.heappop(open_list)</span><br><span class="line">        if(current_node.x,current_node.y) == (goal_node.x,goal_node.y) #判断是否为终点</span><br><span class="line">            return reconstruct_path(current_node)</span><br><span class="line">         closed_set.add((current_node.x, current_node.y))  # 将当前节点加入已探索集合</span><br><span class="line">        for neighbor in get_neighbors(current_node, grid):</span><br><span class="line">            if (neighbor.x, neighbor.y) in closed_set:</span><br><span class="line">                continue  # 如果邻居节点已探索过，跳过本次循环</span><br><span class="line"></span><br><span class="line">            tentative_g = current_node.g + 1  # 这里假设每一步的代价都是 1</span><br><span class="line"></span><br><span class="line">            if (neighbor.f(), neighbor) in open_list:</span><br><span class="line">                # 如果邻居节点已经在 open_list 中，更新代价和父节点</span><br><span class="line">                if neighbor.g &gt; tentative_g:</span><br><span class="line">                    neighbor.g = tentative_g</span><br><span class="line">                    neighbor.parent = current_node</span><br><span class="line">            else:</span><br><span class="line">                # 否则，将邻居节点加入 open_list，并设置代价和父节点</span><br><span class="line">                neighbor.g = tentative_g</span><br><span class="line">                neighbor.h = heuristic(neighbor, goal_node)</span><br><span class="line">                neighbor.parent = current_node</span><br><span class="line">                heapq.heappush(open_list, (neighbor.f(), neighbor))</span><br><span class="line"></span><br><span class="line">    return None  # 如果 open_list 为空，则无法找到路径，返回 None</span><br></pre></td></tr></table></figure>
 <p>最后，我们需要将三个参数传入搜索函数，我们定义<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grid = [</span><br><span class="line">    [0, 0, 0, 0, 0],</span><br><span class="line">    [0, 0, 1, 1, 0],</span><br><span class="line">    [0, 0, 1, 0, 0],</span><br><span class="line">    [0, 0, 1, 0, 0],</span><br><span class="line">    [0, 0, 1, 0, 0]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">start = (0, 2)</span><br><span class="line">goal = (4, 1)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>第一个是地图，第二个是起点，第三个是终点。<br>最后调用函数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path = a_star_search(grid, start, goal)</span><br><span class="line">print(path) </span><br></pre></td></tr></table></figure><br>那么理论上它输出</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[(0, 2), (0, 1), (1, 1), (2, 1), (3, 1), (4, 1)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-    </section>
-
-
-</section>
-<script>var title = document.getElementById("hidden");
-    title.style.display = "none";
-    sitetitle = document.getElementById("sitetitle");
-    titlev = title.childNodes[0].nodeValue;
-    sitetitle.innerHTML = titlev;
-    shadow = document.getElementById("shadow");
-    shadow.style.visibility = "hidden";
-</script>
-<!-- 评论系统-->
+  </div>
+</article>
 
 
 
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-<style>
-    #height {
-        height: 100px;
-        box-sizing: border-box;
-        color: rgb(51, 51, 51);
-        font-size: 18px;
-        font-weight: 400;
-
-    }
-
-    .footer_p {
-        box-sizing: border-box;
-        font-size: 18px;
-        font-weight: 200;
-        line-height: 27px;
-        text-align: center;
-        text-rendering: optimizelegibility;
-    }
-
-    .footer_link {
-        color: black;
-    }
-</style>
-<footer class="footer" id="height">
-
-    <div class="container">
-        <div class="content has-text-centered ">
-            <p class="footer_p">
-                Theme By<a target="_blank" rel="noopener" href="https://github.com/varctrl/" class="footer_link
-"> varCTRL.</a>
-                Inspired By<a target="_blank" rel="noopener" href="https://github.com/levblanc/hexo-theme-aero-dual" class="footer_link
-"> Aero Dual.</a>
-            </p>
-        </div>
-        <div class="content has-text-centered">
-            <p class="footer_p">Powered By <a target="_blank" rel="noopener" href="https://hexo.io/" class="footer_link
-"> Hexo.</a></p>
-        </div>
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
     </div>
 
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">A*寻路算法的基本思想和基本代码实现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">度量空间和曼哈顿距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E8%B7%9D%E7%A6%BB%EF%BC%88-l-2-%E8%B7%9D%E7%A6%BB%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">欧几里得距离（距离）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#h-n-%E5%AF%B9%E9%80%89%E6%8B%A9%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-number">1.1.2.</span> <span class="toc-text">对选择的影响</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%AF%BB%E8%B7%AF%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">具体的寻路过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E7%8E%AF%E8%8A%82"><span class="toc-number">3.</span> <span class="toc-text">代码编写环节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">3.2.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-star-%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">A-star 搜索实现</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2023/07/28/A-star-Search/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: http://example.com/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    肉丸意粉
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
 </footer>
 
+    </div>
+    <!-- styles -->
 
-<script src="/js/jquery.js"></script>
 
 
-<!-- 特效 -->
-<script type="text/javascript" color="#555" opacity='0.9' zIndex="-1" count="100"
-src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
-</script>
 
-<script src="/js/highlight.pack.js"></script>
+    <!-- jquery -->
 
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
-        codeBlocks.forEach(function(block, index) {
-            hljs.highlightBlock(block);
-        });
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
     });
-</script>
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -433,3 +589,4 @@ src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
 <script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
+</html>
