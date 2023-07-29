@@ -9,19 +9,19 @@
     <meta name="description" content="A*寻路算法的基本思想和基本代码实现：关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。 A*算法是建立在曼哈顿度量（又名出租车度量或者出租车几何）他有个非常好的性质，相比欧几里得度量来说，出租车度量更适合现实的空间。所以，我们首先来介绍一下曼哈顿度量 度量空间和曼哈顿距离一个度量空间指的是具备距离的集合，它">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A-star_Search">
-<meta property="og:url" content="https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/index.html">
+<meta property="og:url" content="https://monstergeo/github.io/2023/07/28/A-star-Search/index.html">
 <meta property="og:site_name" content="Marcus&#39;s Blog">
 <meta property="og:description" content="A*寻路算法的基本思想和基本代码实现：关于寻路算法有许多不同的答案，像广度搜索，深度搜索、跳点搜索算法、弗洛伊德等等算法，但今天我们主要讲一个常用的算法A*(A-star)算法。 A*算法是建立在曼哈顿度量（又名出租车度量或者出租车几何）他有个非常好的性质，相比欧几里得度量来说，出租车度量更适合现实的空间。所以，我们首先来介绍一下曼哈顿度量 度量空间和曼哈顿距离一个度量空间指的是具备距离的集合，它">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/1.png">
-<meta property="og:image" content="https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/2.png">
-<meta property="og:image" content="https://github.com/A-star-Search/3.png">
-<meta property="og:image" content="https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/4.png">
+<meta property="og:image" content="https://monstergeo/github.io/2023/07/28/A-star-Search/1.png">
+<meta property="og:image" content="https://monstergeo/github.io/2023/07/28/A-star-Search/2.png">
+<meta property="og:image" content="https://monstergeo/A-star-Search/3.png">
+<meta property="og:image" content="https://monstergeo/github.io/2023/07/28/A-star-Search/4.png">
 <meta property="article:published_time" content="2023-07-28T13:49:00.000Z">
 <meta property="article:modified_time" content="2023-07-28T18:19:15.251Z">
 <meta property="article:author" content="Marcus">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/1.png">
+<meta name="twitter:image" content="https://monstergeo/github.io/2023/07/28/A-star-Search/1.png">
     
     
       
@@ -219,17 +219,17 @@ mjx-container[display="true"] + br {
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo/github.io/2023/07/28/A-star-Search/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: https://monstergeo/github.io/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo/github.io/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -339,7 +339,7 @@ mjx-container[display="true"] + br {
 
 <center>
 
-<img src="/MonsterGeo/Btest.git/2023/07/28/A-star-Search/1.png">
+<img src="/github.io/2023/07/28/A-star-Search/1.png">
 
 </center>
 
@@ -388,7 +388,7 @@ mjx-container[display="true"] + br {
 <h1 id="具体的寻路过程"><a href="#具体的寻路过程" class="headerlink" title="具体的寻路过程"></a>具体的寻路过程</h1><p>还是那个例子：</p>
 <center>
 
-<img src="/MonsterGeo/Btest.git/2023/07/28/A-star-Search/2.png">
+<img src="/github.io/2023/07/28/A-star-Search/2.png">
 </center>
 
 <p>它们的估阶函数如下：</p>
@@ -416,7 +416,7 @@ mjx-container[display="true"] + br {
 <p>然后我们不断的重复这个步骤直到遍历到终点。</p>
 <center>
 
-<img src="/MonsterGeo/Btest.git/2023/07/28/A-star-Search/4.png">
+<img src="/github.io/2023/07/28/A-star-Search/4.png">
 
 </center>
 
@@ -468,17 +468,17 @@ mjx-container[display="true"] + br {
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://github.com/MonsterGeo/Btest.git/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo/github.io/2023/07/28/A-star-Search/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&text=A-star_Search"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&is_video=false&description=A-star_Search"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A-star_Search&body=Check out this article: https://monstergeo/github.io/2023/07/28/A-star-Search/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&title=A-star_Search"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo/github.io/2023/07/28/A-star-Search/&name=A-star_Search&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo/github.io/2023/07/28/A-star-Search/&t=A-star_Search"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
