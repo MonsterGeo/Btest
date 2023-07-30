@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[toc] 算法这一章我们来讲讲算法的一些概念和例子，算法这一来源来自问题的一般性，简单来说：例如寻找序列 101,102,13,888中最大的数字。实际上就是寻找最大整数的一个特例，我们的问题就是如何解决这种问题，并解决这个问题中的一般性问题，为此我们必须给出一个算法，它指定了一系列的步骤来解决这个一般性问题。 为此不妨给出一个定义： 定义1算法是进行一项计算或解决一个问题的准确指令的有限序列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="[toc] 算法这一章我们来讲讲算法的一些概念和例子，算法这一来源来自问题的一般性，简单来说：例如寻找序列 101,102,13,888中最大的数字。实际上就是寻找最大整数的一个特例，我们的问题就是如何解决这种问题，并解决这个问题中的一般性问题，为此我们必须给出一个算法，它指定了一系列的步骤来解决这个一般性问题。 为此不妨给出一个定义： 定义1算法是进行一项计算或解决一个问题的准确指令的有限序列">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-30T07:59:02.000Z">
+<meta property="article:modified_time" content="2023-07-30T16:29:44.536Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="D-math">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Algorithm</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2023/07/29/bqj/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&text=Algorithm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&is_video=false&description=Algorithm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Algorithm&body=Check out this article: https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&name=Algorithm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&t=Algorithm"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Algorithm
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-07-30T07:59:02.000Z" class="dt-published" itemprop="datePublished">2023-07-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/D-math/" rel="tag">D-math</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>[toc]</p>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>这一章我们来讲讲算法的一些概念和例子，算法这一来源来自问题的一般性，简单来说：例如寻找序列 101,102,13,888中最大的数字。实际上就是寻找最大整数的一个特例，我们的问题就是如何解决这种问题，并解决这个问题中的一般性问题，为此我们必须给出一个算法，它指定了一系列的步骤来解决这个一般性问题。</p>
+<p>为此不妨给出一个定义：</p>
+<h2 id="定义1"><a href="#定义1" class="headerlink" title="定义1"></a>定义1</h2><p><kbd><strong>算法是进行一项计算或解决一个问题的准确指令的有限序列</strong></kbd></p>
+<p>类似于数学归纳法，但不同的是这里指的是指令，现在让我们解决开头说的问题。</p>
+<h3 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h3><p><kbd><strong>描述一个在有限整数序列中寻找最大值的算法</strong>
+</kbd></p>
+<p>为了解决这个问题，我们给出如下的步骤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 设序列的第一个整数为最大值（临时的），在这个过程中，临时最大值等于已经检查过的最大整数。</span><br><span class="line">2. 将序列的下一个整数与临时最大值比较，若这个数大于临时最大值，则令该值为临时最大值。</span><br><span class="line">3. 如果序列还有其他没检查的数，则循环前一个步骤</span><br><span class="line">4. 当序列中不存在待检查的整数则停止，此时临时最大值等于序列中的最大值。</span><br></pre></td></tr></table></figure>
+<p>这是用中文描述的，而一个算法也可以用计算机语言来描述，但是当我们这样子做的时候，我们必须使用计算机允许的语言来编写指令。这样子的后果就是导致算法描述复杂且难以理解。但我们有一种更好的表现形式，当你熟悉了一些编程语言后可以比较轻易的看懂：下面是一个用伪代码描述的算法：</p>
+<p>!!! summary     算法1：求有限序列中的最大元<br>    procedure max($a_1,a_2,\cdots,a_n$:整数)<br>    max = $a_1$<br>    for i =2 to n<br>      $   ~~~~$if max &lt;$a_i$,then max = $a_i$<br>    return max</p>
+<p>来看看我们干了什么事情：首先我们把第一个元素$a_1$赋值给了max，然后用for循环检查每个项做比较，如果符合就把其赋值给max直到循环完成。</p>
+<p>对于一个算法，我们希望它足够的标准，能解决一般问题，为此它需要有一些性质：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">算法的性质</span><br><span class="line">    + 输入 算法从一个指定的集合得到输入值</span><br><span class="line">    + 输出 对每个输入值的集合，都得从一个指定的集合产生输出值，这个值就是问题的解。</span><br><span class="line">    + 确定性 步骤是准确定义的</span><br><span class="line">    + 正确性：对每组输入都应该产生正确的输出值。</span><br><span class="line">    + 有限性 对任何输入算法都应该在有限步之后产生期望的输出</span><br><span class="line">    + 有效性 算法的每一步都要在准确的有限时间内完成</span><br><span class="line">    + 通用性 算法过程应该可以应用期望形式的所有问题，而不是单独的一个问题。</span><br></pre></td></tr></table></figure></p>
+<p>现在再来看一个例子</p>
+<p>!!! Note 证明求有限整数序列最大元素的算法1具备上述所有性质</p>
+<p><strong>证明：</strong> 我们输入的是一个整数序列，输出是该序列的最大值，并且算法的每一步都是有良好定义的，因为只有赋值、循环、条件语句。而根据算法的步骤，若输入无差错的话，明显输出正确的结果（即最大值），并且，由于输入是有限的，所以循环也是有限的。由于在检查完数组算法就会停止，所以也保证了有效性。最后，算法1是通用的，所以可以求任何有限整数序数的最大元素。</p>
+<h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><p>这个算法旨在找出有序表中的某个元素。它的应用很广泛，例如检查单词拼写，会在字典中搜索单词。这个字典就是单词的有序表。</p>
+<p>一般性的搜索可以被这样子描述：在不同的元素$a_1,a_2,\cdots,a_n$中定位元素$x$，或者判定元素$x$是否在表中。若$x = a_i$成立则有解，不然解只能是$x=0$。</p>
+<h3 id="线性搜索"><a href="#线性搜索" class="headerlink" title="线性搜索"></a>线性搜索</h3><p>线性搜索又叫顺序搜索算法，线性搜索算法从比较$x$和$a_1$开始，若$x=a_1$，则解就是$a_1$的位置，否则继续这一个过程直到匹配上某个一个值。那么它的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">procedure linear search(x:整数,$a_1,a_2,\cdots,a_n$:不同整数)</span><br><span class="line">i =1</span><br><span class="line">while(i&lt;= n &amp;&amp; x\neq a_i)</span><br><span class="line">    i=i+1</span><br><span class="line">if i&lt;= n then location =i</span><br><span class="line">else location =0</span><br><span class="line">return location</span><br></pre></td></tr></table></figure>
+<p>它返回一个表的下标，若$x=a_i$则返回$i$。</p>
+<h3 id="二分搜索"><a href="#二分搜索" class="headerlink" title="二分搜索"></a>二分搜索</h3><p>我们现在看到的算法，当表的元素以升序出现时可以用这一算法，例如：集合中的元素若为数值，则按照最小到最大顺序排列，如果是单词可以按照字典序排列。而我们用到的这个算法我们叫二分算法。它从通过比较中间项和要搜索的项进行的。它通过将表分成两个长度一样的子表，或一短一长再根据中间值比较。</p>
+<p>现在我们来看看工作原理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">例3：再表中搜素19</span><br><span class="line"></span><br><span class="line">    1,2,3,4,5,6,7,8,10,12,13,15,16,18,10,20,22</span><br><span class="line">第一步，我们把这个表分为两个各含有8项的两个较小的表，即：</span><br><span class="line">1,2,3,5,6,7,8,10  12,13,15,16,18,19,20,22</span><br><span class="line">任何我们比较19和第一个表的最大项,由于10 &lt; 19，则对19的搜素可以局限于包含第6个元素到第16个元素</span><br><span class="line">的表中，此时，我们再把这个表分成两半变成：</span><br><span class="line">12,13,15,16   18,19,20,22</span><br><span class="line">任何我们再比较有$16&lt;19$，因此我们把目光锁定在最后的表。</span><br><span class="line"></span><br><span class="line">18,19  20,22</span><br><span class="line">可以得到最大项是19，算法停止，我们找到19是表中的第14个元素</span><br></pre></td></tr></table></figure>
+<p>现在给出搜素的步骤：要在表$a_1,a_2,\cdots,a_n$中搜素整数$x$，其中$a_1<a_2<\cdots<a_n$。首先从$x$和列表的中间项开始，取$m = \lceil(n+1) 2\rceil$，如果$x>a_m$，则我们把搜素限定在列表的后半段，即$a_{m+1},a_{m+1},\cdots,a_{n}$，反之则搜素表的前半段。接下来给出算法的伪代码：</a_2<\cdots<a_n$。首先从$x$和列表的中间项开始，取$m></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">procedure binary search(x:int, a1,...,an:increase int)</span><br><span class="line"> i = 1 (the left point)</span><br><span class="line">j =n (the last point)</span><br><span class="line">while i&lt; j&#123;</span><br><span class="line"> m  =  ⌈(i+j)/2⌉</span><br><span class="line">    if x&gt; am, then i =m+1</span><br><span class="line">else j =m</span><br><span class="line">    if x = ai, then location =i</span><br><span class="line">    else location =0&#125;</span><br><span class="line">    return location</span><br></pre></td></tr></table></figure>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>刚才讲了如何搜索，现在我们来讲如何把一个表排序。</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>这是一个最简单的排序算法，但不是最有效的，冒泡算法通过连续比较相邻的元素，如果顺序不对就交换相邻的元素，从而把一个表的排列变成升序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">procedure bubblesort (a1,a2,......,an：real num, n&gt;= 2)</span><br><span class="line">for i =1 to n-1&#123;</span><br><span class="line">    for j = 1 to n-i</span><br><span class="line">    if aj&gt;a(j+1)$, then exchange ai with aj&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序比较简单，但是是从第二个元素开始的。插入排序将第二个元素与第一个元素作比较，如果不大于第一个元素，则插入到第一个元素的位置，如果大于第一个元素则把他插入到第二个元素后面。若顺序正确，则把第三个元素和第一个元素比较。若大于第一个元素，则继续与第二个元素比较。它将插入到第三个元素的正确位置上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用插入排序把表 3,2,4,1,5排序成升序</span><br><span class="line"></span><br><span class="line">先比较3,2，由于$3&gt;2$，则插入到2后面得到 2,3,4,1,5.</span><br><span class="line">然后继续比较4&gt;2,4&gt;3插入到3后面。</span><br><span class="line">得到2,3,4,1,5，而因为$1&lt;2$，则插入到第一个数前面的得到 1,2,3,4,5。</span><br><span class="line">最后依次比较5和前面的数就得到了表 1,2,3,4,5。</span><br></pre></td></tr></table></figure>
+<p>现在，我们给出算法的一般代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">procedure insertion sort(a1,a2,...,an: real num,n &gt;= 2)</span><br><span class="line">for j =2 to n</span><br><span class="line">    i=1</span><br><span class="line">    while aj&gt;ai</span><br><span class="line">        i=i+1</span><br><span class="line">    m = aj</span><br><span class="line">    for k = 0 to j-i-1</span><br><span class="line">        a(j-k) = a(j-k-1)</span><br><span class="line">    ai=m</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/about/">About</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&text=Algorithm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&is_video=false&description=Algorithm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Algorithm&body=Check out this article: https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&title=Algorithm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&name=Algorithm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/07/30/Discrete_math/Algorithm/&t=Algorithm"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
