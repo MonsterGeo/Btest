@@ -14,7 +14,7 @@
 <meta property="og:description" content="算法这一章我们来讲讲算法的一些概念和例子，算法这一来源来自问题的一般性，简单来说：例如寻找序列 101,102,13,888中最大的数字。实际上就是寻找最大整数的一个特例，我们的问题就是如何解决这种问题，并解决这个问题中的一般性问题，为此我们必须给出一个算法，它指定了一系列的步骤来解决这个一般性问题。 为此不妨给出一个定义： 定义1算法是进行一项计算或解决一个问题的准确指令的有限序列 类似于数学归">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-30T07:59:02.000Z">
-<meta property="article:modified_time" content="2023-07-31T14:49:49.008Z">
+<meta property="article:modified_time" content="2023-08-01T12:25:44.584Z">
 <meta property="article:author" content="Marcus">
 <meta property="article:tag" content="D-math">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">贪婪算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">例6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">停机问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">贪婪算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">例6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">停机问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%A2%9E%E9%95%BF"><span class="toc-number">2.</span> <span class="toc-text">函数的增长</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7-O-%E8%AE%B0%E5%8F%B7"><span class="toc-number">2.1.</span> <span class="toc-text">大 O 记号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B1-1"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E5%87%BD%E6%95%B0%E7%9A%84%E5%A4%A7O%E4%BC%B0%E7%AE%97"><span class="toc-number">2.2.</span> <span class="toc-text">一些重要函数的大O估算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">定理 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E7%9A%84%E5%A4%A7O%E4%BC%B0%E8%AE%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">n!的大O估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-n-%E7%9A%84%E5%A4%A7O%E4%BC%B0%E8%AE%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">$\ln( n)$的大O估计</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%84%E5%90%88%E7%9A%84%E5%A2%9E%E9%95%BF"><span class="toc-number">3.</span> <span class="toc-text">函数组合的增长</span></a></li></ol>
       </div>
     
   </span>
@@ -208,7 +208,91 @@
 <p>我们假设有这么一个程序K(P)，其中P是过程P(H,K)。H是程序，K是输入。其中过程P只有在输入H的时候输出停机，否则无限循环。而程序K(P) 在P输出停机的时候输出无限循环，反之亦然。</p>
 <p>现在，若P输出无限循环，则K(P)停机，这时候，因为K(P)停机。但我们把K作用到自己身上呢？想想K(K)，当K(P) = 停机，则K(K)无限循环，这时候K应该是输出停机，而K(K)应该是无限循环，矛盾。反过来也一样，假设K(K) = 无限循环，则这个时候应该输出K(K) = 停机，矛盾。</p>
 <p>所以这个问题是无解的。</p>
+<h1 id="函数的增长"><a href="#函数的增长" class="headerlink" title="函数的增长"></a>函数的增长</h1><p>就像我们在微积分中接触的$o(x^2)$是一样的，我们要来谈谈函数的增长速度。</p>
+<p>在上一节我们谈论了算法的概念，介绍了解决各种问题的算法，包括一些在列表中搜索元素和列表进行排序。注意的是，当我们估计线性搜索和二分搜索算法在n个元素的序列中搜索元素时用的比较次数。对于排序算法，冒泡排序和插入排序我们要算对n个元素的列表进行排列所需要的比较次数。这意味着我们解决此类问题的时候所需要的时间不仅仅取决于所用的操作步骤，这个时间还取决于实现这算法的程序硬件和软件。</p>
+<p>在等一下我们要谈到的<strong>大O记号（big-O natation）</strong> 有一个非常好的作用，就是可以估计一个函数的增长而不用担心常数因子或低阶项，这意味着使用大O记号不用担心实现算法所用的硬件和软件。另外我们还可以利用大O记号假设算法的不同操作都花费了相等的时间，这大大的简化了分析。</p>
+<h2 id="大-O-记号"><a href="#大-O-记号" class="headerlink" title="大 O 记号"></a>大 O 记号</h2><p>我们在微积分中使用了这么一个符号描述了函数的增长</p>
+<h3 id="定义1-1"><a href="#定义1-1" class="headerlink" title="定义1"></a>定义1</h3><p>令$f,g$是两个函数，其中$f:R\to R, g:R\to R$。如果存在常数C和k使得主要当$x&gt;k$有</p>
+<center>
 
+$\mid f(x)\mid \leq C\mid g(x)\mid$
+
+</center>
+
+<p>我们就说$f(x)$是$O(g(x))$的，即$f(x)$最多不超过函数$g(x)$的。</p>
+<p>为了利用大O记号，则我们需要选择k的值使得当$x&gt;k$的时候容易估计$\mid f(x)\mid$的大小，并查看是否能找到一个常数C使得当$x&gt;k$有$\mid f(x)\mid &lt;  C\mid g(x)\mid$</p>
+<h4 id="例1-1"><a href="#例1-1" class="headerlink" title="例1"></a>例1</h4><p>我们来证明 $f(x) = x^2+2x+1 $是$O(x^2)$的</p>
+<p><strong>证明</strong> 容易看出$2x &lt; x^2$和$1<x^2$，那么构造$g(x) = x^2+x^2+x^2="3x^2$，当$x">1$就有</x^2$，那么构造$g(x)></p>
+<center>
+
+$f(x) \leq g(x)$
+
+</center>
+
+<p>所以，只需要选择$C=4$和$k=1$就能够简单的证明$f(x)$是$O(x^2)$的。或者我们用更严格的方法。</p>
+<p>记$f(x) = x^2+2x+1$和$g(x)= 3x^3$，我们计算</p>
+<center>
+
+$\lim\limits_{x\to 1}\frac{x^2+2x+1}{3x^2} = 1$
+</center>
+
+<p>这说明在$x=1$的时候$f,g$是同阶无穷小。</p>
+<h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><p>证明$n^2$不是$O(n)$</p>
+<p>如果要用定义证明，我们必须选择$C,k$不满足定义1，即证明不等式</p>
+<center>
+
+$n^2> Cn$
+
+</center>
+
+<p>那么构造$f(n) = n^2$和$g(n) =Cn, C\in R$。</p>
+<p>利用函数$F(n) = n^2-Cn$，求导得到$F’(n) = 2n-C$，C是一固定常数，则在某个点$n\in (C,\infty)$上$F’(n) &lt; 0$，因此$n^2$总能找到比$Cn$大的点。所以$n^2 &gt; Cn$。</p>
+<h2 id="一些重要函数的大O估算"><a href="#一些重要函数的大O估算" class="headerlink" title="一些重要函数的大O估算"></a>一些重要函数的大O估算</h2><p>我们来看一些比较重要的函数，例如一般的多项式。</p>
+<h3 id="定理-1"><a href="#定理-1" class="headerlink" title="定理 1"></a>定理 1</h3><p>令$f(x) = a_nx^n+a_{n-1}x^{n-1}+\cdots +a_1x+a_0$，其中$a_0,\cdots, a_{n} \in R$，那么$f(x)$是$O(x^n)$的。</p>
+<p><strong>证明</strong> 利用三角不等式，当$x&gt;1$有</p>
+<center>
+
+$\begin{aligned}
+    \mid f(x)\mid =& \mid a_nx^n+\cdots+a_1x+a_0\mid \\
+    \leq& \mid a_n\mid x^n+\cdots+\mid a_1\mid x+\mid a_0\mid\\
+    =& x^n(\mid a_n\mid+\mid a_{n-1}\mid/x+\cdots + \mid a_1\mid /x^{n-1}+\mid a_0\mid/x^n)\\
+    \leq &x^n(\mid a_0\mid +\cdots + \mid a_1\mid+\mid a_0\mid)
+\end{aligned}$
+
+</center>
+
+<p>证毕。</p>
+<h3 id="n-的大O估计"><a href="#n-的大O估计" class="headerlink" title="n!的大O估计"></a>n!的大O估计</h3><p>我们定义阶乘函数$f(n)=n!$，其中$n$是正整数。为了得到一个n!的大O估计，有</p>
+<center>
+
+$\begin{aligned}
+    n! =& 1\cdot 2\cdots n\\
+    \leq& n\cdot n\cdots n\\
+    =& n^n
+\end{aligned}$
+
+</center>
+
+<p>所以，$n!$是$O(n^n)$的</p>
+<h3 id="ln-n-的大O估计"><a href="#ln-n-的大O估计" class="headerlink" title="$\ln( n)$的大O估计"></a>$\ln( n)$的大O估计</h3><p>利用$n&lt; 2^n$，则容易得到$n$是$O(2^n)$的。那么我们可以这样子干，我们在不等式两边风别取$2$为底的对数</p>
+<center>
+
+$\begin{aligned}
+&\log_2(n) < n\log_2(2)\\
+=& \log_2(n) < n
+\end{aligned}$
+
+</center>
+
+<p>更一般的，为了证明$\ln(n)$，有</p>
+<center>
+
+$\ln(n) < n\ln(2)$
+
+</center>
+
+<p>所以$\ln(n)$是$O(n)$的。</p>
+<h1 id="函数组合的增长"><a href="#函数组合的增长" class="headerlink" title="函数组合的增长"></a>函数组合的增长</h1>
   </div>
 </article>
 
@@ -233,7 +317,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">贪婪算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">例6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">停机问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891"><span class="toc-number">1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">搜索算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.1.</span> <span class="toc-text">线性搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.2.</span> <span class="toc-text">二分搜索</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.2.</span> <span class="toc-text">插入排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">贪婪算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">例6</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%9C%E6%9C%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">停机问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%A2%9E%E9%95%BF"><span class="toc-number">2.</span> <span class="toc-text">函数的增长</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7-O-%E8%AE%B0%E5%8F%B7"><span class="toc-number">2.1.</span> <span class="toc-text">大 O 记号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">定义1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B1-1"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E5%87%BD%E6%95%B0%E7%9A%84%E5%A4%A7O%E4%BC%B0%E7%AE%97"><span class="toc-number">2.2.</span> <span class="toc-text">一些重要函数的大O估算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">定理 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E7%9A%84%E5%A4%A7O%E4%BC%B0%E8%AE%A1"><span class="toc-number">2.2.2.</span> <span class="toc-text">n!的大O估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln-n-%E7%9A%84%E5%A4%A7O%E4%BC%B0%E8%AE%A1"><span class="toc-number">2.2.3.</span> <span class="toc-text">$\ln( n)$的大O估计</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%BB%84%E5%90%88%E7%9A%84%E5%A2%9E%E9%95%BF"><span class="toc-number">3.</span> <span class="toc-text">函数组合的增长</span></a></li></ol>
       </div>
     
 
