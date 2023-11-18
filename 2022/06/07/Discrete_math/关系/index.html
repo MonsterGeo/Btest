@@ -14,7 +14,7 @@
 <meta property="og:description" content="关系的表示在这节，我们要研究的所有关系均为二元关系，所以在这些内容中出现的“关系”都表示 二元关系。 用矩阵表示关系我们可以用0-1矩阵表示一个有穷集之间的关系，我们假设$R$是从$A&#x3D;\{a_1,a_2,\cdots,a_m\}$到$B &#x3D; \{b_1,b_2,\cdots,b_n\}$的关系。那么我们可以用矩阵$M_R &#x3D; [m_{ij}]$表示，其中   $m_{ij} &#x3D; \begin{c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-08-03T11:37:28.759Z">
+<meta property="article:modified_time" content="2023-08-04T05:41:20.137Z">
 <meta property="article:author" content="Marcus">
 <meta property="article:tag" content="D-math">
 <meta name="twitter:card" content="summary">
@@ -120,7 +120,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">关系的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用矩阵表示关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%83%E8%88%8D%E5%B0%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">沃舍尔算法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">关系的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用矩阵表示关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="toc-number">1.3.</span> <span class="toc-text">传递闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%83%E8%88%8D%E5%B0%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">沃舍尔算法</span></a></li></ol></li></ol>
       </div>
     
   </span>
@@ -207,13 +207,15 @@ $R = \{(a_1,b_2),(a_2,b_1),(a_2,b_3),(a_2,b_4),(a_3,b_1),(a_3,b_3),(a_3,b_5)\}$
 
 </center>
 
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>闭包的概念比较简单，一个关系中的闭包指的是满足自反性，即$(a,b)=(b,a)$，但关系中的自反是很显然的。例如</p>
-<center>
-
-$A = \{1，2，3\}$的关系$R = \{(1,1),(1,2),(2,1),(3,2)$就不是自反的，因为缺少了元素$(2,2)$和$(3,3)$
-
-</center>
-
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>设$R$是集合$A$上的二元关系，$R$的自反（对称、传递）闭包是满足以下条件的关系$R’$</p>
+<ul>
+<li>$R’$是自反的（对称、传递的）</li>
+<li>$R’\supseteq R$</li>
+<li>对于$A$上任何自反（对称、传递）的关系$R’’$，若$R’’\supseteq R$，则$R’’\subseteq R’$</li>
+</ul>
+<p>举个例子，集合$A =\{1,2,3\}$上的关系$R =\{(1,1),(1,2),(2,1),(3,2)\}$不是自反的，那么我们怎么尽可能的得到一个包含关系$R$的小的自反关系呢，由于自反关系就是包含$(a,a)$的元素，所以我们只需要添加$(2,2),(3,3)$进去就能构成一个自反关系。</p>
+<p>而对称闭包呢，还是用刚才的例子，一个对称关系指的是含有$(a,b)$和$(b,a)$的关系，为此为了让$R$变成对称关系，我们还得添加入$(2,3)$元素。使得$R$是对称闭包。</p>
+<h2 id="传递闭包"><a href="#传递闭包" class="headerlink" title="传递闭包"></a>传递闭包</h2><p>设$R$是集合$A$上的关系，连通性关系$R^*$由形如$(a,b)$的有序对构成，使得在关系$R$中，从$a\to b$之间至少存在一条长度为1的路径。</p>
 <h2 id="沃舍尔算法"><a href="#沃舍尔算法" class="headerlink" title="沃舍尔算法"></a>沃舍尔算法</h2><p>沃舍尔算法是史蒂芬·沃舍尔在1960年给出的算法，这个算法能够高效的计算关系的传递闭包</p>
 
   </div>
@@ -240,7 +242,7 @@ $A = \{1，2，3\}$的关系$R = \{(1,1),(1,2),(2,1),(3,2)$就不是自反的，
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">关系的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用矩阵表示关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%83%E8%88%8D%E5%B0%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">沃舍尔算法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">关系的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">用矩阵表示关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1"><span class="toc-number">1.1.1.</span> <span class="toc-text">例1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2"><span class="toc-number">1.1.2.</span> <span class="toc-text">例2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">1.2.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="toc-number">1.3.</span> <span class="toc-text">传递闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%83%E8%88%8D%E5%B0%94%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">沃舍尔算法</span></a></li></ol></li></ol>
       </div>
     
 

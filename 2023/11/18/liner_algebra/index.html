@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Marcus&#39;s Blog">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/1.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/3.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/4.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/5.png">
+<meta property="article:published_time" content="2023-11-18T04:25:35.272Z">
+<meta property="article:modified_time" content="2023-11-18T06:04:34.726Z">
+<meta property="article:author" content="Marcus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Marcus&#39;s Blog</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2023/08/03/Discrete_math/mt/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8matlab%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5"><span class="toc-number">1.</span> <span class="toc-text">用matlab计算矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E5%88%9B%E5%BB%BA%E7%9F%A9%E9%98%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">一，创建矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、基本运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">常用命令</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-11-18T04:25:35.272Z" class="dt-published" itemprop="datePublished">2023-11-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="用matlab计算矩阵"><a href="#用matlab计算矩阵" class="headerlink" title="用matlab计算矩阵"></a>用matlab计算矩阵</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="一，创建矩阵"><a href="#一，创建矩阵" class="headerlink" title="一，创建矩阵"></a>一，创建矩阵</h3><p>MATLAB中的矩阵如下定义：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = [a b c; c d e; f g h]</span><br><span class="line">其中行向量用空格做间隔，列向量用分号&quot; ; &quot;</span><br></pre></td></tr></table></figure></p>
+<p>一些特殊的矩阵可以用一些命令生成，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zeros(n)：生成一个n维的零矩阵</span><br><span class="line">zeros(m,n)：生成一个n行n列的零矩阵</span><br><span class="line">rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的</span><br></pre></td></tr></table></figure>
+<p>现在讲一讲一些基本的操作</p>
+<h3 id="二、基本运算"><a href="#二、基本运算" class="headerlink" title="二、基本运算"></a>二、基本运算</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">矩阵的乘积需要满足一定的条件，最简单的是乘法</span><br><span class="line">A*B ：按照矩阵乘法计算两个矩阵的乘积</span><br><span class="line">A .* B ：点乘是指矩阵和矩阵间对应的元素相乘，而不是做矩阵乘法。</span><br></pre></td></tr></table></figure>
+<p>我们演示一下，首先生成两个矩阵</p>
+<script type="math/tex; mode=display">
+A = \left[ \begin{matrix}
+    1&        2&        3\\
+    4&        5&        6\\
+\end{matrix} \right] \ B = \ \left[ \begin{matrix}
+    1&        2\\
+    3&        4\\
+    5&        6\\
+\end{matrix} \right]</script><p><img src="/Btest/Btest/2023/11/18/liner_algebra/1.png" alt></p>
+<p>其次，对于点乘，则要求矩阵具备相同的行和列数，否则会报错，那么我们做如下演示：</p>
+<p><img src="/Btest/Btest/2023/11/18/liner_algebra/2.png" alt></p>
+<p>在掌握这两种不同意义的运算后，对基本的加减乘就没什么大的问题，现在。MATLAB中对矩阵的幂的定义如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A^k ：定义为矩阵的幂运算，等价于A*A*A*A......</span><br></pre></td></tr></table></figure></p>
+<p><img src="/Btest/Btest/2023/11/18/liner_algebra/3.png" alt></p>
+<p>现在，让我们回到矩阵的本质——线性方程组上。我们说想要解一个线性方程组</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array}{l}
+    2x_1+2x_2-x_3+x_4=4\\
+    4x_1+3x_2-x_3+2x_4=6\\
+    8x_1+3x_2-3x_3+4x_4=12\\
+    3x_1+3x_2-2x_3-2x_4=6\\
+\end{array} \right.</script><p>那么对于基本的定义，定义其系数矩阵和其增广矩阵为：</p>
+<script type="math/tex; mode=display">
+A\ =\ \left( \begin{matrix}
+    2&        2&        -1&        1\\
+    4&        3&        -1&        2\\
+    8&        3&        -3&        4\\
+    3&        3&        -2&        -2\\
+\end{matrix} \right) (A\mid B) \ =\ \left( \begin{matrix}
+    2&        2&        -1&        1& 4\\
+    4&        3&        -1&        2 & 6\\
+    8&        3&        -3&        4 & 12\\
+    3&        3&        -2&        -2 & 6\\
+\end{matrix} \right)</script><p>在MATLAB中我们可以一次性输入增广矩阵，或者定义系数矩阵A和解向量B，用代码[A B]也可以表示增广矩阵</p>
+<p><img src="/Btest/Btest/2023/11/18/liner_algebra/4.png" alt></p>
+<p>现在我们开始求解<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在帮助中心，求解一个线性方程组Ax =B需要用到函数 mldivide()，也可以简单的记为 x = A\B，或者是x = inv(A)*B</span><br><span class="line"></span><br><span class="line">其中inv(A)指的是A的逆</span><br></pre></td></tr></table></figure></p>
+<p>现在我们分别演示这三个代码</p>
+<p><img src="/Btest/Btest/2023/11/18/liner_algebra/5.png" alt></p>
+<p>现在介绍一些常用的命令</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">det(A) ：求矩阵A的行列式</span><br><span class="line">inv(A) ：矩阵A的逆</span><br><span class="line">rank(A) ：矩阵的秩</span><br><span class="line">poly(A) ：矩阵的特征多项式</span><br><span class="line">null(A) ：求一组A的零空间的一组标准正交基，我们可以用其求一组基础解系。</span><br><span class="line">orth(A)：得到A的一组标准正交基</span><br><span class="line">rref(A) ：利用高斯消元法得到以恶行阶梯型矩阵，即Ax=b的通解。</span><br><span class="line">eig(A) ： 特征值和特征向量</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/about/">About</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%A8matlab%E8%AE%A1%E7%AE%97%E7%9F%A9%E9%98%B5"><span class="toc-number">1.</span> <span class="toc-text">用matlab计算矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E5%88%9B%E5%BB%BA%E7%9F%A9%E9%98%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">一，创建矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、基本运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.3.</span> <span class="toc-text">常用命令</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
