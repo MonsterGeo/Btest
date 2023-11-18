@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现">
+    <meta name="description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现在讲一讲一些基本的操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Marcus&#39;s Blog">
+<meta property="og:title" content="用MATLAB做矩阵计算">
 <meta property="og:url" content="https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/index.html">
 <meta property="og:site_name" content="Marcus&#39;s Blog">
-<meta property="og:description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现">
+<meta property="og:description" content="用matlab计算矩阵用法一，创建矩阵MATLAB中的矩阵如下定义：12A &#x3D; [a b c; c d e; f g h]其中行向量用空格做间隔，列向量用分号&quot; ; &quot; 一些特殊的矩阵可以用一些命令生成，例如 123zeros(n)：生成一个n维的零矩阵zeros(m,n)：生成一个n行n列的零矩阵rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的 现在讲一讲一些基本的操">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/1.png">
-<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2.png">
-<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/3.png">
-<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/4.png">
-<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/5.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/2.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/3.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/4.png">
+<meta property="og:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/5.png">
 <meta property="article:published_time" content="2023-11-18T04:25:35.272Z">
-<meta property="article:modified_time" content="2023-11-18T06:04:34.726Z">
+<meta property="article:modified_time" content="2023-11-18T06:43:11.679Z">
 <meta property="article:author" content="Marcus">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://monstergeo.github.io/Btest/Btest/2023/11/18/liner_algebra/1.png">
@@ -42,7 +42,7 @@
       
     
     <!-- title -->
-    <title>Marcus&#39;s Blog</title>
+    <title>用MATLAB做矩阵计算</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -71,7 +71,119 @@
 		</script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 	
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 6.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body class="max-width mx-auto px3 ltr">    
       <div id="header-post">
@@ -109,16 +221,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text=用MATLAB做矩阵计算"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description=用MATLAB做矩阵计算"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=用MATLAB做矩阵计算&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=用MATLAB做矩阵计算&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t=用MATLAB做矩阵计算"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -138,7 +250,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        
+        用MATLAB做矩阵计算
     </h1>
 
 
@@ -157,6 +269,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/Btest/categories/MATLAB/">MATLAB</a>
+    </div>
+
 
       
 
@@ -165,7 +282,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="用matlab计算矩阵"><a href="#用matlab计算矩阵" class="headerlink" title="用matlab计算矩阵"></a>用matlab计算矩阵</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="一，创建矩阵"><a href="#一，创建矩阵" class="headerlink" title="一，创建矩阵"></a>一，创建矩阵</h3><p>MATLAB中的矩阵如下定义：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = [a b c; c d e; f g h]</span><br><span class="line">其中行向量用空格做间隔，列向量用分号&quot; ; &quot;</span><br></pre></td></tr></table></figure></p>
+    <h1 id="用matlab计算矩阵"><a href="#用matlab计算矩阵" class="headerlink" title="用matlab计算矩阵"></a>用matlab计算矩阵</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="一，创建矩阵"><a href="#一，创建矩阵" class="headerlink" title="一，创建矩阵"></a>一，创建矩阵</h3><p>MATLAB中的矩阵如下定义：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A = [a b c; c d e; f g h]</span><br><span class="line">其中行向量用空格做间隔，列向量用分号" ; "</span><br></pre></td></tr></table></figure></p>
 <p>一些特殊的矩阵可以用一些命令生成，例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zeros(n)：生成一个n维的零矩阵</span><br><span class="line">zeros(m,n)：生成一个n行n列的零矩阵</span><br><span class="line">rand(3)：生成一个3x3的矩阵，但矩阵的元素是在[0,1]里随机填充的</span><br></pre></td></tr></table></figure>
 <p>现在讲一讲一些基本的操作</p>
@@ -179,11 +296,11 @@ A = \left[ \begin{matrix}
     1&        2\\
     3&        4\\
     5&        6\\
-\end{matrix} \right]</script><p><img src="/Btest/Btest/2023/11/18/liner_algebra/1.png" alt></p>
+\end{matrix} \right]</script><p><img src="/Btest/Btest/2023/11/18/liner_algebra/1.png"> </p>
 <p>其次，对于点乘，则要求矩阵具备相同的行和列数，否则会报错，那么我们做如下演示：</p>
-<p><img src="/Btest/Btest/2023/11/18/liner_algebra/2.png" alt></p>
+<img src="/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/2.png" class>   
 <p>在掌握这两种不同意义的运算后，对基本的加减乘就没什么大的问题，现在。MATLAB中对矩阵的幂的定义如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A^k ：定义为矩阵的幂运算，等价于A*A*A*A......</span><br></pre></td></tr></table></figure></p>
-<p><img src="/Btest/Btest/2023/11/18/liner_algebra/3.png" alt></p>
+<img src="/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/3.png" class>   
 <p>现在，让我们回到矩阵的本质——线性方程组上。我们说想要解一个线性方程组</p>
 <script type="math/tex; mode=display">
 \left\{ \begin{array}{l}
@@ -204,10 +321,10 @@ A\ =\ \left( \begin{matrix}
     8&        3&        -3&        4 & 12\\
     3&        3&        -2&        -2 & 6\\
 \end{matrix} \right)</script><p>在MATLAB中我们可以一次性输入增广矩阵，或者定义系数矩阵A和解向量B，用代码[A B]也可以表示增广矩阵</p>
-<p><img src="/Btest/Btest/2023/11/18/liner_algebra/4.png" alt></p>
+<img src="/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/4.png" class title="This is an image">   
 <p>现在我们开始求解<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在帮助中心，求解一个线性方程组Ax =B需要用到函数 mldivide()，也可以简单的记为 x = A\B，或者是x = inv(A)*B</span><br><span class="line"></span><br><span class="line">其中inv(A)指的是A的逆</span><br></pre></td></tr></table></figure></p>
 <p>现在我们分别演示这三个代码</p>
-<p><img src="/Btest/Btest/2023/11/18/liner_algebra/5.png" alt></p>
+<img src="/Btest/Btest/2023/11/18/liner_algebra/2023/11/18/liner_algebra/5.png" class title="This is an image">   
 <p>现在介绍一些常用的命令</p>
 <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">det(A) ：求矩阵A的行列式</span><br><span class="line">inv(A) ：矩阵A的逆</span><br><span class="line">rank(A) ：矩阵的秩</span><br><span class="line">poly(A) ：矩阵的特征多项式</span><br><span class="line">null(A) ：求一组A的零空间的一组标准正交基，我们可以用其求一组基础解系。</span><br><span class="line">orth(A)：得到A的一组标准正交基</span><br><span class="line">rref(A) ：利用高斯消元法得到以恶行阶梯型矩阵，即Ax=b的通解。</span><br><span class="line">eig(A) ： 特征值和特征向量</span><br></pre></td></tr></table></figure>
 
@@ -242,16 +359,16 @@ A\ =\ \left( \begin{matrix}
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&text=用MATLAB做矩阵计算"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&is_video=false&description=用MATLAB做矩阵计算"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=用MATLAB做矩阵计算&body=Check out this article: https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&title=用MATLAB做矩阵计算"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&name=用MATLAB做矩阵计算&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/11/18/liner_algebra/&t=用MATLAB做矩阵计算"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
