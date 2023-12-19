@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="动机我们经常遇到一些比较复杂的数据集，然后对它做运算，它会变得更加的复杂。一个例子是：我们假设第一个数据集是随机变量$X_1$给定值的概率，而第二个数据集是随机变量$X_2$给定的值的概率，利用这些信息，我们虽然可以通过蛮力计算$X_1+X_2$取某个值的概率，但我们仍然希望能避免这种繁琐的计算，接下来，我们将学习的研究这种问题的特殊情形，我们将给出一个例子，设两个服从泊松分布的随机变量。 $X_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成函数">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="动机我们经常遇到一些比较复杂的数据集，然后对它做运算，它会变得更加的复杂。一个例子是：我们假设第一个数据集是随机变量$X_1$给定值的概率，而第二个数据集是随机变量$X_2$给定的值的概率，利用这些信息，我们虽然可以通过蛮力计算$X_1+X_2$取某个值的概率，但我们仍然希望能避免这种繁琐的计算，接下来，我们将学习的研究这种问题的特殊情形，我们将给出一个例子，设两个服从泊松分布的随机变量。 $X_">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-18T09:16:57.896Z">
+<meta property="article:modified_time" content="2023-12-19T13:32:46.568Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>生成函数</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2023/12/12/%E8%8B%B1%E8%AF%AD/%E5%90%88%E6%88%90/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&text=生成函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&is_video=false&description=生成函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=生成函数&body=Check out this article: https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&name=生成函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&t=生成函数"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        生成函数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-18T09:16:57.896Z" class="dt-published" itemprop="datePublished">2023-12-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/math/" rel="tag">math</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>我们经常遇到一些比较复杂的数据集，然后对它做运算，它会变得更加的复杂。一个例子是：我们假设第一个数据集是随机变量$X_1$给定值的概率，而第二个数据集是随机变量$X_2$给定的值的概率，利用这些信息，我们虽然可以通过蛮力计算$X_1+X_2$取某个值的概率，但我们仍然希望能避免这种繁琐的计算，接下来，我们将学习的研究这种问题的特殊情形，我们将给出一个例子，设两个服从泊松分布的随机变量。</p>
+<p>$X_1$是服从参数为$5$的泊松分布，再设一个$X_2$是服从参数为$7$的泊松分布，即：</p>
+<center>
+
+$
+\begin{aligned}
+    &\mathrm{Prob}(X_1 = m) = 5^me^{-5}/m!\\
+&\mathrm{Prob}(X_2=n) = 7^ne^{-1}/n!
+\end{aligned}
+$
+
+</center>
+
+
+<p>其中$m,n$取遍非负整数，先设$k$是非负整数，我们考察$X_1+X_2 =k$的情况。不妨设$X_1 = l$，由于$X_1$介于$0$和$k$中间，那么$X_2$可以被我们设为$k-l = X_2$，由于两个随机变量相互独立，那么一起发生的概率就是两个概率事件的乘积，因此我们有</p>
+<center>
+
+$\begin{aligned}
+    \mathrm{Prob}(X_1+X_2 = k) &= \sum^k_{l=0}\mathrm{Prob}(X_1 = l)\mathrm(Prob)(X_2 = k-l)\\
+    &=\sum^k_{l=0}\frac{5^le^{-5}}{l!}\frac{7^{k-l}e^{-7}}{(k-l)!}
+\end{aligned}$
+
+</center>
+
+<p>这是个很难计算的东西，但我们可以使用一些小技巧</p>
+<ul>
+<li>注意到因子$1/l!(k-1)!$，他和我们的二项式系数很像，因为${k\choose l} = \frac{k!}{l!(k-l)!}$，那么我们等一下将乘1，也就是$k!/k!$。这样子我们就可以把$1/k!$提到外面去。</li>
+<li>式子中的$e^{-5}$和$e^{-7}$与$l$无关，因此也可以提出来，我们就有$e^{-12}$</li>
+<li>那么我们可以简化得到$\frac{e^{-12}}{k!}\sum^k_{l=0}{k\choose l}5^l7^{k-l}$，后面可以还原成二项式，那么久是$(5+7)^k = 12^k$</li>
+</ul>
+<p>综上所述，我们就有</p>
+<center>
+
+$\mathrm{Prob}(X_1+X_2=k) = \frac{12^ke^{-12}}{k!}$
+
+</center>
+
+<p>即我们得到了服从$12$为参数的泊松分布。有一个推广的定理，可以由归纳法得到：</p>
+<hr>
+<p>服从泊松分布的随机变量之和：已知存在$n$个相互独立的随机变量，若其分别服从参数为$\lambda_1,\lambda_2,\cdots,\lambda_n$的泊松分布，那么它们的和服从参数为$\lambda_1+\lambda_2+\cdots+\lambda_n$的泊松分布。</p>
+<p>这种计算非常复杂，因此我们在下面引入一些生成函数的理论，然后讲讲应用</p>
+<hr>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>我们定义序列的生成函数，通常应用在不同事件的概率或者分布的矩。我们来看几个例子</p>
+<hr>
+<p><strong>定义：生成函数</strong> 已知序列$\{a_n\}^\infty_{n=0}$，它的生成函数我们定义为：</p>
+<center>
+
+$G_a(s) = \sum^\infty_{n=0}a_ns^n$
+
+</center>
+
+<p>其中$s$是使得函数收敛的任意数</p>
+<hr>
+<p>我们都知道 <strong>斐波那契数列</strong>，它定义$F_0 =0$，$F_1 = 1$，它的一半公式是$F_n = F_{n-1}+F_{n-2}$，前几项是$0,1,1,2,3,5,8,13,\cdots$。但这个公式不好用，例如$F_{10} = 55$，但$F_{100}$是一个有21位的巨大数字，计算这个很枯燥，而$F_{2011}$和更是超过了400位了。而现在，我们试试生成函数，利用它来计算，我们给定</p>
+<center>
+
+$G_F(s) = \sum^\infty_{n=0}F_ns^n$
+
+</center>
+
+<p>我们单独给出$n=0,1$时候的项，当$n\geq 2$，利用递推关系$F_n = F_{n-1}+F_{n-1}$有：</p>
+<center>
+
+$\begin{aligned}
+    G_F(s)=&F_0+F_1s+\sum^\infty_{n=0}(F_{n-1}+F_{n-2})s^n\\
+    =&0 +s+\sum^\infty_{n=2}F_{n-1}s^n+\sum^\infty_{n=2}F_{n-2}s^n
+\end{aligned}$
+
+
+</center>
+
+<p>我们现在提出一些方幂来对和式重新标记</p>
+<center>
+
+$\begin{gathered}
+G_{F}(s) =s+s\sum_{n=2}^{\infty}F_{n-1}s^{n-1}+s^{2}\sum_{n=2}^{\infty}F_{n-2}s^{n-2} \\
+=s+s\sum_{m=1}^{\infty}F_{m}s^{m}+s^{2}\sum_{m=0}^{\infty}F_{m}s^{m}. 
+\end{gathered}$
+
+</center>
+
+<p>由于$F_0=0$，因此我们可以把它变成从$m=0$开始技术，那么上面两个和式就是$G_F(s)$，那么就有</p>
+<center>
+
+$G_F(s) = s+sG_F(s)+s^2G_F(s)$
+
+</center>
+
+<p>利用二次公式即得</p>
+<center>
+
+$G_F(s) = \frac{s}{1-s-s^2}$
+
+</center>
+
+<p>为了处理这个式子，我们利用部分分式，那么有</p>
+<center>
+
+$\frac{s}{1-s-s^2} = \frac{a}{1-As}+\frac{b}{1-Bs}$
+
+</center>
+
+<p>简单的计算$A,B$，则有$A=\frac{1+\sqrt{5}}{2}$，而$B = \frac{1-\sqrt{5}}{2}$。而$a,b$的计算也颇为简单，有关系是$-(aB+bA) =1$得到$b = -a$，因此，带入可以得到$a = \frac{1}{\sqrt{5}}$，$b = -\frac{1}{\sqrt{5}}$，我们就得到</p>
+<center>
+
+$G_F(s) = \frac{s}{1-s-s^2} = \frac{1}{\sqrt{5}}\frac{1}{1-As} - \frac{1}{\sqrt{5}}\frac{1}{1-Bs}$
+
+</center>
+
+<p>利用几何级数展开就有</p>
+<center>
+
+$G_F(s) = \frac{1}{\sqrt{5}}\sum^\infty_{n=0}A^ns^n - \frac{1}{\sqrt{5}}\sum^\infty_{n=0}B^ns^n$
+
+</center>
+
+<p>最后得到</p>
+<center>
+
+$\sum_{n=0}^{\infty}\left[{\frac{1}{\sqrt{5}}}\left({\frac{1+{\sqrt{5}}}{2}}\right)^{n}-{\frac{1}{\sqrt{5}}}\left({\frac{1-{\sqrt{5}}}{2}}\right)^{n}\right]s^{n}$
+
+</center>
+
+<p>我们就得到了第$n$个斐波那契数列的公式。</p>
+<hr>
+<p><strong>比内公式：</strong> 设$\{F_n\}^\infty_{n=0}$是斐波那契级数，其中$F_0 =0,F_1 =1$，且$F_{n+2} = F_{n+1}+F_n$，于是</p>
+<center>
+
+$F_n = \frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^n - \frac{1}{\sqrt{5}}\left(\frac{1-\sqrt{5}}{2}\right)^n$
+
+</center>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/English/">英语</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">动机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&text=生成函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&is_video=false&description=生成函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=生成函数&body=Check out this article: https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&title=生成函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&name=生成函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/&t=生成函数"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2023
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
