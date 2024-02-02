@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="这一章我们讲讲编码 首先思考一个问题，我们如何防止一个未经授权的人获取我们的信息？我们假设帕特问麦克要艾拉电话，但麦克回答的时候有一只狗在叫，由于这个噪声，帕特不确信他真的听到了电话号码，并一次要求麦克重复一遍。有可能的大多数情况下，在一次或者两次后的重复才能保证帕特听到艾拉的电话号码。但简单的重复一个信息可数次是不可行的，例如地球上的科学家查看来自火星或者木星的照片就是一个很好的例子。在2004">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/01/29/Code/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="这一章我们讲讲编码 首先思考一个问题，我们如何防止一个未经授权的人获取我们的信息？我们假设帕特问麦克要艾拉电话，但麦克回答的时候有一只狗在叫，由于这个噪声，帕特不确信他真的听到了电话号码，并一次要求麦克重复一遍。有可能的大多数情况下，在一次或者两次后的重复才能保证帕特听到艾拉的电话号码。但简单的重复一个信息可数次是不可行的，例如地球上的科学家查看来自火星或者木星的照片就是一个很好的例子。在2004">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-29T14:47:33.000Z">
+<meta property="article:modified_time" content="2024-02-02T10:09:01.679Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Code</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2023/12/18/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/01/29/Code/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&text=Code"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&is_video=false&description=Code"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code&body=Check out this article: https://monstergeo.github.io/Btest/2024/01/29/Code/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&name=Code&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/01/29/Code/&t=Code"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">分组码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80"><span class="toc-number">2.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E9%87%8D%E9%87%8D%E5%A4%8D-12-4-%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">二、三重重复$[12,4]$码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F"><span class="toc-number"></span> <span class="toc-text">度量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1-%E5%87%BA%E7%A7%9F%E8%BD%A6%E5%BA%A6%E9%87%8F"><span class="toc-number">0.1.</span> <span class="toc-text">例1-出租车度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2-%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E5%BA%A6%E9%87%8F"><span class="toc-number">0.2.</span> <span class="toc-text">例2-欧几里得度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B3-L-2-%E5%BA%A6%E9%87%8F"><span class="toc-number">0.3.</span> <span class="toc-text">例3-$L^2$度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B4-p-%E8%BF%9B%E5%88%B6%E5%BA%A6%E9%87%8F"><span class="toc-number">0.4.</span> <span class="toc-text">例4-$p$进制度量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.</span> <span class="toc-text">定义：汉明距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%9C%80%E5%B0%8F%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.2.</span> <span class="toc-text">定义：最小距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%9C%80%E9%9D%A0%E8%BF%91%E7%A0%81%E5%AD%97"><span class="toc-number">1.4.</span> <span class="toc-text">定义：最靠近码字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E7%BA%A0%E9%94%99"><span class="toc-number">1.5.</span> <span class="toc-text">定义：纠错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E9%A2%981"><span class="toc-number">1.6.</span> <span class="toc-text">命题1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90-1"><span class="toc-number">1.6.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%8E%87"><span class="toc-number">1.7.</span> <span class="toc-text">定义：信息率</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Code
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-29T14:47:33.000Z" class="dt-published" itemprop="datePublished">2024-01-29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/math/" rel="tag">math</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>这一章我们讲讲编码</p>
+<p>首先思考一个问题，我们如何防止一个未经授权的人获取我们的信息？我们假设帕特问麦克要艾拉电话，但麦克回答的时候有一只狗在叫，由于这个噪声，帕特不确信他真的听到了电话号码，并一次要求麦克重复一遍。有可能的大多数情况下，在一次或者两次后的重复才能保证帕特听到艾拉的电话号码。但简单的重复一个信息可数次是不可行的，例如地球上的科学家查看来自火星或者木星的照片就是一个很好的例子。在2004年，在这些星球上的机器人用照相机将每一个图片用下述的方式编码成二进制数字，一个图片会被分成1024 $\times$ 1024的格点$p_{ij}$，他一共存在$2^{10}\times 2^{10} = 1~048~576$个格点。每一个格点都带有一个$12$位的二进制数$c_{ij}$，用于描述它的颜色，密度等等。而这个$2^{10}\times 2^{10}$矩阵$[c_{ij}]$被写为一个2进制数，从第一行到第二行直到第1024行。那么在这种情况下一个图片传达的信息大约有$12~000~000$节信息，但太空是“嘈杂的”，因为存在宇宙射线会干扰电磁信号。所以多次的重复依然有可能在收到的信息中是不存在一样的消息的。所以我们来寻找一些可行的信息编码的方式，使得我们在接受信息时，错误可被察觉，当然，我们希望能够修正。</p>
+<h2 id="分组码"><a href="#分组码" class="headerlink" title="分组码"></a>分组码</h2><p>将一个信息在一个嘈杂的渠道上传输涉及三步</p>
+<ul>
+<li>对信息编码（编制冗余码）</li>
+<li>传递信息</li>
+<li>对信息译码</li>
+</ul>
+<p>现在我们来定义一些东西</p>
+<p align="left">记号：我们用$B$表示有限域$F_2$</p>
+
+<p align="left">定义：一个有限集$A$被称为字母表，若其元素为字母，设$m,n$是正整数。一个编码函数是单射的函数$E:A^m\to A^n$，$A^m$或者$A^n$的元素$\omega$称为字，集合$C = \mathrm{im} E\subseteq A^n$称为$A$上的$[n,m]$分组码，$C$的元素称为码字。若$A = B$，则一个$[n,m]$分组码称为一个二进制码。</p>
+
+<p>编码涉及到冗余，这是因为一般情况下为$m&lt;n$（理由看一开始的简介），$m$的选择是不受控制的，因为一个任意长的信息可以被细分为长度$\leq m$的更短的子字。一个传输的信息可能是从外层空间到地球的一张照片，当然，这是我们想要的。如果没有任何干扰，则任意码字$c = E(\omega)$都是可以用$\omega = E^{-1}(c)$译码，由于编码函数是一个单射，这是因为有可能出现错误，因此我们的任务就是给一个码加上足够多的冗余码，使得我们可以从中有效的回复出原来的码字。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p align="left">奇偶性校验$[m+1,m]$码</p>
+
+<p>定义编码函数$E:B^m \to B^{m+1}$为</p>
+<center>
+
+$\omega = (a_1,\cdots,a_m)\in B^m \to E(\omega) = (a_1,\cdots,a_m,b)$
+
+</center>
+
+<p>其中$b = \sum^m_{i=1} a_i$，容易验证$E$是一个单射，且有码字$C = \mathrm{im} E\subseteq B^{m+1}$ 如下给出：</p>
+<center>
+
+$C = \{(b_1,\cdots,b_{m+1}\in B^{m+1}: b_1+b_2+\cdots+b_{m+1} = 0\}$
+
+</center>
+
+<p>那么，我们定义了一个集合$C$，它的元素由$B^{m+1}$中坐标的和为0给定。不妨取$\omega\in B^m$，则$E(\omega)$的奇偶性为偶当其的坐标的和在$B$中为0，若我们收到一个奇偶性为奇的信息，则我们知道一定在传输中出了错，若存在一对错误，则不能被察觉出，注意$2\equiv 0 \mod 2$。C的作用我们等一下再说。</p>
+<h3 id="二、三重重复-12-4-码"><a href="#二、三重重复-12-4-码" class="headerlink" title="二、三重重复$[12,4]$码"></a>二、三重重复$[12,4]$码</h3><p>我们考虑定义为$E(\omega) = (\omega,\omega,\omega)$的编码函数$E:B^4\to B^{12}$，那么$C$由如下的形式组成：</p>
+<center>
+
+$E(a_1,a_2,a_3,a_4) = (a_1,a_2,a_3,a_4,a_1,a_2,a_3,a_4,a_1,a_2,a_3,a_4)$
+
+</center>
+
+<p>我们现在开始传输$(a_1,a_2,a_3,a_4)$，设收到的消息为$y = (r_1,\cdots,r_{12})$，由于干扰，可能由</p>
+<center>
+
+$(r_1,\cdots,r_{12}) \neq E(a_1,a_2,a_3,a_4)$
+
+</center>
+
+<p>对收到的字$y$译码如下：若传输中无错误，就有$r_1 =r_5=r_9$。那么这三个码可能的取值只有2种。所以在任何情况下，至少里面的值有两个是相等的。定义$b_1$为在取得最多的值，类似的我们再定义$b_2,b_3,b_4$，那么我们重译$y$为$(b_1,b_2,b_3,b_4)$，若$r_i,r_{i+4},r_{i+8}$不全等，我们知道就存在一个错误。但情况没那么糟糕，我们可以修正这个错误。若收到一个信息$y$的错误，则$y$可以被替换成除一个字母外其余与$y$的字母一样的码字。</p>
+<h1 id="度量"><a href="#度量" class="headerlink" title="度量"></a>度量</h1><p>其次，我们来了解一下度量在$A^n$上字的距离</p>
+<p align="left">定义：设$X$是一个集合，$X$上的度量是满足下列条件的一个函数$\delta:X\times X\to R$</p>
+
+<ul>
+<li>$\delta(a,b)\geq 0$，对所有$a,b\in X$成立且$\delta(a,b) = 0$ 当且仅当$a = b$</li>
+<li>$\delta(a,b) = \delta(b,a)$</li>
+<li><strong>三角不等式</strong>：</li>
+</ul>
+<center>
+
+$\delta(a,b)\leq\delta(a,c)+\delta(c,b)$对所有$a,b,c\in X$成立。
+
+</center>
+
+<h3 id="例1-出租车度量"><a href="#例1-出租车度量" class="headerlink" title="例1-出租车度量"></a>例1-出租车度量</h3><p>若$X = R$，则$\delta(x,y) = \mid x-y\mid $是一个度量。</p>
+<p>该度量被称为出租车度量，记为$l^1$</p>
+<h3 id="例2-欧几里得度量"><a href="#例2-欧几里得度量" class="headerlink" title="例2-欧几里得度量"></a>例2-欧几里得度量</h3><p>若$X = R^n$，$x= (x_1,\cdots,x_n)$，$y = (y_1,\cdots,y_n)$，则$\delta(x,y)  = \sqrt{\sum^n_{i=1}(x_i-y_i)^2}$是一个度量，注意当$n=1$时$\sqrt{x^2} = \mid x\mid$变成了例1</p>
+<h3 id="例3-L-2-度量"><a href="#例3-L-2-度量" class="headerlink" title="例3-$L^2$度量"></a>例3-$L^2$度量</h3><p>设$L^2[a,b]$表示所有平方可积函数构成的集合，即$L^2[a,b] = \{f:[a,b]\to R:\int^b_a f^2(x)dx &lt; \infty\}$，则</p>
+<center>
+
+$\delta(f,g) = \sqrt{\int^b_a (f(x)-g(x))^2dx}$
+
+</center>
+
+<p>是$L^2[a,b]$上的一个度量</p>
+<h3 id="例4-p-进制度量"><a href="#例4-p-进制度量" class="headerlink" title="例4-$p$进制度量"></a>例4-$p$进制度量</h3><p>若$p$是一个素数，$n\in Z$是非零的，则$n = p^ku$，其中$k\geq 0$且$p\nmid u$，即$p^k$是整除$n$的p的最大方幂。记为$k =k(n)$，若我们定义$n\neq m$，$\delta(n,n) =0$和$\delta(n,m) = p^{-k(n-m)}$，则$\delta$是$Z$上的一个度量。</p>
+<h2 id="定义：汉明距离"><a href="#定义：汉明距离" class="headerlink" title="定义：汉明距离"></a>定义：汉明距离</h2><p>设$A$是一个字母表，$\omega = (a_1,\cdots,a_n)$，$\omega’ = (a_1’,a_2’,\cdots,a_n’)\in A^n$，定义函数$\delta:A^n\times A^n\to R$如下</p>
+<center>
+
+$\delta(\omega,\omega') = $满足$a_i\neq a'_i$的i的个数
+
+</center>
+
+<p>称为汉明距离</p>
+<h3 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h3><p>若$A$是一个字母表，$n\geq 1$，则汉明距离是$A^n$上的一个度量。</p>
+<p align="left">证明： 定义$\omega=(a_1,\cdots,a_n)$和$\omega'=(a_1',\cdots,a_n')\in A^n$，显然$\delta(\omega,\omega')\geq 0$。$\delta(\omega,\omega) =0$是一定的。其次，若$\delta(\omega,\omega') = 0$，则对所有$i$都存在$a_i = a_i'$，则有$\omega = \omega'$。现在，我们只需要证明三角不等式成立即可。</p>
+
+<p>若定义$\delta_i(\omega,\omega’)=1$，则$a_i\neq a_i’$，若$\delta_i(\omega,\omega’) = 0$，则$a_i = a_i’$，则</p>
+<center>
+
+$\delta(\omega,\omega') = \sum^n_{i=1}\delta_i(\omega,\omega')$
+
+</center>
+
+<p>我们只需要证明对每个$i$都有$\delta_i(\omega,\omega’) \leq \delta_i(\omega,z)+\delta_i(z,\omega’)$，其中$z = (b_1,\cdots,b_n)$，若$\delta(\omega,\omega’) = 0$，则不等式成立,否则$\delta_i(\omega,\omega’) =1$，则对于$ \delta_i(\omega,z)+\delta_i(z,\omega’)$有三种可能，$0,1,2$。若等于0，则$ \delta_i(\omega,z) = \delta_i(z,\omega’)$，则对于里面的元素就有$a_i = b_i = a_i’$，但$\delta(\omega,\omega’) =1$，这是一个矛盾。</p>
+<h3 id="定义：最小距离"><a href="#定义：最小距离" class="headerlink" title="定义：最小距离"></a>定义：最小距离</h3><p align="left">若$A$是字母表，$C\subseteq A^n$是一个码，则其最小距离是：</p>
+
+<center>
+
+$d = d(C) = \min_{\omega,\omega'\in C,\omega\neq \omega'}\delta(\omega,\omega')$
+
+</center>
+
+<p>其中$\delta(\omega,\omega’)$是汉明距离</p>
+<p>现在我们说一些记号</p>
+<p align="left">$A$上的一个$(n,M,d)$码指的是码$C\subseteq A^n$，其中$A$是一个字母表，$M =\mid C\mid$，$d$是最小距离。</p>
+
+
+<p>然后我们给出查错与纠错的定义：</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>设$A$是一个字母表，$C\subseteq A^n$是一个码，码$C$可以查$s&gt;0$个错若至多$s$处改变一个码字$c\in C$使得得不到码字。</p>
+<p>例如奇偶校验，我们更改里面一个坐标就可以把偶变成奇。</p>
+<h3 id="定义：最靠近码字"><a href="#定义：最靠近码字" class="headerlink" title="定义：最靠近码字"></a>定义：最靠近码字</h3><p>设$A$是一个字母表，$C\subseteq A^n$是一个码，若$y\in A^n$则称$c\in C$是一个与$y$最靠近的码字，若对所有$c’\in C$有$\delta(y,c)\leq \delta(y,c’)$</p>
+<h3 id="定义：纠错"><a href="#定义：纠错" class="headerlink" title="定义：纠错"></a>定义：纠错</h3><p>设$A$是字母表，$C\subseteq A^n$是码，称码$C$可以纠$t$个错，若至多$t$处改变一个码字$c$，得到一个字$y\in A^n$且$y$的唯一最靠近码字为$c$</p>
+<h3 id="命题1"><a href="#命题1" class="headerlink" title="命题1"></a>命题1</h3><p align="left">设$A$是一个字母表，$C\subseteq A^n$是一个$(n,M,d)$码</p>
+
+
+<ul>
+<li>设$d\geq 2t+1$且$y\in A^n$，如果满足$\delta(y,c)\leq t$的码字$c\in C$存在的话，则它一定唯一。</li>
+<li>若$d\geq s+1$，则$C$可以查$s$个错</li>
+<li>若$d\geq 2t+1$，则$C$可纠$t$个错</li>
+</ul>
+<p align="left">证明1：设$c.c'$是满足$\delta(y,c) = \delta(y,c')\leq t$的码字，则利用三角不等式得到$\delta(c,y)+\delta(y,c') \leq 2t$但不同码字之间的最小距离$d(C)\geq \delta(c,c')+2t =  2t+1$，因此$c = c'$</p>
+
+<p align="left">证明2：若$\omega\neq c$与$c$至多在$s$处不同，则$0<\delta(c,\omega) \leq s$，若$\omega\in c$，则有$s\geq \delta(c,\omega)\geq d> s$矛盾</\delta(c,\omega)></p>
+
+<p align="left">证明3：若$\omega$是改变$c$的至多$t$处所得，则$\delta(c,\omega)\leq t$，利用定义，我们设一个最靠近的码字$c'$满足$\delta(c',\omega) < \delta(c,\omega)$，由三角不等式得
+
+<center>
+
+$\begin{aligned}
+    2t+1\leq& d\\
+    \leq & \delta(c.c')\\
+    \leq & \delta(c,\omega)+\delta(\omega,c')\\
+    \leq & 2\omega(c,\omega) \leq 2t
+\end{aligned}$
+
+</center>
+
+矛盾</p>
+
+
+<h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><p>一个奇偶性校验$[m+1,m]$码是一个$(m+1,2^m,2)$码，是由$B^{m+1}$中具有偶数个1的字构成的，极小距离至少是2，因为改边具有偶数个1的字一处，则产生一个具有奇数个1的字，这个码可以查一个错，但不能纠错。</p>
+<p>一个码若具有很大的极小距离，例如，一个$101-$次二重重复码，它是$[101m,m]-$码，它的编码函数$E:B^m\to B^{101m}$。将一个$m$位字重复$101$次，此时$d = 101$利用命题1的3，我们知道其可纠$101\geq 2*50+1$，也就是50个错。但$C$显然不符合实际，所以我们现在要做的就是测量码的实际性。</p>
+<h3 id="定义：信息率"><a href="#定义：信息率" class="headerlink" title="定义：信息率"></a>定义：信息率</h3><p>一个$[n.m]$码的信息率定义为$\frac{m}{n}$，若$\mid A\mid = q$，那么$M = q^m$，因此一个$(n,M,d)$码的信息率就是$(\log_q M)/n$</p>
+<p>信息率指的是，$n$个字母被用于发送$m$位的信息，例如我们刚才说的多重复码$[101m,m]$码，它的效率比较低，信息率为$\frac{1}{101}$，这个效率是非常低的，它意味着发送一段非常短的信息需要庞大数量的字母。反过来，无冗余码$[m,m]$码函数为$1_{A^m}:A^m\to A^m$。它的信息率是$1$，但它仅仅是无改变的重复信息。因此我们发现，信息率低的码可以纠多个错，但信息率大的则不能查错。所以$d$越大，它越精确。我们要做的，就是在精确和便捷找一个比较折中的方法。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/English/">英语</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">分组码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80"><span class="toc-number">2.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E9%87%8D%E9%87%8D%E5%A4%8D-12-4-%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">二、三重重复$[12,4]$码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%A6%E9%87%8F"><span class="toc-number"></span> <span class="toc-text">度量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B1-%E5%87%BA%E7%A7%9F%E8%BD%A6%E5%BA%A6%E9%87%8F"><span class="toc-number">0.1.</span> <span class="toc-text">例1-出租车度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B2-%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E5%BA%A6%E9%87%8F"><span class="toc-number">0.2.</span> <span class="toc-text">例2-欧几里得度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B3-L-2-%E5%BA%A6%E9%87%8F"><span class="toc-number">0.3.</span> <span class="toc-text">例3-$L^2$度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B4-p-%E8%BF%9B%E5%88%B6%E5%BA%A6%E9%87%8F"><span class="toc-number">0.4.</span> <span class="toc-text">例4-$p$进制度量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.</span> <span class="toc-text">定义：汉明距离</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%9C%80%E5%B0%8F%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.2.</span> <span class="toc-text">定义：最小距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E6%9C%80%E9%9D%A0%E8%BF%91%E7%A0%81%E5%AD%97"><span class="toc-number">1.4.</span> <span class="toc-text">定义：最靠近码字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E7%BA%A0%E9%94%99"><span class="toc-number">1.5.</span> <span class="toc-text">定义：纠错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E9%A2%981"><span class="toc-number">1.6.</span> <span class="toc-text">命题1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90-1"><span class="toc-number">1.6.1.</span> <span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%8E%87"><span class="toc-number">1.7.</span> <span class="toc-text">定义：信息率</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/01/29/Code/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&text=Code"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&is_video=false&description=Code"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Code&body=Check out this article: https://monstergeo.github.io/Btest/2024/01/29/Code/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&title=Code"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/01/29/Code/&name=Code&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/01/29/Code/&t=Code"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
