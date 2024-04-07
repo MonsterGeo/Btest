@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在我的另一个博客中已经详细的讨论了迦罗瓦理论，这节我们来说说一些其他的，这些思想的进一步研究就是迦罗瓦理论的主题了，它主要研究扩域和他们的迦罗瓦群的关系。除了这些思想，迦罗瓦理论广泛的应用在代数数论中。 定义：可分性多项式$f(x)\in k[x]$称为可分的，若其不可约因式无重根，有限扩张$E&#x2F;k$是可分的，若每一个$a\in E$是$k[x]$中无重根的不可约多项式的根。 引入如下习题便有一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迦罗瓦理论-尾声">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="在我的另一个博客中已经详细的讨论了迦罗瓦理论，这节我们来说说一些其他的，这些思想的进一步研究就是迦罗瓦理论的主题了，它主要研究扩域和他们的迦罗瓦群的关系。除了这些思想，迦罗瓦理论广泛的应用在代数数论中。 定义：可分性多项式$f(x)\in k[x]$称为可分的，若其不可约因式无重根，有限扩张$E&#x2F;k$是可分的，若每一个$a\in E$是$k[x]$中无重根的不可约多项式的根。 引入如下习题便有一些">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-06T16:53:55.000Z">
+<meta property="article:modified_time" content="2024-04-07T07:25:57.030Z">
+<meta property="article:author" content="Marcus">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>迦罗瓦理论-尾声</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/01/29/Code/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&text=迦罗瓦理论-尾声"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&is_video=false&description=迦罗瓦理论-尾声"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=迦罗瓦理论-尾声&body=Check out this article: https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&name=迦罗瓦理论-尾声&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&t=迦罗瓦理论-尾声"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%8F%AF%E5%88%86%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">定义：可分性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%9B%BA%E5%AE%9A%E5%9F%9F"><span class="toc-number">3.</span> <span class="toc-text">定义：固定域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-number">4.</span> <span class="toc-text">定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E8%BF%A6%E7%BD%97%E7%93%A6%E6%89%A9%E5%BC%A0"><span class="toc-number">5.</span> <span class="toc-text">定义：迦罗瓦扩张</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%A6%E7%BD%97%E7%93%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">迦罗瓦理论基本定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E6%9C%AC%E5%8E%9F%E5%85%83%E5%AE%9A%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">定理：本原元定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">定理：代数基本定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%90%86"><span class="toc-number">8.1.</span> <span class="toc-text">引理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E9%AB%98%E6%96%AF"><span class="toc-number">9.</span> <span class="toc-text">定理：高斯</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        迦罗瓦理论-尾声
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-06T16:53:55.000Z" class="dt-published" itemprop="datePublished">2024-04-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>在我的另一个<a target="_blank" rel="noopener" href="https://github.com/MonsterGeo/mathnotes/tree/main/%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B0">博客</a>中已经详细的讨论了迦罗瓦理论，这节我们来说说一些其他的，这些思想的进一步研究就是迦罗瓦理论的主题了，它主要研究扩域和他们的迦罗瓦群的关系。除了这些思想，迦罗瓦理论广泛的应用在代数数论中。</p>
+<h2 id="定义：可分性"><a href="#定义：可分性" class="headerlink" title="定义：可分性"></a>定义：可分性</h2><p><strong>多项式$f(x)\in k[x]$称为可分的，若其不可约因式无重根，有限扩张$E/k$是可分的，若每一个$a\in E$是$k[x]$中无重根的不可约多项式的根。</strong></p>
+<p>引入如下习题便有一些不错的例子：</p>
+<hr>
+<p>若$k$是特征为0的域，证明不可约多项式$p(x)$无重根。换句话说。若$E$是$p(x)$的分裂域，则不存在$a\in E$使得在$E[x]$中$(x-a)^2\mid p(x)$成立</p>
+<p>证明：我们需要利用到一个特点，即：若$f(x)$无重根，则$gcd(f,f’)=1$。也就是在$E[x]$中，$gcd(f,f’)=1$也是成立的。若此时$(x-a)^2\mid p(x)\in E[x]$则与前面的部分矛盾，因此在特征为0的域中不可约多项式是可分的。</p>
+<hr>
+<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><p><strong>设$k$是一个域，$f(x)\in k[x]$是可分多项式，若$E/k$是$f(x)$的分裂域，则$\mid Gal(E/k)\mid  = [E:k]$</strong></p>
+<p>证明：这是如下我们已经证明过的命题的特殊情况：</p>
+<hr>
+<p>若k的特征为0，则恰好存在$[E:k]$个扩张了$\varphi$的同构$\varPhi:E\to E’$，其中$\varphi:k\to k’$是域同构。且$E$是$k$的分裂域，$E’$是$k’$的分裂域。</p>
+<hr>
+<h2 id="定义：固定域"><a href="#定义：固定域" class="headerlink" title="定义：固定域"></a>定义：固定域</h2><p>设$E/k$是一个域扩张，其迦罗瓦群为$G = Gal(E/k)$，若$H\leq G$则固定域$E^H$定义为</p>
+<script type="math/tex; mode=display">
+E^H = \{对所有\sigma\in H,u\in E; \sigma(u) = u\}</script><p>它能够证明如下命题：</p>
+<h2 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h2><p>设$E/k$是一个域扩张，其迦罗瓦群定义为$G = Gal(E/k)$，则下列命题等价</p>
+<ul>
+<li>$E$是某可分多项式$f(x)\in k[x]$的一个分裂域</li>
+<li>有一根属于$E$的不可约多项式$p(x)\in k[x]$是可分的，$p(x)$在$E[x]$中分裂</li>
+<li>$k = E^G$，即对所有的$\sigma\in G$，若$a\in E$，$\sigma(a) = a$，则$a\in k$</li>
+</ul>
+<h2 id="定义：迦罗瓦扩张"><a href="#定义：迦罗瓦扩张" class="headerlink" title="定义：迦罗瓦扩张"></a>定义：迦罗瓦扩张</h2><p>一个域扩张$E/k$叫迦罗瓦扩张，若它满足上述定理的任一一个条件。</p>
+<h2 id="迦罗瓦理论基本定理"><a href="#迦罗瓦理论基本定理" class="headerlink" title="迦罗瓦理论基本定理"></a>迦罗瓦理论基本定理</h2><p>设$E/k$是一个有限迦罗瓦扩张，其迦罗瓦群$G = Gal(E/k)$，</p>
+<ul>
+<li>函数$H\to E^H$是所有中间域构成的集合到$Gal(E/F)$的所有子群的集合的一个双射，且该双射保持反包含关系<script type="math/tex; mode=display">
+  H\leq L 当且仅当 E^L\subseteq E^H</script>且对每个中间域$B$和每个子群$H\leq G$有如下关系成立<script type="math/tex; mode=display">
+E^{Gal(E/B)}=B且Gal(E/E^H) = H</script></li>
+<li>对每个中间域$B$和子群$H\leq G$，下列定理成立<br> $[B:k] = [G:Gal(E/B)]$且$[G:H] = [E^H:k]$</li>
+<li>中间域$B$是$k$的迦罗瓦扩张当且仅当$Gal(E/B)$为$G$的正规子群。</li>
+</ul>
+<h2 id="定理：本原元定理"><a href="#定理：本原元定理" class="headerlink" title="定理：本原元定理"></a>定理：本原元定理</h2><p>若$E/k$是有限可分扩张，则存在本原元$a\in E$，也就是$E = k(a)$。</p>
+<h2 id="定理：代数基本定理"><a href="#定理：代数基本定理" class="headerlink" title="定理：代数基本定理"></a>定理：代数基本定理</h2><p>我们用迦罗瓦群论的基本定理来完成可构作性的讨论。</p>
+<p>$p$是一个费马素数，若$p$具有形式$p=2^m+1$，而高斯定理再说，若$p$是一个费马素数，则正$p$边形可用直尺圆规作出。</p>
+<h3 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h3><p><strong>设$E/k$是一个迦罗瓦扩张，其迦罗瓦群记为$G = Gal(E/k)$，对给定的子群$G\geq H\geq L$，有</strong></p>
+<script type="math/tex; mode=display">
+[E^L:E^H] = [H:L]</script><p>证明：$H\to E^H$是保反序的，则有域塔</p>
+<script type="math/tex; mode=display">
+k = E^G \subseteq E^H\subseteq E^L\subset E</script><p>那么$[E^L:k] = [E^L:E^H][E^H:k]$，在利用迦罗瓦基本定理有</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}E^{l}:E^{H}\end{bmatrix}=\frac{\begin{bmatrix}E^{l}:k\end{bmatrix}}{\begin{bmatrix}E^{H}:k\end{bmatrix}}=\frac{\begin{bmatrix}G:L\end{bmatrix}}{\begin{bmatrix}G:H\end{bmatrix}}=\frac{\mid G\mid/\mid L\mid}{\mid G\mid/\mid H\mid}=\frac{\mid H\mid}{\mid L\mid}=\begin{bmatrix}H:L\end{bmatrix}.</script><h2 id="定理：高斯"><a href="#定理：高斯" class="headerlink" title="定理：高斯"></a>定理：高斯</h2><p>设$p$为奇素数，正$p$边型可构作当且仅当$p = 2^m+1$对某个$m\geq 0$成立</p>
+<p>证明：若$p$为素数，则$x^p-1 = (x-1)\Phi_p(x)$，其中$\Phi_p$是$p$次分圆多项式，$p$次本原单位根$\zeta$是$\Phi_p(x)$的一个根，且$\mathbb{Q}(\zeta)$是$\Phi_p(x)$在$\mathbb{Q}$上的分裂域。由于$\Phi_p$是一个次数为$p-1$的不可约多项式，则$[\mathbb{(Q)}(\zeta):\mathbb{Q}]$是一个次数为$p-1=2^m$的扩域，其次，迦罗瓦群的阶等于其扩域的次数，那么$\mid Gal(\mathbb{Q}/\mathbb{Q})\mid = 2^m$。所以该迦罗瓦群是一个2-群，那么它的正规子群列的商群都是2阶的。利用迦罗瓦基本定理，我们可以得到一个子域塔，它是由迦罗瓦群的固定域来的，且每个相邻的扩张都是2次扩张，也就是说这是一个2-塔，进一步可知$\zeta$是多重二次的，一个复数可构作当且仅当其是多重二次，所以$\zeta$是可够作数。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/English/">英语</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%8F%AF%E5%88%86%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">定义：可分性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%9B%BA%E5%AE%9A%E5%9F%9F"><span class="toc-number">3.</span> <span class="toc-text">定义：固定域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-1"><span class="toc-number">4.</span> <span class="toc-text">定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E8%BF%A6%E7%BD%97%E7%93%A6%E6%89%A9%E5%BC%A0"><span class="toc-number">5.</span> <span class="toc-text">定义：迦罗瓦扩张</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%A6%E7%BD%97%E7%93%A6%E7%90%86%E8%AE%BA%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">迦罗瓦理论基本定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E6%9C%AC%E5%8E%9F%E5%85%83%E5%AE%9A%E7%90%86"><span class="toc-number">7.</span> <span class="toc-text">定理：本原元定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">定理：代数基本定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%90%86"><span class="toc-number">8.1.</span> <span class="toc-text">引理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%90%86%EF%BC%9A%E9%AB%98%E6%96%AF"><span class="toc-number">9.</span> <span class="toc-text">定理：高斯</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&text=迦罗瓦理论-尾声"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&is_video=false&description=迦罗瓦理论-尾声"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=迦罗瓦理论-尾声&body=Check out this article: https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&title=迦罗瓦理论-尾声"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&name=迦罗瓦理论-尾声&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/04/07/%E5%B0%BE%E5%A3%B0/&t=迦罗瓦理论-尾声"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/English/">英语</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
