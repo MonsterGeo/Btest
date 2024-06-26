@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="紧致性我们先来讲讲紧致这一个重要的概念，度量空间的紧致性，首先，一个空间$A$的距离函数$d$指的是对任意两个元素$a,b\in A$，则有$d(a,b)\geq 0$，即意味着$d$的映射会得到一个非负实数。若$d(x_n,x) \to 0$，则我们说$x_n\to x$。若对$d(x_n,x_m)\to\infty$，其中$n,m\to \infty$时趋向$0$。则我们说$\{x_n\}$是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拓扑空间">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="紧致性我们先来讲讲紧致这一个重要的概念，度量空间的紧致性，首先，一个空间$A$的距离函数$d$指的是对任意两个元素$a,b\in A$，则有$d(a,b)\geq 0$，即意味着$d$的映射会得到一个非负实数。若$d(x_n,x) \to 0$，则我们说$x_n\to x$。若对$d(x_n,x_m)\to\infty$，其中$n,m\to \infty$时趋向$0$。则我们说$\{x_n\}$是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-25T12:50:46.000Z">
+<meta property="article:modified_time" content="2024-06-26T19:26:30.682Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="complex_analysis">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>拓扑空间</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/06/17/complex_anylsis/ODE%E5%BA%94%E7%94%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&text=拓扑空间"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&is_video=false&description=拓扑空间"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=拓扑空间&body=Check out this article: https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&name=拓扑空间&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&t=拓扑空间"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A7%E8%87%B4%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">紧致性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E7%A7%B0%E4%B8%BA%E6%98%AF%E5%AE%8C%E5%A4%87%E7%9A%84%EF%BC%8C%E8%BF%99%E6%98%AF%E5%9C%A8%E8%AF%B4%E6%AF%8F%E4%B8%AA%E6%9F%AF%E8%A5%BF%E5%BA%8F%E5%88%97%E6%98%AF%E6%94%B6%E6%95%9B%E7%9A%84%E3%80%82"><span class="toc-number">1.0.1.</span> <span class="toc-text">定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E7%B4%A7%E8%87%B4%EF%BC%89%EF%BC%9A%E9%9B%86%E5%90%88-X-%E6%98%AF%E7%B4%A7%E8%87%B4%E7%9A%84%EF%BC%8C%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E6%AF%8F%E4%B8%AA%E5%BC%80%E8%A6%86%E7%9B%96%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E6%9C%89%E9%99%90%E5%AD%90%E8%A6%86%E7%9B%96%E3%80%82"><span class="toc-number">1.0.2.</span> <span class="toc-text">定义（紧致）：集合$X$是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E5%85%A8%E6%9C%89%E7%95%8C%EF%BC%89%EF%BC%9A%E6%88%91%E4%BB%AC%E8%AF%B4%E9%9B%86%E5%90%88-X-%E6%98%AF%E5%85%A8%E6%9C%89%E7%95%8C%E7%9A%84%EF%BC%8C%E6%8C%87%E5%AF%B9%E4%BA%8E%E4%BB%BB%E4%B8%80-epsilon-gt-0-%EF%BC%8C%E5%8F%AF%E7%94%A8%E6%9C%89%E9%99%90%E5%A4%9A%E4%B8%AA%E5%8D%8A%E5%BE%84%E4%B8%BA-epsilon-%E7%9A%84%E7%90%83%E8%A6%86%E7%9B%96-X"><span class="toc-number">1.0.3.</span> <span class="toc-text">定义（全有界）：我们说集合$X$是全有界的，指对于任一$\epsilon &gt; 0$，可用有限多个半径为$\epsilon$的球覆盖$X$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%E6%98%AF%E7%B4%A7%E8%87%B4%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%85%B6%E6%98%AF%E5%AE%8C%E5%A4%87%E4%B8%94%E5%85%A8%E6%9C%89%E7%95%8C%E7%9A%84%E3%80%82"><span class="toc-number">1.0.4.</span> <span class="toc-text">定理 一个集合是紧致的当且仅当其是完备且全有界的。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA%EF%BC%9A-mathbb-R-C-%E7%9A%84%E4%B8%80%E4%B8%AA%E5%AD%90%E9%9B%86%E6%98%AF%E7%B4%A7%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%AE%83%E6%98%AF%E9%97%AD%E8%80%8C%E6%9C%89%E7%95%8C%E3%80%82"><span class="toc-number">1.0.5.</span> <span class="toc-text">推论：$\mathbb{R,C}$的一个子集是紧的当且仅当它是闭而有界。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-%E4%B8%80%E4%B8%AA%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E6%98%AF%E7%B4%A7%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%AF%B9%E6%AF%8F%E4%B8%AA%E6%97%A0%E7%A9%B7%E5%BA%8F%E5%88%97%E5%85%B7%E6%9C%89%E4%B8%80%E4%B8%AA%E6%9E%81%E9%99%90%E7%82%B9"><span class="toc-number">1.0.6.</span> <span class="toc-text">定理 一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        拓扑空间
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-06-25T12:50:46.000Z" class="dt-published" itemprop="datePublished">2024-06-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/complex-analysis/" rel="tag">complex_analysis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="紧致性"><a href="#紧致性" class="headerlink" title="紧致性"></a>紧致性</h2><p>我们先来讲讲紧致这一个重要的概念，度量空间的紧致性，首先，一个空间$A$的距离函数$d$指的是对任意两个元素$a,b\in A$，则有$d(a,b)\geq 0$，即意味着$d$的映射会得到一个非负实数。若$d(x_n,x) \to 0$，则我们说$x_n\to x$。若对$d(x_n,x_m)\to\infty$，其中$n,m\to \infty$时趋向$0$。则我们说$\{x_n\}$是一个柯西序列。显然，收敛序列都是柯西列，对于$R,C$，它的逆命题是成立的。即每个柯西序列都是收敛序列，但在我古早的文章之前我已经指出，在一些空间上，收敛序列可以不是柯西序列。例如无穷维的单位球。而后我们也证明了对于任意维度的$R^n$，逆命题是成立的。</p>
+<h4 id="定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。"><a href="#定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。" class="headerlink" title="定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。"></a>定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。</h4><p>若一个自己被看成一个子空间时是完备的，则说它是完备的，不难发现，一个度量空间的完备子集是闭的；一个完备空间的闭子集是完备的。</p>
+<p>虽然在复分析中完备性就已经够用了，但我还是决定吧一个比完备性更强的概念写入。我们将会提到紧致性的概念。紧空间是完备的，但反过来不成立。事实上，$\mathbb{R,C}$的紧致子集都是有界闭集。但删掉这个概念不太明智，我不想混淆一些重要的事实</p>
+<p>我们说开集族是集合$X$的一个开覆盖，若$X$包含在这些开集的并集中。子覆盖就是具有同一性质的开集族的一个子集。有限子覆盖指的是由有限的集合组成的一个覆盖。现在，紧致的定义如下：</p>
+<h4 id="定义（紧致）：集合-X-是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。"><a href="#定义（紧致）：集合-X-是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。" class="headerlink" title="定义（紧致）：集合$X$是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。"></a>定义（紧致）：集合$X$是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。</h4><p>我们可以表示为：</p>
+<center>
+
+\begin{equation}
+ 对任意X的开覆盖\{G_a\}, 存在\{a_1,\cdots,a_n\}使得X\subset \bigcup^n_{i=1}G_a 
+\end{equation}
+
+</center>
+
+<p>若我们把$X$设想为度量空间$S$的一个子集，并用$S$的开集来对它进行覆盖。若$U$是$S$中的一个开集，那么$U\cap X$也是是一个$X$的一个开子集（相对开集）。反之，$X$的每个开子集也可以表示成这一形式。所以我们的定义究竟是对全空间阐述，或者是说一个子集，都是没有区别的。</p>
+<p>我们刚才说的，其实是实分析中的一个著名定理—海涅-博雷尔性质。它的重要性在于，若我们使用开覆盖来阐述，许多的证明会变得特别简单。</p>
+<p>我们首先证明每个紧致空间必须是完备的。</p>
+<p><strong>证明：</strong> 设$X$是紧致的，并设$\{x_n\}$是$X$中的一个柯西序列。若$y$不是$\{x_n\}$的极限，则存在一个$\epsilon&gt;0$，使得对无穷多个$n$，存在$d(x_n,y)&gt;2\epsilon$。我们固定一个$n\geq n_0$，使得$d(x_n,y) &gt; 2\epsilon$。则对所有的$m\geq n_0$，存在$d(x_m,y) \geq d(x_n,y) - d(x_m,x_n) &gt; \epsilon$。这意味着$\epsilon$的邻域$B(y,\epsilon)$是有限的（包括$x_n$）。</p>
+<p>现在，我们考虑由这有限多个$x_n$组成的开集$U$组成的集族，若$\{x_n\}$不收敛，那么我们用这个集族$U_n$可以得到一个$X$的开覆盖。那么就存在一个有限子覆盖，它由$U_1,\cdots,U_N$组成。并且这些子覆盖中的开集都是有限个元素组成的。也就是说，这些集合组成的序列是一个有限序列。但这不可能，我们不可能用一个有限的序列去覆盖一个无限的序列。</p>
+<p>另一方面，紧致集是有界的，为了得到这点，我们取点$x_0$，并考虑它的一个球$B(x_0,r)$，其中$r$是半径。由这些球组成一些开覆盖。若$X$是紧致的，它将有一个有限的子覆盖。即$X\subset \bigcup^m_{i=1} B(x_0,r_i)$。只要选取$\max\{r_1,\cdots,r_m\} = r$，就有$X\subset B(x_0,r)$（注意我们已经固定点$x_0$）。由此可知对任意的$x,y\in X$。有$d(x,y) \leq d(x,x_0)+d(y,x_0) &lt; 2r$，这说明$X$是有界的。</p>
+<p>我们可以得到较强的性质</p>
+<h4 id="定义（全有界）：我们说集合-X-是全有界的，指对于任一-epsilon-gt-0-，可用有限多个半径为-epsilon-的球覆盖-X"><a href="#定义（全有界）：我们说集合-X-是全有界的，指对于任一-epsilon-gt-0-，可用有限多个半径为-epsilon-的球覆盖-X" class="headerlink" title="定义（全有界）：我们说集合$X$是全有界的，指对于任一$\epsilon &gt; 0$，可用有限多个半径为$\epsilon$的球覆盖$X$"></a>定义（全有界）：我们说集合$X$是全有界的，指对于任一$\epsilon &gt; 0$，可用有限多个半径为$\epsilon$的球覆盖$X$</h4><h4 id="定理-一个集合是紧致的当且仅当其是完备且全有界的。"><a href="#定理-一个集合是紧致的当且仅当其是完备且全有界的。" class="headerlink" title="定理 一个集合是紧致的当且仅当其是完备且全有界的。"></a>定理 一个集合是紧致的当且仅当其是完备且全有界的。</h4><p>证明：我们设度量空间$S$是完备且全有界的，设存在一个开覆盖，但其不包含任何的有限子覆盖。令$\epsilon_n = 2^{-n}$，那么根据全有界，$S$应该是可以被有限多个$B(x,\epsilon_1)$覆盖的，如果每个都有一个有限的子覆盖，则$S$也是。由假设，我们设存在一个球$B(x_1,\epsilon_1)$，它是不可有限覆盖的，但因为$B(x_1,\epsilon_1)$是有界的，因此我们可以在里面找到一个$x_2\in B(x_1,\epsilon_1)$，它使得$B(x_2,\epsilon_2)$不存在有限覆盖。我们可以一直这样构造下去就得到了一个序列$x_n$，它具有以下性质：$B(x_n,\epsilon_n)$不存在有限覆盖，并且$x_{n+1}\in B(x_n,\epsilon_n)$。那么后一个性质意味着$d(x_n,x_{n+1}) &lt; \epsilon_n$，那么$d(x_n,x_{n+p}) &lt; \epsilon_n+\epsilon_{n+1} &lt; \cdots &lt; \epsilon_{n+p-1}$。这意味着$x_n$是柯西序列，将收敛到某个极限$y$，而这个$y$在我们给定的某个开覆盖$U$中的一个，由于$U$是开的，它包含球$B(y,\delta)$，取最大的$n$使得$d(x_n,y) &lt; \delta/2$和$\epsilon_n &lt; \delta/2$。那么$B(x_n,\epsilon_n)\subset B(y,\delta)$。由于$d(x,x_n)&lt; \epsilon_n$。利用三角不等式，$d(x,y) \leq d(x,x_n)+d(x_n,y) &lt; \delta$。那么实际上我们得到了一个覆盖$B(x_n,\epsilon_n)$。这与我们假设矛盾，因此$S$满足海涅-博雷尔性质。</p>
+<h4 id="推论：-mathbb-R-C-的一个子集是紧的当且仅当它是闭而有界。"><a href="#推论：-mathbb-R-C-的一个子集是紧的当且仅当它是闭而有界。" class="headerlink" title="推论：$\mathbb{R,C}$的一个子集是紧的当且仅当它是闭而有界。"></a>推论：$\mathbb{R,C}$的一个子集是紧的当且仅当它是闭而有界。</h4><p><strong>证明：</strong> 这是海涅-博雷尔定理的内容</p>
+<p>对于紧致，我们还有另一种表达，它与极限点相关。我们说$y$是$\{x_n\}$的一个极限点，若存在一个$\{x_n\}$的子序列收敛到$y$。一个极限点几乎与$x_n$组成的集合的一个聚点是相同的。不同的地方在于一个序列可以允许同一极限点重复出现，若$y$是极限点，则它的每个邻域包含无穷多个$x_n$。反过来同样成立</p>
+<h4 id="定理-一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点"><a href="#定理-一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点" class="headerlink" title="定理 一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点"></a>定理 一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点</h4><p><strong>证明：</strong> 我们只是在重写刚才的证明。若$y$不是$\{x_n\}$的极限点，则$y$有一个包含有限个$x_n$的邻域。那么就可以得到有限个子覆盖。我们设是紧的，那么就存在一个有限子覆盖，可以得到序列是有限的，同样的，我们不可能用一个有限的序列覆盖一个无穷序列，这是一个矛盾。所以每个紧空间的无穷序列都存在一个极限点。</p>
+<p>另一方面，每个序列都存在一个极限点，这意味着这是一个柯西数列。我们设空间不是全有界的，则存在$\epsilon&gt;0$不能被有限多个$\epsilon$覆盖，我们构造序列$\{x_n\}$，选定$x_1,\cdots,x_n$。那么由假设，存在一个$x_{n+1}$不被$B(x_1,\epsilon)\cup B(x_2,\epsilon)\cup\cdots\cup B(x_n,\epsilon)$包含。这是可能的，因为我们的空间不是全有界的，所以这些邻域并不能覆盖全空间。因此$\{x_n\}$不存在收敛子序列，矛盾。</p>
+<p>那么我们给出三种等价命题</p>
+<p>对于任意$E\subseteq R^k$，下面三个命题是等价的</p>
+<ul>
+<li>集合$E$是闭的且有界</li>
+<li>$E$是紧的</li>
+<li>$E$的每个无限子集在$E$中有一极限点</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A7%E8%87%B4%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">紧致性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E7%A7%B0%E4%B8%BA%E6%98%AF%E5%AE%8C%E5%A4%87%E7%9A%84%EF%BC%8C%E8%BF%99%E6%98%AF%E5%9C%A8%E8%AF%B4%E6%AF%8F%E4%B8%AA%E6%9F%AF%E8%A5%BF%E5%BA%8F%E5%88%97%E6%98%AF%E6%94%B6%E6%95%9B%E7%9A%84%E3%80%82"><span class="toc-number">1.0.1.</span> <span class="toc-text">定义：一个度量空间称为是完备的，这是在说每个柯西序列是收敛的。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E7%B4%A7%E8%87%B4%EF%BC%89%EF%BC%9A%E9%9B%86%E5%90%88-X-%E6%98%AF%E7%B4%A7%E8%87%B4%E7%9A%84%EF%BC%8C%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E6%AF%8F%E4%B8%AA%E5%BC%80%E8%A6%86%E7%9B%96%E5%8C%85%E5%90%AB%E4%B8%80%E4%B8%AA%E6%9C%89%E9%99%90%E5%AD%90%E8%A6%86%E7%9B%96%E3%80%82"><span class="toc-number">1.0.2.</span> <span class="toc-text">定义（紧致）：集合$X$是紧致的，当且仅当每个开覆盖包含一个有限子覆盖。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%88%E5%85%A8%E6%9C%89%E7%95%8C%EF%BC%89%EF%BC%9A%E6%88%91%E4%BB%AC%E8%AF%B4%E9%9B%86%E5%90%88-X-%E6%98%AF%E5%85%A8%E6%9C%89%E7%95%8C%E7%9A%84%EF%BC%8C%E6%8C%87%E5%AF%B9%E4%BA%8E%E4%BB%BB%E4%B8%80-epsilon-gt-0-%EF%BC%8C%E5%8F%AF%E7%94%A8%E6%9C%89%E9%99%90%E5%A4%9A%E4%B8%AA%E5%8D%8A%E5%BE%84%E4%B8%BA-epsilon-%E7%9A%84%E7%90%83%E8%A6%86%E7%9B%96-X"><span class="toc-number">1.0.3.</span> <span class="toc-text">定义（全有界）：我们说集合$X$是全有界的，指对于任一$\epsilon &gt; 0$，可用有限多个半径为$\epsilon$的球覆盖$X$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%E6%98%AF%E7%B4%A7%E8%87%B4%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%85%B6%E6%98%AF%E5%AE%8C%E5%A4%87%E4%B8%94%E5%85%A8%E6%9C%89%E7%95%8C%E7%9A%84%E3%80%82"><span class="toc-number">1.0.4.</span> <span class="toc-text">定理 一个集合是紧致的当且仅当其是完备且全有界的。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA%EF%BC%9A-mathbb-R-C-%E7%9A%84%E4%B8%80%E4%B8%AA%E5%AD%90%E9%9B%86%E6%98%AF%E7%B4%A7%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%AE%83%E6%98%AF%E9%97%AD%E8%80%8C%E6%9C%89%E7%95%8C%E3%80%82"><span class="toc-number">1.0.5.</span> <span class="toc-text">推论：$\mathbb{R,C}$的一个子集是紧的当且仅当它是闭而有界。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%86-%E4%B8%80%E4%B8%AA%E5%BA%A6%E9%87%8F%E7%A9%BA%E9%97%B4%E6%98%AF%E7%B4%A7%E7%9A%84%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%E5%AF%B9%E6%AF%8F%E4%B8%AA%E6%97%A0%E7%A9%B7%E5%BA%8F%E5%88%97%E5%85%B7%E6%9C%89%E4%B8%80%E4%B8%AA%E6%9E%81%E9%99%90%E7%82%B9"><span class="toc-number">1.0.6.</span> <span class="toc-text">定理 一个度量空间是紧的当且仅当对每个无穷序列具有一个极限点</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&text=拓扑空间"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&is_video=false&description=拓扑空间"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=拓扑空间&body=Check out this article: https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&title=拓扑空间"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&name=拓扑空间&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/06/25/%E6%9F%AF%E8%A5%BF-%E9%BB%8E%E6%9B%BC%E6%96%B9%E7%A8%8B/&t=拓扑空间"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
