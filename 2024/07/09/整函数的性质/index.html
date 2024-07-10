@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="整函数的柯西积分和泰勒展开若$f$是整的且   $\begin{aligned}     g(z) &#x3D;\begin{cases}      \frac{f(z)-f(a)}{z-a} &amp; z\neq a\\      f&#39;(a)&amp; z &#x3D; a     \end{cases} \end{aligned}$    那么积分定理和闭曲线定理不仅仅适用于函数$f$，对$g$也是适用的。 这个证明要从矩形定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整函数的性质">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="整函数的柯西积分和泰勒展开若$f$是整的且   $\begin{aligned}     g(z) &#x3D;\begin{cases}      \frac{f(z)-f(a)}{z-a} &amp; z\neq a\\      f&#39;(a)&amp; z &#x3D; a     \end{cases} \end{aligned}$    那么积分定理和闭曲线定理不仅仅适用于函数$f$，对$g$也是适用的。 这个证明要从矩形定">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.upmath.me/svg/%5Ctikzset%7Bevery%20picture%2F.style%3D%7Bline%20width%3D0.75pt%7D%7D%20%25set%20default%20line%20width%20to%200.75pt%20%20%20%20%20%20%20%20%0A%0A%5Cbegin%7Btikzpicture%7D%5Bx%3D0.75pt%2Cy%3D0.75pt%2Cyscale%3D-1%2Cxscale%3D1%5D%0A%25uncomment%20if%20require%3A%20%5Cpath%20(0%2C941)%3B%20%25set%20diagram%20left%20start%20at%200%2C%20and%20has%20height%20of%20941%0A%0A%25Shape%3A%20Rectangle%20%5Bid%3Adp41174460398637125%5D%20%0A%5Cdraw%20%20%20(158%2C101)%20--%20(581%2C101)%20--%20(581%2C353)%20--%20(158%2C353)%20--%20cycle%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada03573383708985767%5D%20%0A%5Cdraw%20%20%20%20(158%2C213)%20--%20(580%2C213)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada9084181294778653%5D%20%0A%5Cdraw%20%20%20%20(160%2C257)%20--%20(582%2C257)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada310245403851537%5D%20%0A%5Cdraw%20%20%20%20(478%2C103)%20--%20(478%2C353)%20%3B%0A%5Cdraw%20%20%20(254%2C112)%20--%20(233%2C101.5)%20--%20(254%2C91)%20%3B%0A%5Cdraw%20%20%20(548%2C112)%20--%20(527%2C101.5)%20--%20(548%2C91)%20%3B%0A%5Cdraw%20%20%20(359%2C223)%20--%20(338%2C212.5)%20--%20(359%2C202)%20%3B%0A%5Cdraw%20%20%20(362%2C267)%20--%20(341%2C256.5)%20--%20(362%2C246)%20%3B%0A%5Cdraw%20%20%20(551%2C223)%20--%20(530%2C212.5)%20--%20(551%2C202)%20%3B%0A%5Cdraw%20%20%20(551%2C267)%20--%20(530%2C256.5)%20--%20(551%2C246)%20%3B%0A%5Cdraw%20%20%20(226%2C363)%20--%20(247%2C352.5)%20--%20(226%2C342)%20%3B%0A%5Cdraw%20%20%20(534%2C363)%20--%20(555%2C352.5)%20--%20(534%2C342)%20%3B%0A%5Cdraw%20%20%20(277%2C223)%20--%20(298%2C212.5)%20--%20(277%2C202)%20%3B%0A%5Cdraw%20%20%20(277%2C268)%20--%20(298%2C257.5)%20--%20(277%2C247)%20%3B%0A%5Cdraw%20%20%20(500%2C224)%20--%20(521%2C213.5)%20--%20(500%2C203)%20%3B%0A%5Cdraw%20%20%20(500%2C267)%20--%20(521%2C256.5)%20--%20(500%2C246)%20%3B%0A%5Cdraw%20%20%20(572%2C156)%20--%20(581.5%2C137)%20--%20(591%2C156)%20%3B%0A%5Cdraw%20%20%20(572%2C249)%20--%20(581.5%2C230)%20--%20(591%2C249)%20%3B%0A%5Cdraw%20%20%20(571%2C326)%20--%20(580.5%2C307)%20--%20(590%2C326)%20%3B%0A%5Cdraw%20%20%20(468%2C156)%20--%20(477.5%2C137)%20--%20(487%2C156)%20%3B%0A%5Cdraw%20%20%20(469%2C244)%20--%20(478.5%2C225)%20--%20(488%2C244)%20%3B%0A%5Cdraw%20%20%20(469%2C323)%20--%20(478.5%2C304)%20--%20(488%2C323)%20%3B%0A%5Cdraw%20%20%20(167%2C120)%20--%20(157.5%2C139)%20--%20(148%2C120)%20%3B%0A%5Cdraw%20%20%20(168%2C224)%20--%20(158.5%2C243)%20--%20(149%2C224)%20%3B%0A%5Cdraw%20%20%20(167%2C297)%20--%20(157.5%2C316)%20--%20(148%2C297)%20%3B%0A%0A%25%20Text%20Node%0A%5Cdraw%20(336%2C76.4)%20node%20%5Banchor%3Dnorth%20west%5D%5Binner%20sep%3D0.75pt%5D%20%20%20%20%7B%24%5CGamma%20%24%7D%3B%0A%0A%0A%5Cend%7Btikzpicture%7D">
+<meta property="og:image" content="https://i.upmath.me/svg/%5Ctikzset%7Bevery%20picture%2F.style%3D%7Bline%20width%3D0.75pt%7D%7D%20%25set%20default%20line%20width%20to%200.75pt%20%20%20%20%20%20%20%20%0A%0A%5Cbegin%7Btikzpicture%7D%5Bx%3D0.75pt%2Cy%3D0.75pt%2Cyscale%3D-1%2Cxscale%3D1%5D%0A%25uncomment%20if%20require%3A%20%5Cpath%20(0%2C941)%3B%20%25set%20diagram%20left%20start%20at%200%2C%20and%20has%20height%20of%20941%0A%0A%25Shape%3A%20Rectangle%20%5Bid%3Adp3810055316004568%5D%20%0A%5Cdraw%20%20%20(100%2C104)%20--%20(447%2C104)%20--%20(447%2C404)%20--%20(100%2C404)%20--%20cycle%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada1831134870992659%5D%20%0A%5Cdraw%20%20%20%20(100%2C160)%20--%20(447%2C160)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada4680163136944939%5D%20%0A%5Cdraw%20%20%20%20(101%2C211)%20--%20(448%2C211)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada31702856471572294%5D%20%0A%5Cdraw%20%20%20%20(176%2C104)%20--%20(176%2C403)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada503465088473952%5D%20%0A%5Cdraw%20%20%20%20(216%2C105)%20--%20(216%2C401)%20%3B%0A%25Shape%3A%20Circle%20%5Bid%3Adp23496772462402982%5D%20%0A%5Cdraw%20%20%5Bfill%3D%7Brgb%2C%20255%3Ared%2C%200%3B%20green%2C%200%3B%20blue%2C%200%20%7D%20%20%2Cfill%20opacity%3D1%20%5D%20(182%2C176)%20..%20controls%20(182%2C174.34)%20and%20(183.34%2C173)%20..%20(185%2C173)%20..%20controls%20(186.66%2C173)%20and%20(188%2C174.34)%20..%20(188%2C176)%20..%20controls%20(188%2C177.66)%20and%20(186.66%2C179)%20..%20(185%2C179)%20..%20controls%20(183.34%2C179)%20and%20(182%2C177.66)%20..%20(182%2C176)%20--%20cycle%20%3B%0A%0A%25%20Text%20Node%0A%5Cdraw%20(190%2C179.4)%20node%20%5Banchor%3Dnorth%20west%5D%5Binner%20sep%3D0.75pt%5D%20%20%20%20%7B%24a%24%7D%3B%0A%0A%0A%5Cend%7Btikzpicture%7D">
+<meta property="article:published_time" content="2024-07-09T13:28:58.000Z">
+<meta property="article:modified_time" content="2024-07-10T14:31:12.111Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="complex_analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.upmath.me/svg/%5Ctikzset%7Bevery%20picture%2F.style%3D%7Bline%20width%3D0.75pt%7D%7D%20%25set%20default%20line%20width%20to%200.75pt%20%20%20%20%20%20%20%20%0A%0A%5Cbegin%7Btikzpicture%7D%5Bx%3D0.75pt%2Cy%3D0.75pt%2Cyscale%3D-1%2Cxscale%3D1%5D%0A%25uncomment%20if%20require%3A%20%5Cpath%20(0%2C941)%3B%20%25set%20diagram%20left%20start%20at%200%2C%20and%20has%20height%20of%20941%0A%0A%25Shape%3A%20Rectangle%20%5Bid%3Adp41174460398637125%5D%20%0A%5Cdraw%20%20%20(158%2C101)%20--%20(581%2C101)%20--%20(581%2C353)%20--%20(158%2C353)%20--%20cycle%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada03573383708985767%5D%20%0A%5Cdraw%20%20%20%20(158%2C213)%20--%20(580%2C213)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada9084181294778653%5D%20%0A%5Cdraw%20%20%20%20(160%2C257)%20--%20(582%2C257)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada310245403851537%5D%20%0A%5Cdraw%20%20%20%20(478%2C103)%20--%20(478%2C353)%20%3B%0A%5Cdraw%20%20%20(254%2C112)%20--%20(233%2C101.5)%20--%20(254%2C91)%20%3B%0A%5Cdraw%20%20%20(548%2C112)%20--%20(527%2C101.5)%20--%20(548%2C91)%20%3B%0A%5Cdraw%20%20%20(359%2C223)%20--%20(338%2C212.5)%20--%20(359%2C202)%20%3B%0A%5Cdraw%20%20%20(362%2C267)%20--%20(341%2C256.5)%20--%20(362%2C246)%20%3B%0A%5Cdraw%20%20%20(551%2C223)%20--%20(530%2C212.5)%20--%20(551%2C202)%20%3B%0A%5Cdraw%20%20%20(551%2C267)%20--%20(530%2C256.5)%20--%20(551%2C246)%20%3B%0A%5Cdraw%20%20%20(226%2C363)%20--%20(247%2C352.5)%20--%20(226%2C342)%20%3B%0A%5Cdraw%20%20%20(534%2C363)%20--%20(555%2C352.5)%20--%20(534%2C342)%20%3B%0A%5Cdraw%20%20%20(277%2C223)%20--%20(298%2C212.5)%20--%20(277%2C202)%20%3B%0A%5Cdraw%20%20%20(277%2C268)%20--%20(298%2C257.5)%20--%20(277%2C247)%20%3B%0A%5Cdraw%20%20%20(500%2C224)%20--%20(521%2C213.5)%20--%20(500%2C203)%20%3B%0A%5Cdraw%20%20%20(500%2C267)%20--%20(521%2C256.5)%20--%20(500%2C246)%20%3B%0A%5Cdraw%20%20%20(572%2C156)%20--%20(581.5%2C137)%20--%20(591%2C156)%20%3B%0A%5Cdraw%20%20%20(572%2C249)%20--%20(581.5%2C230)%20--%20(591%2C249)%20%3B%0A%5Cdraw%20%20%20(571%2C326)%20--%20(580.5%2C307)%20--%20(590%2C326)%20%3B%0A%5Cdraw%20%20%20(468%2C156)%20--%20(477.5%2C137)%20--%20(487%2C156)%20%3B%0A%5Cdraw%20%20%20(469%2C244)%20--%20(478.5%2C225)%20--%20(488%2C244)%20%3B%0A%5Cdraw%20%20%20(469%2C323)%20--%20(478.5%2C304)%20--%20(488%2C323)%20%3B%0A%5Cdraw%20%20%20(167%2C120)%20--%20(157.5%2C139)%20--%20(148%2C120)%20%3B%0A%5Cdraw%20%20%20(168%2C224)%20--%20(158.5%2C243)%20--%20(149%2C224)%20%3B%0A%5Cdraw%20%20%20(167%2C297)%20--%20(157.5%2C316)%20--%20(148%2C297)%20%3B%0A%0A%25%20Text%20Node%0A%5Cdraw%20(336%2C76.4)%20node%20%5Banchor%3Dnorth%20west%5D%5Binner%20sep%3D0.75pt%5D%20%20%20%20%7B%24%5CGamma%20%24%7D%3B%0A%0A%0A%5Cend%7Btikzpicture%7D">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>整函数的性质</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/07/05/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AD%E6%9B%B2%E7%BA%BF%E5%AE%9A%E7%90%86/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&text=整函数的性质"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&is_video=false&description=整函数的性质"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=整函数的性质&body=Check out this article: https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&name=整函数的性质&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&t=整函数的性质"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%9F%AF%E8%A5%BF%E7%A7%AF%E5%88%86%E5%92%8C%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80"><span class="toc-number">1.</span> <span class="toc-text">整函数的柯西积分和泰勒展开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2%E5%AE%9A%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">矩形定理（二）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%AF%E8%A5%BF%E7%A7%AF%E5%88%86%E6%96%B9%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">柯西积分方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80"><span class="toc-number">6.</span> <span class="toc-text">整函数的泰勒展开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-1"><span class="toc-number">7.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-2"><span class="toc-number">8.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">9.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-3"><span class="toc-number">10.</span> <span class="toc-text">推论</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        整函数的性质
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-07-09T13:28:58.000Z" class="dt-published" itemprop="datePublished">2024-07-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/complex-analysis/" rel="tag">complex_analysis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h4 id="整函数的柯西积分和泰勒展开"><a href="#整函数的柯西积分和泰勒展开" class="headerlink" title="整函数的柯西积分和泰勒展开"></a>整函数的柯西积分和泰勒展开</h4><p>若$f$是整的且</p>
+<center>
+
+$\begin{aligned}
+    g(z) =\begin{cases}
+     \frac{f(z)-f(a)}{z-a} & z\neq a\\
+     f'(a)& z = a
+    \end{cases}
+\end{aligned}$
+
+</center>
+
+<p>那么积分定理和闭曲线定理不仅仅适用于函数$f$，对$g$也是适用的。</p>
+<p>这个证明要从矩形定理开始</p>
+<h4 id="矩形定理（二）"><a href="#矩形定理（二）" class="headerlink" title="矩形定理（二）"></a>矩形定理（二）</h4><p>若$f$是整的且</p>
+<center>
+
+$\begin{aligned}
+    g(z) =\begin{cases}
+     \frac{f(z)-f(a)}{z-a} & z\neq a\\
+     f'(a) &z = a
+    \end{cases}
+\end{aligned}$
+
+</center>
+
+<p>则$\int_\Gamma g(z)dz = 0$，其中$\Gamma$是矩形$R$的边界。</p>
+<p><strong>证明：</strong> 我们考虑三种情况</p>
+<ul>
+<li>1、$a\in R$的外部</li>
+</ul>
+<p>第一种情况下，$g$在整个$R$上都是可解析的，那么这部分实际上就是我们之前学过的矩形定理。</p>
+<ul>
+<li>2、$a\in \Gamma$<br>我们将$R$分成6个子矩形</li>
+</ul>
+<center>
+
+$\begin{aligned}
+    \int_\Gamma = \sum^6_{k=1}\int_{\Gamma_k}g
+\end{aligned}$
+
+</center>
+
+<center>
+
+<img style="border-radius: 0.3125em;
+                box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.08);
+                border: 10px solid transparent;
+                margin-bottom: 20px" src="https://i.upmath.me/svg/%5Ctikzset%7Bevery%20picture%2F.style%3D%7Bline%20width%3D0.75pt%7D%7D%20%25set%20default%20line%20width%20to%200.75pt%20%20%20%20%20%20%20%20%0A%0A%5Cbegin%7Btikzpicture%7D%5Bx%3D0.75pt%2Cy%3D0.75pt%2Cyscale%3D-1%2Cxscale%3D1%5D%0A%25uncomment%20if%20require%3A%20%5Cpath%20(0%2C941)%3B%20%25set%20diagram%20left%20start%20at%200%2C%20and%20has%20height%20of%20941%0A%0A%25Shape%3A%20Rectangle%20%5Bid%3Adp41174460398637125%5D%20%0A%5Cdraw%20%20%20(158%2C101)%20--%20(581%2C101)%20--%20(581%2C353)%20--%20(158%2C353)%20--%20cycle%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada03573383708985767%5D%20%0A%5Cdraw%20%20%20%20(158%2C213)%20--%20(580%2C213)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada9084181294778653%5D%20%0A%5Cdraw%20%20%20%20(160%2C257)%20--%20(582%2C257)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada310245403851537%5D%20%0A%5Cdraw%20%20%20%20(478%2C103)%20--%20(478%2C353)%20%3B%0A%5Cdraw%20%20%20(254%2C112)%20--%20(233%2C101.5)%20--%20(254%2C91)%20%3B%0A%5Cdraw%20%20%20(548%2C112)%20--%20(527%2C101.5)%20--%20(548%2C91)%20%3B%0A%5Cdraw%20%20%20(359%2C223)%20--%20(338%2C212.5)%20--%20(359%2C202)%20%3B%0A%5Cdraw%20%20%20(362%2C267)%20--%20(341%2C256.5)%20--%20(362%2C246)%20%3B%0A%5Cdraw%20%20%20(551%2C223)%20--%20(530%2C212.5)%20--%20(551%2C202)%20%3B%0A%5Cdraw%20%20%20(551%2C267)%20--%20(530%2C256.5)%20--%20(551%2C246)%20%3B%0A%5Cdraw%20%20%20(226%2C363)%20--%20(247%2C352.5)%20--%20(226%2C342)%20%3B%0A%5Cdraw%20%20%20(534%2C363)%20--%20(555%2C352.5)%20--%20(534%2C342)%20%3B%0A%5Cdraw%20%20%20(277%2C223)%20--%20(298%2C212.5)%20--%20(277%2C202)%20%3B%0A%5Cdraw%20%20%20(277%2C268)%20--%20(298%2C257.5)%20--%20(277%2C247)%20%3B%0A%5Cdraw%20%20%20(500%2C224)%20--%20(521%2C213.5)%20--%20(500%2C203)%20%3B%0A%5Cdraw%20%20%20(500%2C267)%20--%20(521%2C256.5)%20--%20(500%2C246)%20%3B%0A%5Cdraw%20%20%20(572%2C156)%20--%20(581.5%2C137)%20--%20(591%2C156)%20%3B%0A%5Cdraw%20%20%20(572%2C249)%20--%20(581.5%2C230)%20--%20(591%2C249)%20%3B%0A%5Cdraw%20%20%20(571%2C326)%20--%20(580.5%2C307)%20--%20(590%2C326)%20%3B%0A%5Cdraw%20%20%20(468%2C156)%20--%20(477.5%2C137)%20--%20(487%2C156)%20%3B%0A%5Cdraw%20%20%20(469%2C244)%20--%20(478.5%2C225)%20--%20(488%2C244)%20%3B%0A%5Cdraw%20%20%20(469%2C323)%20--%20(478.5%2C304)%20--%20(488%2C323)%20%3B%0A%5Cdraw%20%20%20(167%2C120)%20--%20(157.5%2C139)%20--%20(148%2C120)%20%3B%0A%5Cdraw%20%20%20(168%2C224)%20--%20(158.5%2C243)%20--%20(149%2C224)%20%3B%0A%5Cdraw%20%20%20(167%2C297)%20--%20(157.5%2C316)%20--%20(148%2C297)%20%3B%0A%0A%25%20Text%20Node%0A%5Cdraw%20(336%2C76.4)%20node%20%5Banchor%3Dnorth%20west%5D%5Binner%20sep%3D0.75pt%5D%20%20%20%20%7B%24%5CGamma%20%24%7D%3B%0A%0A%0A%5Cend%7Btikzpicture%7D">
+
+</center>
+
+<p>其中每个$\Gamma_k$,$1\leq k\leq 6$表示子矩阵的边界，由于$g$在紧定义域中连续，对某个常数$M$，若我们取一个包含点$a$的矩形的边界，其长度小于$\epsilon$，那么我们利用$M-L$方程，就有</p>
+<center>
+
+$\begin{aligned}
+    \int_{\Gamma_1} g \ll M\epsilon
+\end{aligned}$
+
+</center>
+
+
+<p>然而</p>
+<center>
+
+$\begin{aligned}
+    \int_{\Gamma_k} g=0, k\neq 1
+\end{aligned}$
+
+</center>
+
+<p>和情况一相同。</p>
+<p>所以</p>
+<center>
+
+$\begin{aligned}
+    \int_\Gamma g \ll M\epsilon
+\end{aligned}$
+
+</center>
+
+<p>利用$\epsilon&gt;0$的任意性就证明完毕了。</p>
+<ul>
+<li>3、$a\in R$的内部</li>
+</ul>
+<p>若$a\in R$的内部，</p>
+<center>
+
+<img style="border-radius: 0.3125em;
+                box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.08);
+                border: 10px solid transparent;
+                margin-bottom: 20px" src="https://i.upmath.me/svg/%5Ctikzset%7Bevery%20picture%2F.style%3D%7Bline%20width%3D0.75pt%7D%7D%20%25set%20default%20line%20width%20to%200.75pt%20%20%20%20%20%20%20%20%0A%0A%5Cbegin%7Btikzpicture%7D%5Bx%3D0.75pt%2Cy%3D0.75pt%2Cyscale%3D-1%2Cxscale%3D1%5D%0A%25uncomment%20if%20require%3A%20%5Cpath%20(0%2C941)%3B%20%25set%20diagram%20left%20start%20at%200%2C%20and%20has%20height%20of%20941%0A%0A%25Shape%3A%20Rectangle%20%5Bid%3Adp3810055316004568%5D%20%0A%5Cdraw%20%20%20(100%2C104)%20--%20(447%2C104)%20--%20(447%2C404)%20--%20(100%2C404)%20--%20cycle%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada1831134870992659%5D%20%0A%5Cdraw%20%20%20%20(100%2C160)%20--%20(447%2C160)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada4680163136944939%5D%20%0A%5Cdraw%20%20%20%20(101%2C211)%20--%20(448%2C211)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada31702856471572294%5D%20%0A%5Cdraw%20%20%20%20(176%2C104)%20--%20(176%2C403)%20%3B%0A%25Straight%20Lines%20%5Bid%3Ada503465088473952%5D%20%0A%5Cdraw%20%20%20%20(216%2C105)%20--%20(216%2C401)%20%3B%0A%25Shape%3A%20Circle%20%5Bid%3Adp23496772462402982%5D%20%0A%5Cdraw%20%20%5Bfill%3D%7Brgb%2C%20255%3Ared%2C%200%3B%20green%2C%200%3B%20blue%2C%200%20%7D%20%20%2Cfill%20opacity%3D1%20%5D%20(182%2C176)%20..%20controls%20(182%2C174.34)%20and%20(183.34%2C173)%20..%20(185%2C173)%20..%20controls%20(186.66%2C173)%20and%20(188%2C174.34)%20..%20(188%2C176)%20..%20controls%20(188%2C177.66)%20and%20(186.66%2C179)%20..%20(185%2C179)%20..%20controls%20(183.34%2C179)%20and%20(182%2C177.66)%20..%20(182%2C176)%20--%20cycle%20%3B%0A%0A%25%20Text%20Node%0A%5Cdraw%20(190%2C179.4)%20node%20%5Banchor%3Dnorth%20west%5D%5Binner%20sep%3D0.75pt%5D%20%20%20%20%7B%24a%24%7D%3B%0A%0A%0A%5Cend%7Btikzpicture%7D">
+
+</center>
+
+<p>由于$\int_{\Gamma_k} g = 0$，结合前两种情况，我们知道做线性近似后，积分只剩下一个误差$\int_{\Gamma_n}\epsilon_n (z-a)dz$，其中$\epsilon&gt;0$是任意的，所以就有</p>
+<center>
+
+$\begin{aligned}
+    \int_{\Gamma}g = \sum^9_{k=1}\int_{\Gamma_k}g =0
+\end{aligned}$
+
+</center>
+
+<h4 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h4><p>所以，若$g$是连续的，则闭曲线定理同样适用于$g$。</p>
+<h4 id="柯西积分方程"><a href="#柯西积分方程" class="headerlink" title="柯西积分方程"></a>柯西积分方程</h4><p>设$f$是整的，$a$是一个复数且$C$是曲线满足</p>
+<center>
+
+$\begin{aligned}
+    C:Re^{i\theta},~~& 0\leq \theta\leq 2\pi ,~~ 使得R> \mid a\mid 
+\end{aligned}$
+
+</center>
+
+<p>则</p>
+<center>
+
+$\begin{aligned}
+    f(a) = \frac{1}{2\pi i}\int_C\frac{f(z)}{z-a}dz
+\end{aligned}$
+
+</center>
+
+<p><strong>证明：</strong></p>
+<p>利用闭曲线定理，设$g(x)$是上述的分段函数，$C$是曲线，那么就有</p>
+<center>
+
+$\begin{aligned}
+    \int_C \frac{f(z)-f(a)}{z-a}dz = 0
+\end{aligned}$
+
+</center>
+
+<p>那么就有</p>
+<center>
+
+$\begin{aligned}
+    f(a) \int_C \frac{dz}{z-a} = \int_C\frac{f(z)}{z-a}dz
+\end{aligned}$
+
+</center>
+
+<p>为了完成这个证明，我们必须来证明$\int_C \frac{dz}{z-a} = 2\pi i$</p>
+<p>为此我们引入引理：</p>
+<h4 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h4><p>设$a$是被圆$C_p$包含的点，因此$C_p$存在圆心$\alpha$，半径$\rho$和对$\mid a-\alpha\mid &lt; \rho$，则</p>
+<center>
+
+$\begin{aligned}
+    \int_{C_p}\frac{dz}{z-a} = 2\pi i
+\end{aligned}$
+
+</center>
+
+<p><strong>证明：</strong></p>
+<p>做极坐标变换，那么</p>
+<center>
+
+$\begin{aligned}
+    &\int_{C_p}\frac{dz}{z-\alpha}  = \int_{C_p}\frac{dt}{t} && t = z-\alpha\\
+    &\int_{C_p}\frac{dt}{t} = \int^{2\pi}_0 \frac{i\rho e^{i\theta}}{\rho e^{i\theta}}d\theta && t = \rho e^{i\theta},dt  = i\rho e^{i\theta}\\
+    =& 2\pi i
+\end{aligned}$
+
+</center>
+
+<p>我们可以推导出</p>
+<center>
+
+$\begin{aligned}
+    \int_{C_\rho}\frac{dz}{(z-\alpha)^{k+1}}=0\quad\text{for}~~k=1,2,3,\dots.
+\end{aligned}$
+
+</center>
+
+<p>注意</p>
+<center>
+
+$\begin{aligned}
+     \int_{C_\rho}\frac{dz}{(z-\alpha)^{k+1}} = \frac{i}{\rho^k}\int_0^{2\pi} e^{-ik\theta}d\theta =0
+\end{aligned}$
+
+</center>
+
+<p>并且，$1/(z-\alpha)^{k+1}$实际上是$-1/k(z-\alpha)^k$的解析函数，那么我们重新记</p>
+<center>
+
+$\begin{aligned}
+    \begin{aligned}
+\frac{1}{z-a}& =\frac{1}{(z-\alpha)-(a-\alpha)}=\frac{1}{(z-\alpha)[1-(a-\alpha)/(z-\alpha)]} \\
+&=\frac{1}{(z-\alpha)}\cdot\frac{1}{1-\omega}
+\end{aligned}
+\end{aligned}$
+
+</center>
+
+<p>其中</p>
+<center>
+
+$\begin{aligned}
+    \omega = \frac{a-\alpha}{z-\alpha} 在整个C_p中，模\frac{\mid a-\alpha\mid }{\rho} < 1是固定的。
+\end{aligned}$
+
+</center>
+
+<p>现在我们将函数做展开，就有</p>
+<center>
+
+$\begin{aligned}
+    \frac{1}{z-a}& =\frac{1}{z-\alpha}\left[1+\frac{a-\alpha}{z-\alpha}+\frac{(a-\alpha)^{2}}{(z-\alpha)^{2}}+\cdots\right] \\
+&=\frac{1}{z-\alpha}+\frac{a-\alpha}{(z-\alpha)^{2}}+\frac{(a-\alpha)^{2}}{(z-\alpha)^{3}}+\cdots
+\end{aligned}$
+
+</center>
+
+<p>然后再两边同时积分，就有</p>
+<center>
+
+$\begin{aligned}
+    \int_{C_{\rho}}\frac{1}{z-a} dz=\int_{C_{\rho}}\frac{1}{z-\alpha} dz+\sum_{k=1}^{\infty}\int_{C_{\rho}}\frac{(a-\alpha)^{k}}{(z-\alpha)^{k+1}} dz=2\pi i.
+\end{aligned}$
+
+</center>
+
+
+<p>该线性化后得到的级数我们已经证明了对每个$k=1,2,\cdots$，结果都是0，带入就把整个柯西积分方程证明完毕了。</p>
+<h4 id="整函数的泰勒展开"><a href="#整函数的泰勒展开" class="headerlink" title="整函数的泰勒展开"></a>整函数的泰勒展开</h4><p>若$f$是整的，则它可以表示为幂级数的形式，实际上$f^{(k)}(0)$存在对每个$k=1,2,\cdots,$和</p>
+<center>
+
+$\begin{aligned}
+    f(z)=\sum_{k=0}^\infty\frac{f^{(k)}(0)}{k!}z^k
+\end{aligned}$
+
+</center>
+
+<p>对所有$z$成立。</p>
+<p><strong>证明：</strong></p>
+<p>我们设$a\neq 0$，$R = \mid a\mid +1$且令$C$是由$\mid \omega\mid = R$决定的圆，由柯西积分方程我们有</p>
+<center>
+
+$\begin{aligned}
+    f(z)=\frac{1}{2\pi i}\int_{C}\frac{f(\omega)}{w-z}d\omega 
+\end{aligned}$
+
+</center>
+
+<p>对所有$z \ll a$</p>
+<p>那么我们做点变换</p>
+<p>令</p>
+<center>
+
+$\begin{aligned}
+\frac{1}{\omega-z}=\frac{1}{\omega\left(1-\frac{z}{\omega}\right)}=\frac{1}{\omega}+\frac{z}{\omega^{2}}+\frac{z^{2}}{\omega^{3}}+\cdots
+\end{aligned}$
+
+</center>
+
+<p>然后两边做柯西积分，</p>
+<center>
+
+$\begin{aligned}
+    \begin{aligned}
+f(z)& =\frac{1}{2\pi i}\int_{C}f(\omega)\left[\frac{1}{\omega}+\frac{z}{\omega^{2}}+\frac{z^{2}}{\omega^{3}}+\cdots\right]d\omega  \\
+&=\frac{1}{2\pi i}\int_{C}\frac{f(\omega)}{\omega}d\omega+\left(\frac{1}{2\pi i}\int_{C}\frac{f(\omega)}{\omega^{2}}d\omega\right)z+\left(\frac{1}{2\pi i}\int_{C}\frac{f(\omega)}{\omega^{3}}d\omega\right)z^{2}+\cdots \\
+&=\sum_{k=0}^{\infty}C_{k}z^{k}
+\end{aligned}
+\end{aligned}$
+
+</center>
+
+<p>其中</p>
+<center>
+
+$\begin{aligned}
+    C_k = \frac{1}{2\pi i}\int_C \frac{f(\omega)}{\omega^{k+1}}d\omega
+\end{aligned}$
+
+</center>
+
+
+<p>定理的第一部分完成得差不多了，但这里有一个问题，边界$C$以及幂级数的系数取决与$R$必须选择大于$\mid a\mid $的才能保证幂级数对$\frac{1}{(\omega-z)}$收敛。注意得满足$\mid z/\omega\mid &lt; 1 $</p>
+<p>另一方面，我们设$a$是固定的，我们要证明存在系数$C_0(a),\cdots$使得</p>
+<center>
+
+$\begin{aligned}
+    f(z) = \sum C_k(a)z^k
+\end{aligned}$
+
+</center>
+
+<p>由于系数是存在的，所以我们实际上已经证明完了，级数在半径内收敛就有$0 &lt; L &lt; \infty$，其中$L$是系数的极限。并且对每个$z$，级数最终会收敛到$f(z)$</p>
+<h4 id="推论-1"><a href="#推论-1" class="headerlink" title="推论"></a>推论</h4><p>整函数是无限可微的</p>
+<p><strong>证明：</strong> 由于每个整函数可以写成无穷幂级数的求和，所以它是无限可微的。</p>
+<h4 id="推论-2"><a href="#推论-2" class="headerlink" title="推论"></a>推论</h4><p>若$f$是整的且若$a$是任意复数，则</p>
+<center>
+
+$\begin{aligned}
+    f(z)=f(a)+f'(a)(z-a)+\frac{f''(a)}{2!}(z-a)^2+\cdots\quad for ~all~ z.
+\end{aligned}$
+
+</center>
+
+<p><strong>证明：</strong>考虑$g(\zeta) = f(\zeta+a)$也是整的，由泰勒展开，我们有</p>
+<center>
+
+$\begin{aligned}
+    g(\zeta) = g(0)+g'(0)\zeta + \frac{g''(0)}{2!}\zeta^2+\cdots 
+\end{aligned}$
+
+</center>
+
+<p>因此</p>
+<center>
+
+$\begin{aligned}
+    f(\zeta+a)=f(a)+f'(a)\zeta+\frac{f''(a)}{2!} \zeta^2+\cdots.
+\end{aligned}$
+
+</center>
+
+<p>做替换$\zeta  = z-a$我们就证明完了</p>
+<h4 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h4><p>若$f$是整的且</p>
+<center>
+
+$g(z) = \begin{cases}
+    \frac{f(z)-f(a)}{z-a} & z\neq a\\
+    f'(a) & z= a
+\end{cases}$
+
+</center>
+
+<p>则$g$是整的</p>
+<p><strong>证明：</strong> 若$z\neq a$，则</p>
+<center>
+
+$\begin{aligned}
+    g(z)=f'(a)+\frac{f''(a)}{2!}(z-a)+\frac{f^{(3)}(a)}{3!}(z-a)^2+\cdots,
+\end{aligned}$
+
+</center>
+
+<p>由于$g$在$a$处的值是存在的，且$g$是处处收敛的幂级数，所以$g$是整的。</p>
+<h4 id="推论-3"><a href="#推论-3" class="headerlink" title="推论"></a>推论</h4><p>若$f$是整的且$a_1,\cdots,a_N$是其零点，若$g$被定义为：</p>
+<center>
+
+$\begin{aligned}
+    g(z)=\frac{f(z)}{(z-a_1)(z-a_2)\ldots(z-a_N)} for ~z\neq a_k,
+\end{aligned}$
+
+</center>
+
+<p>极限$\lim_{z\to a_k}$对每个$k=1,2,\cdots,N$存在且若$g(a_k)$被定义为其极限定义，则$g$是纯的</p>
+<p><strong>证明：</strong> </p>
+<p>令$f_0(z) = f(z)$且令</p>
+<center>
+
+$\begin{aligned}
+    f_k(z)=\frac{f_{k-1}(z)-f_{k-1}(a_k)}{z-a_k}=\frac{f_{k-1}(z)}{z-a_k},\quad z\neq a_k.
+\end{aligned}$
+
+</center>
+
+<p>设$f_{k_1}$是纯的，则当$z\to z_k$的时候存在一个极限，它是$f_k’(z)\frac{1}{(z-a_1)(z-a_2)\cdots(z-a_{k-1})}$，所以若我们定义$z\to a_k$的时候$f_k(a_k)$的极限是这个，那么$g(z)$就是整函数。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%9F%AF%E8%A5%BF%E7%A7%AF%E5%88%86%E5%92%8C%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80"><span class="toc-number">1.</span> <span class="toc-text">整函数的柯西积分和泰勒展开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2%E5%AE%9A%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">矩形定理（二）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%AF%E8%A5%BF%E7%A7%AF%E5%88%86%E6%96%B9%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">柯西积分方程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">引理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80"><span class="toc-number">6.</span> <span class="toc-text">整函数的泰勒展开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-1"><span class="toc-number">7.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-2"><span class="toc-number">8.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">9.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA-3"><span class="toc-number">10.</span> <span class="toc-text">推论</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&text=整函数的性质"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&is_video=false&description=整函数的性质"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=整函数的性质&body=Check out this article: https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&title=整函数的性质"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&name=整函数的性质&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/&t=整函数的性质"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
