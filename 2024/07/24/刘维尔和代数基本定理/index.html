@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="刘维尔定理复平面上的有界整函数是常数 证明： 令$a$和$b$表示任意的两个复数，再令$C$是以$0$为圆心且半径$R &gt; \max(\mid a\mid ,|b|)$的正方向圆。由柯西积分方程我们有   $\begin{aligned}     f(b)-f(a) &#x3D;&amp;\frac{1}{2\pi i}\left[\int_C\frac{f(z)}{z-b}dz - \int_C\frac{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刘维尔和代数基本定理">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="刘维尔定理复平面上的有界整函数是常数 证明： 令$a$和$b$表示任意的两个复数，再令$C$是以$0$为圆心且半径$R &gt; \max(\mid a\mid ,|b|)$的正方向圆。由柯西积分方程我们有   $\begin{aligned}     f(b)-f(a) &#x3D;&amp;\frac{1}{2\pi i}\left[\int_C\frac{f(z)}{z-b}dz - \int_C\frac{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-24T06:22:04.000Z">
+<meta property="article:modified_time" content="2024-07-24T14:08:06.718Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="complex_analysis">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>刘维尔和代数基本定理</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/07/09/%E6%95%B4%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&text=刘维尔和代数基本定理"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&is_video=false&description=刘维尔和代数基本定理"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=刘维尔和代数基本定理&body=Check out this article: https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&name=刘维尔和代数基本定理&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&t=刘维尔和代数基本定理"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%98%E7%BB%B4%E5%B0%94%E5%AE%9A%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">刘维尔定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%88%98%E7%BB%B4%E5%B0%94%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">扩展刘维尔定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">代数基本定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%87%B8%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">定义：凸包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E6%96%AF-%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">高斯-卢卡斯定理</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        刘维尔和代数基本定理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-07-24T06:22:04.000Z" class="dt-published" itemprop="datePublished">2024-07-24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/complex-analysis/" rel="tag">complex_analysis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="刘维尔定理"><a href="#刘维尔定理" class="headerlink" title="刘维尔定理"></a>刘维尔定理</h2><p><strong>复平面上的有界整函数是常数</strong></p>
+<p><strong>证明：</strong> 令$a$和$b$表示任意的两个复数，再令$C$是以$0$为圆心且半径$R &gt; \max(\mid a\mid ,|b|)$的正方向圆。由柯西积分方程我们有</p>
+<center>
+
+$\begin{aligned}
+    f(b)-f(a) =&\frac{1}{2\pi i}\left[\int_C\frac{f(z)}{z-b}dz - \int_C\frac{f(z)}{z-a}\right] \\
+    =& \frac{1}{2\pi i}\int_C \frac{f(z)(b-a)}{(z-a)(z-b)}dz \\
+    \ll& \frac{1}{\mid 2\pi i\mid }\frac{M\mid b-a\mid \cdot R(2\pi)}{(R-\mid a\mid )(R-\mid b\mid )}
+\end{aligned}$
+
+</center>
+
+<p>则当$R\to \infty$的时候，由$M$是$\mid f\mid$的上界，利用$M-L$定理得到最后一个远小于符号。然后我们可以简单的得到该极限是$0$，这意味着$f(b)=f(a) $且$f$是整数。</p>
+<h2 id="扩展刘维尔定理"><a href="#扩展刘维尔定理" class="headerlink" title="扩展刘维尔定理"></a>扩展刘维尔定理</h2><p>若$f$是整函数且若对某个整数$k\geq 0$ ，则这里存在正常数$A$和$B$使得</p>
+<center>
+
+$\begin{aligned}
+   \mid f(z)\mid \leq A+B\mid z\mid^k 
+\end{aligned}$
+
+</center>
+
+<p>则$f$是一个次数为$k$的多项式<br><strong>证明：</strong> 该证明通过欧拉算法得到，然后我们通过归纳法来证明，当$k = 0$的时候，就是我们的刘维尔定理。对于归纳步骤，我们考虑函数</p>
+<center>
+
+$g(z) = \begin{cases}
+    \frac{f(z)-f(0)}{z} & z\neq 0\\
+    f'(0) & z=0
+\end{cases}$
+
+</center>
+
+<p>这是一个整函数，由我们的归纳假设，</p>
+<center>
+
+$\begin{aligned}
+    \mid g(z)\mid \leq C+D\mid z\mid ^{k-1}
+\end{aligned}$
+
+</center>
+
+<p>$g$是一个至多$k-1$次数的多项式，因此$f$是一个至多$k$次的多项式</p>
+<h2 id="代数基本定理"><a href="#代数基本定理" class="headerlink" title="代数基本定理"></a>代数基本定理</h2><p><strong>每个复的非常数多项式在$C$中有零点</strong></p>
+<p><strong>证明：</strong> 令$P(z)$是任意多项式，若$P(z)\neq 0$对所有$z\in C$成立，$f(z) = 1/P(z)$是整函数。由于$P$是非常数的，那么$f$有界且$z\to\infty$意味着$P\to \infty$。由刘维尔定理，$f$是常数，所以这样的$P$不存在，矛盾。</p>
+<p><strong>注记：</strong> </p>
+<ul>
+<li>若$\alpha$是$n$次多项式$P_n$的零点，则$P_n(z) = (z-\alpha)P_{n-1}(z)$，其中$P_{n-1}$是次数为$n-1$的多项式。 这是因为我们可以使用欧拉算法：</li>
+</ul>
+<center>
+
+$\begin{aligned}
+    \left|\frac{P_n(z)}{z-\alpha}\right| \leq A+B\mid z\mid ^{n-1}
+\end{aligned}$
+
+</center>
+
+<p>由拓展的刘维尔定理我们知道$P_{n-1}$是次数至多为$n-1$的多项式。</p>
+<ul>
+<li><p>若$\alpha$是$k$重零点，若$P(z) = (z-a)^k Q(z)$，其中$Q$是非零多项式，等价说法是，若$\alpha$是$k$重的，如果$P(\alpha) = P’(a) = \cdots = P^{(k-1)}\alpha = 0$，则$P^{(k)}\neq 0$</p>
+</li>
+<li><p>我们可以拓展代数基本定理，由归纳假设我们可以证明$n$次多项式至多有$n$个零点，直接进入归纳步骤，由假设，这里就存在一个$k$次多项式可以被重写为</p>
+</li>
+</ul>
+<center>
+
+$\begin{aligned}
+    P_k(z) = A(z-z_1)\cdots (z-z_k)
+\end{aligned}$
+
+</center>
+
+<p>则</p>
+<center>
+
+$\begin{aligned}
+    P_{k+1}(z) = A(z-z_0)(z-z_1)\cdots (z-z_k)
+\end{aligned}$
+
+</center>
+
+<p>那么我们把括号拆开就有</p>
+<center>
+
+$\begin{aligned}
+    P_n(z) = a_nz^n+\cdots+a_0
+\end{aligned}$
+
+</center>
+
+<p>因此就有</p>
+<center>
+
+$\begin{aligned}
+    P_n(z) = a_n(z-z_1)\cdots(z-z_n)
+\end{aligned}$
+
+</center>
+
+<p>其中$z_1,\cdots,z_n$是$P_n$的零点。并且系数间存在如下关系：</p>
+<center>
+
+$\begin{aligned}
+    \sum z_k = -a_{n-1}/a_n
+\end{aligned}$
+
+</center>
+
+<h2 id="定义：凸包"><a href="#定义：凸包" class="headerlink" title="定义：凸包"></a>定义：凸包</h2><p>复数集$S$的凸包是包含$S$的最小凸集</p>
+<h2 id="高斯-卢卡斯定理"><a href="#高斯-卢卡斯定理" class="headerlink" title="高斯-卢卡斯定理"></a>高斯-卢卡斯定理</h2><p>任何多项式导数的零点都位于多项式零点的凸包</p>
+<p><strong>证明：</strong> 设$z_1,\cdots,z_n$是$P$的零点，再令$\alpha$是$P’$的零点但不是$P$的零点。则</p>
+<center>
+
+$\begin{aligned}
+    \frac{P'(\alpha)}{P(\alpha)} = \frac{1}{a-z_1} + \frac{1}{a-z_2}+\cdots + \frac{1}{a-z_n}
+\end{aligned}$
+
+</center>
+
+<p>我们重写</p>
+<center>
+
+$\begin{aligned}
+    \frac{1}{a-z_i} = \frac{\bar{\alpha} - \bar{z_i}}{\mid \alpha - z_i\mid ^2}
+\end{aligned}$
+
+</center>
+
+<p>然后我们把重写的东西带入一开始的方程就有</p>
+<center>
+
+$\begin{aligned}
+    \bar{a} = \sum a_i\bar{z_i}
+\end{aligned}$
+
+</center>
+
+<p>其中 $a_i = \frac{1}{\mid a-z_i\mid^2}/\sum\frac{1}{\mid a-z_i\mid^2}$</p>
+<p>我们对$\alpha$取共轭，得到了$\alpha$关于$z_1,\cdots,z_n$的表达式，因此$\alpha$位于$S$的凸包内。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%98%E7%BB%B4%E5%B0%94%E5%AE%9A%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">刘维尔定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E5%88%98%E7%BB%B4%E5%B0%94%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">扩展刘维尔定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">代数基本定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E5%87%B8%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">定义：凸包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E6%96%AF-%E5%8D%A2%E5%8D%A1%E6%96%AF%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">高斯-卢卡斯定理</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&text=刘维尔和代数基本定理"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&is_video=false&description=刘维尔和代数基本定理"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=刘维尔和代数基本定理&body=Check out this article: https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&title=刘维尔和代数基本定理"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&name=刘维尔和代数基本定理&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/07/24/%E5%88%98%E7%BB%B4%E5%B0%94%E5%92%8C%E4%BB%A3%E6%95%B0%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/&t=刘维尔和代数基本定理"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
