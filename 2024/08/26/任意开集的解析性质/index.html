@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在前几篇文章中介绍的方法并不能在任意开集上求一个给定的幂级数。虽然在一般的情况下这种方法也不存在。例如，给定一个复平面上的正方形，并给定正方形内点$a$，在我们尝试寻找一个绕着点$a$和正方形中心$\alpha$的轮廓$C$，使得   $ \begin{aligned}    \left| \frac{a-\alpha}{\omega -\alpha}\right|  &lt; 1 对所有\omega\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="任意开集的解析性质">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="在前几篇文章中介绍的方法并不能在任意开集上求一个给定的幂级数。虽然在一般的情况下这种方法也不存在。例如，给定一个复平面上的正方形，并给定正方形内点$a$，在我们尝试寻找一个绕着点$a$和正方形中心$\alpha$的轮廓$C$，使得   $ \begin{aligned}    \left| \frac{a-\alpha}{\omega -\alpha}\right|  &lt; 1 对所有\omega\">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-26T05:41:02.000Z">
+<meta property="article:modified_time" content="2024-08-28T18:39:34.659Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="complex_analysis">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>任意开集的解析性质</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/08/16/%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&text=任意开集的解析性质"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&is_video=false&description=任意开集的解析性质"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=任意开集的解析性质&body=Check out this article: https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&name=任意开集的解析性质&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&t=任意开集的解析性质"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-number">1.</span> <span class="toc-text">定理1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.1.</span> <span class="toc-text">例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E3%80%81%E4%B8%AD%E5%80%BC%E3%80%81%E6%9C%80%E5%A4%A7%E6%A8%A1%E5%8E%9F%E7%90%86%EF%BC%9B%E4%B8%B4%E7%95%8C%E7%82%B9%E5%92%8C%E9%9E%8D%E7%82%B9"><span class="toc-number"></span> <span class="toc-text">唯一性、中值、最大模原理；临界点和鞍点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-number">0.1.</span> <span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-number">0.2.</span> <span class="toc-text">定理3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E3%80%82"><span class="toc-number">0.3.</span> <span class="toc-text">唯一性定理。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA"><span class="toc-number">0.4.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%864"><span class="toc-number">0.5.</span> <span class="toc-text">定理4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">0.6.</span> <span class="toc-text">中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%A8%A1%E5%AE%9A%E7%90%86"><span class="toc-number">0.7.</span> <span class="toc-text">最大模定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E6%A8%A1%E5%AE%9A%E7%90%86"><span class="toc-number">0.8.</span> <span class="toc-text">最小模定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%865"><span class="toc-number">0.9.</span> <span class="toc-text">定理5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E9%9E%8D%E7%82%B9"><span class="toc-number">0.10.</span> <span class="toc-text">定义：鞍点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%866"><span class="toc-number">0.11.</span> <span class="toc-text">定理6</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        任意开集的解析性质
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-08-26T05:41:02.000Z" class="dt-published" itemprop="datePublished">2024-08-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/complex-analysis/" rel="tag">complex_analysis</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>在前几篇文章中介绍的方法并不能在任意开集上求一个给定的幂级数。虽然在一般的情况下这种方法也不存在。例如，给定一个复平面上的正方形，并给定正方形内点$a$，在我们尝试寻找一个绕着点$a$和正方形中心$\alpha$的轮廓$C$，使得</p>
+<center>
+
+$
+\begin{aligned}
+   \left| \frac{a-\alpha}{\omega -\alpha}\right|  < 1 对所有\omega\in C 成立
+\end{aligned}
+$
+
+</center>
+
+<p>会出现矛盾。</p>
+<p>这不仅仅是技术上的困难，总的来说这反应了一个事情，就是不存在任意的幂级数。不过我们可以用以前得到的结果来构造一个一般的定理。</p>
+<h3 id="定理1"><a href="#定理1" class="headerlink" title="定理1"></a>定理1</h3><p>若$f$在任意的开域$D$上解析，则对每个$\alpha\in D$，这里存在常数$C_k$使得</p>
+<center>
+
+$\begin{aligned}
+    f\left( z \right) \ =\ \sum_{k=0}^{\infty}{C_k\left( z-\alpha \right) ^k}
+\end{aligned}$
+
+</center>
+
+<p>对以$\alpha$作为圆心包含在$D$内的最大圆盘的所有点$z$成立。</p>
+<p><strong>证明：</strong></p>
+<p>这实际上就是我们之前证明过的圆盘内幂级数定理的证明</p>
+<p>使用柯西积分定理，当满足$\mid z-\alpha\mid &lt; \mid a-\alpha\mid$的时候，有</p>
+<center>
+
+$\begin{aligned}
+    f(z) = \frac{1}{2\pi i}\int_{C_p}{\frac{f\left( \omega \right)}{\omega -z}d\omega}
+\end{aligned}$
+
+</center>
+
+<p>然后我们对函数$\frac{1}{\omega-z}$展开有</p>
+<center>
+
+$\begin{aligned}
+    \frac{1}{\omega -\alpha}+\frac{z-\alpha}{\left( \omega -\alpha \right) ^2}+\frac{\left( z-\alpha \right) ^2}{\left( \omega -\alpha \right) ^3}+\cdots 
+\end{aligned}$
+
+</center>
+
+<p>带回然后令系数$C_k =  C_k(\rho) = \frac{1}{2\pi i}\int_{C_p}\frac{f(\omega)}{(\omega-a)^{k+1}}d\omega$即可证明完毕。</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><ul>
+<li>$f(z) = 1/(z-1)$在$z=2$处解析的，其中收敛域是以$z=2$为中心，$r =1$的圆。那么我们就可以在圆盘中将他展开成下列级数：</li>
+</ul>
+<center>
+
+$\begin{aligned}
+    \frac{1}{z-1}\ =\ \frac{1}{1+\left( z-2 \right)}\ =\ 1-\left( z-2 \right) +\left( z-2 \right) ^3+\cdots -\cdots 
+\end{aligned}$
+
+</center>
+
+<p>注意当且$\mid z-2\mid &lt;1$收敛。</p>
+<p>虽然函数在$\mid z-2\mid&gt;1 $的其他地方上也是解析的，但是级数展开式在此之外发散，因此无意义。</p>
+<ul>
+<li>我们来求$f(z) = 1/z^2$在$z=3$的幂级数。令</li>
+</ul>
+<center>
+
+$\begin{aligned}
+    \frac{1}{z^2}\ =&\ \left[ \frac{1}{3+\left( z-3 \right)} \right] ^2\ =\ \frac{1}{9}\left[ \frac{1}{1+\left( z-3 \right) /3} \right] ^2\\
+    =& \sum_{k=0}^{\infty}{\frac{\left( -1 \right) ^k}{9}\frac{\left( k+1 \right)}{3^k}\left( z-3 \right) ^k}
+\end{aligned}$
+
+</center>
+
+<p>它的收敛域就是 $1/\lim \mid C_k\mid ^{1/k} = \lim_{n\to\infty}\left(\frac{9\cdot 3^k}{k+1}\right)^{1/k} =3$</p>
+<h2 id="唯一性、中值、最大模原理；临界点和鞍点"><a href="#唯一性、中值、最大模原理；临界点和鞍点" class="headerlink" title="唯一性、中值、最大模原理；临界点和鞍点"></a>唯一性、中值、最大模原理；临界点和鞍点</h2><p>我们现在来考虑一些定理1中的幂级数表示的影响。</p>
+<p>我们从下述定理开始</p>
+<h4 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h4><p>若$f$在$\alpha$处是解析的，则</p>
+<center>
+
+$\begin{aligned}
+    g(z) = \left\{ \begin{array}{l}
+    \frac{f\left( z \right) -f\left( \alpha \right)}{z-\alpha} & z \neq \alpha\\
+    f'\left( \alpha \right) & z = \alpha\\
+\end{array} \right. 
+\end{aligned}$
+
+</center>
+
+<p>也在点$\alpha$可解析</p>
+<p>我们已经用了十分多的篇幅来描写这个函数的性质了。不管是他的导数，幂级数，还是极限也好。现在我们来证明一下。</p>
+<p><strong>证明：</strong> 我们选择一些$\alpha$的邻域，那么$f(z)$有如下的表达式：</p>
+<center>
+
+$\begin{aligned}
+    f(z) = f\left( \alpha \right) +\ f'\left( \alpha \right) \left( z-\alpha \right) +\frac{f''\left( \alpha \right)}{2!}\left( z-\alpha \right) ^2+\cdots 
+\end{aligned}$
+
+</center>
+
+<p>因此，$g$在相同的邻域上也有级数表达式</p>
+<center>
+
+$\begin{aligned}
+    g\left( z \right) \,\,=\,\,f'\left( \alpha \right) +\frac{f''\left( \alpha \right)}{2!}\left( z-\alpha \right) +\frac{f^{\left( 3 \right)}\left( \alpha \right)}{3!}\left( z-\alpha \right) ^2+\cdots 
+\end{aligned}$
+
+</center>
+
+<p>并且$g$也在$\alpha$上解析。</p>
+<h4 id="定理3"><a href="#定理3" class="headerlink" title="定理3"></a>定理3</h4><p>若$f$在$z$上解析，则$f$在$z$上是无限可微的。</p>
+<p><strong>证明：</strong>根据定义，若$f$在点$z$上是可解析的，那么$f$在$z$的某个邻域内可以被表示为幂级数，因此$f(z)$是无限可微的。</p>
+<h4 id="唯一性定理。"><a href="#唯一性定理。" class="headerlink" title="唯一性定理。"></a>唯一性定理。</h4><p>设$f$在域$D$上解析且$f(z_n)=0$对所有$n=1,2\cdots,$成立，其中$\{z_n\}$是不同点$z_n\to z_0\in D$的序列，则在$D$上，$f\equiv 0$</p>
+<p><strong>证明：</strong>由于$f$在$z_0$周围有幂级数表达式，而且这种表示是唯一的。那么$f=0$穿过包含$z_0$的某个圆。为了$f \equiv 0$在整个域$D$上成立，我们将$D$分割为两个域：</p>
+<center>
+
+$\begin{aligned}
+    A =& \{z\in D: \lim_{z\to z_0} f(z) = 0\}\\
+    B =& \{z\in D: z\notin A\}
+\end{aligned}$
+
+</center>
+
+<p>由定义可得$A\cap B = 0$，而$A$可由幂级数的唯一性定理证明：若$z$是$f=0$的零点极限，那么对于整个绕$z$的圆盘上的函数$f\equiv 0$，并且圆盘被$A$包含。其次，$B$是开的，因为对每个$z\in B$都存在某个$\delta &gt; 0$使得$f(\omega)\neq 0$对$ 0 &lt;\mid z-\omega\mid &lt;\delta $成立。那么圆$D(z:\delta)$就被$B$包含。因为$D$是连通的，这意味着$A$或者$B$必须有一个是空集。由假设，$z_0\in A$，因此$B$是空的，并且对每个$z\in D$都是$f$上的零极限，由$f$的连续性，则$f\equiv 0\in D$</p>
+<h4 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h4><p>若存在两个函数$f,g$且都在域$D$上解析，并且$f,g$在$D$上的一组具有聚点的点上是相等的，则在$D$上有$f\equiv g$</p>
+<p><strong>证明：</strong> 我们首先考虑$f-g$，利用唯一性定理，则$f,g$在$D$上始终有$f = g$，因此$f-g \equiv0 $在$D$上始终成立，所以$f\equiv g$</p>
+<h4 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h4><p>若$f$全纯且若$f(z)\to \infty$当$z\to\infty$成立，则$f$是多项式。</p>
+<p><strong>证明：</strong> 由题设，那么这里存在数$M&gt;0$使得$\mid z\mid &gt; M$有$\mid f(z)\mid &gt; 1$。那么这里至多只能有有限个零点，则$0$集合将在$D(0;M)$中有聚点，否则由唯一性原理，$f$是恒等于零的，这与我们最开始的假设矛盾。为此，我们去除$f$的零点，构造函数</p>
+<center>
+
+$\begin{aligned}
+    g(z) = \frac{f\left( z \right)}{\left( z-a_1 \right) \cdots \left( z-a_n \right)}
+\end{aligned}$
+
+</center>
+
+<p>其中$a_1,\cdots,a_n$为零点，并且函数是全纯的。因此</p>
+<center>
+
+$\begin{aligned}
+    h(z) = \frac{1}{g(z)} = \frac{\left( z-a_1 \right) \cdots \left( z-a_n \right)}{f\left( z \right)}
+\end{aligned}$
+
+</center>
+
+<p>也是纯的，由于当$z\to\infty$有$f\to\infty$，利用拓展的刘维尔定理，存在常数$A$使得$h(z) \leq A+\mid z\mid ^n$并且$h$是多项式。但$h = 1/g \neq 0$，由代数基本定理，$h$拥有一个常数$k$，因此</p>
+<center>
+
+$\begin{aligned}
+    f(z) = \frac{1}{k}\left( z-a_1 \right) \cdots \left( z-a_n \right)
+\end{aligned}$
+
+</center>
+
+<h4 id="中值定理"><a href="#中值定理" class="headerlink" title="中值定理"></a>中值定理</h4><p>若$f$在$D$上是解析的且$\alpha \in D$。则$f(\alpha)$等于$f$取在$D$上以$\alpha$为中心的任意圆周的中值，因此，当$D(\alpha;r)\subset D$有</p>
+<center>
+
+$\begin{aligned}
+    f(\alpha)  = \frac{1}{2\pi}\int^{2\pi}_0 f(\alpha+re^{i\theta})d\theta
+\end{aligned}$
+
+</center>
+
+<p><strong>证明：</strong> 由柯西积分定理，我们取$a = \alpha$，有</p>
+<center>
+
+$\begin{aligned}
+    f(\alpha) = \frac{1}{2\pi i}\int_{C_r}\frac{f(z)}{z-\alpha}dz
+\end{aligned}$
+
+</center>
+
+<p>接着我们引入参数化变量$z = \alpha+re^{i\theta}$，做简单的换元即可得到</p>
+<center>
+
+$\begin{aligned}
+    f(\alpha)  = \frac{1}{2\pi}\int^{2\pi}_0 f(\alpha+re^{i\theta})d\theta
+\end{aligned}$
+
+</center>
+
+<hr>
+<p>当我们说一个点$z$是$f$的最大值时，我们指的是对$f$的任意点$\omega$，存在$\mid f(z)\mid \geq \mid f(\omega)\mid $</p>
+<h4 id="最大模定理"><a href="#最大模定理" class="headerlink" title="最大模定理"></a>最大模定理</h4><p>在域$D$上的非零解析函数不存在局部最大值点：对每个$z\in D$和$\delta &gt; 0$，这里存在一些$\omega\in D(z;\delta)\cap D$使得$\mid f(\omega)\mid &gt; \mid f(z)\mid $</p>
+<p><strong>证明：</strong> 之前我们已经讲过一个刘维尔定理，刘维尔定理告诉我们，在有限的区间上，有界全纯函数是常数。而最大模定理告诉我们另一个事实，即若$f$是全纯且非常数，则它的模$\mid f\mid$在定义域内没有局部最大值。</p>
+<p>利用中值定理，对点$z$的邻域上的点$\omega$，我们有$\mid f(\omega)\mid \geq \mid f(z)\mid $</p>
+<p>由中值定理，因为$r &gt;0$，就有圆盘$D(z;r)\subset D$，我们有</p>
+<center>
+
+$\begin{aligned}
+    f(z) = \frac{1}{2\pi}\int^{2\pi}_0 f(z+re^{i\theta})d\theta
+\end{aligned}$
+
+</center>
+
+<p>那么我们可以得到一个不等式</p>
+<center>
+
+$\begin{aligned}
+    \begin{aligned}|f(z)|\leq\frac{1}{2\pi}\int_{0}^{2\pi}|f(z+re^{i\theta})|d\theta\leq\max_{\theta}|f(z+re^{i\theta})|.\end{aligned}
+\end{aligned}$
+
+</center>
+
+<p>类似的，对某个$\omega\in D(z;r)$我们可以推出$\mid f(\omega)\mid &gt; \mid f(z)\mid $，如果要使得上述不等式中的等号成立，则要求$\mid f\mid$必须是常数，并且对任意小的$r&gt;0$成立。即在圆盘内保持不变。由于$\mid f\mid$在$D$上始终为常数，再利用唯一性定理，则$f\equiv C$在$D$上成立。其中$C$是常数。</p>
+<h4 id="最小模定理"><a href="#最小模定理" class="headerlink" title="最小模定理"></a>最小模定理</h4><p>若$f$在$D$上是非常数解析函数，除非$f(z) = 0$，否则没有相对的最小值。</p>
+<p><strong>证明：</strong> 我们设$f(z)\neq 0$并考虑$g = 1/f$。若$z$是$f$的最小值。则它是$g$上的最大值。因此，利用最大模定理，它要么没有最大值要么是常数，所以$g$在$D$上是常数，这与我们假设的$f$矛盾。</p>
+<h4 id="定理5"><a href="#定理5" class="headerlink" title="定理5"></a>定理5</h4><p>设$f$是在闭圆$D$上的非常数解析函数，再设它的最大模在边界点$z_0$取到。则$f’(z_0)\neq 0$</p>
+<p><strong>证明：</strong> 我们设$f’(z_0) = 0$，对任意模足够小的复数$\xi$，我们有</p>
+<center>
+
+$\begin{aligned}
+    f(z_0+\xi)=f(z_0)+\frac{f^{(k)}(z_0)}{k!}\xi^k+\cdots
+\end{aligned}$
+
+</center>
+
+<p>其中$k$是使得$f^{(k)}(z_0)$不为0的最小整数。被我们省略的项均是比$\xi^k$高的高阶项。</p>
+<p>接下来我们在上述等式乘上其一个共轭，得到</p>
+<center>
+
+$\begin{aligned}
+\mid f(z_0+\xi)\mid^2 =& f(z_0+\xi)\overline{f(z_0+\xi)}\\
+=& |f(z_0)|^2+\frac{2}{k!}\mathrm{Re}\left(\overline{f(z_0)}f^{(k)}(z_0)\xi^k\right)+\cdots
+\end{aligned}$
+
+</center>
+
+
+<p>由于$\mid f(z_0)\mid = \max_{z\in D}\mid f(z)\mid $，$\mid f(z_0)\mid \neq 0$，我们记$\overline{f(z_{0})}f^{(k)}(z_{0}) = Ae^{i\alpha}$，其中$A &gt; 0$，再令$e^{i\theta} = \xi/\mid \xi\mid $，这是标准化流程，我们通过除以模来得到标准化的向量。</p>
+<p>那么有</p>
+<center>
+
+$\begin{aligned}
+    \left|f(z_0+\xi)\right|^2=\left|f(z_0)\right|^2+\frac{2A}{k!}\left|\xi\right|^k\cos(k\theta+\alpha)+\cdots,
+\end{aligned}$
+
+</center>
+
+<p>对模足够小的$\xi$，可知$\mid f(z_0+\xi)\mid - |f(z_0)|$具有与$\cos(k\theta+\alpha)$相同的符号。</p>
+<p>若$z$位于形如</p>
+<center>
+
+$\begin{aligned}
+    \left\{z_0+r_\theta e^{i\theta}:\theta\in\left(\frac{-\pi+4\pi j-2\alpha}{2k},\frac{\pi+4\pi j-2\alpha}{2k}\right) 且~~ r_\theta\in(0,\varepsilon_\theta)\right\}
+\end{aligned}$
+
+</center>
+
+<p>的$k$个楔形区域中的任意一个，其中对每个整数$\epsilon_\theta$和$j = 0,1,\cdots,k-1$成立。那么可以推出$\mid f(z)\mid &gt; \mid f(z_0)\mid $。</p>
+<p>由于$f’(z_0) = 0$，$k\geq 2$，则上述说的楔形中至少有一个与$D$相交，因此$\mid f(z_0)\mid $不可能是$D$上$|f|$的极大值</p>
+<h4 id="定义：鞍点"><a href="#定义：鞍点" class="headerlink" title="定义：鞍点"></a>定义：鞍点</h4><p>$z_0$是解析函数$f$的鞍点若其也是实函数$g = \mid f\mid$的鞍点，因此，若$g$在$z_0$处可微，且有$g_x(z_0) =g_y(z_0)=0$，但$z_0$既不是局部最大值也不是局部最小值。</p>
+<h4 id="定理6"><a href="#定理6" class="headerlink" title="定理6"></a>定理6</h4><p>$z_0$是解析函数$f$的鞍点当且仅当$f’(z_0) =0$且$f(z_0)\neq 0$</p>
+<p><strong>证明：</strong> 令$f = u+iv$，其中$u$和$v$均为实数，再令$g=\mid f\mid $</p>
+<p>首先，设$z_0$是$f$的鞍点。则$g=\mid f\mid$在$z_0$处可微。那么$g(z_0)\neq 0$，有</p>
+<center>
+
+$\begin{aligned}
+    g_{x}=\frac{(uu_{x}+vv_{x})}{g},\quad g_{y}=\frac{(uu_{y}+vv_{y})}{g}.
+\end{aligned}$
+
+</center>
+
+<p>由假设，则$g_x(z_0) = g_y(z_0) =0$，那么</p>
+<center>
+
+$\begin{aligned}
+    u(z_{0})u_{x}(z_{0})+v(z_{0})v_{x}(z_{0})=0,\\u(z_{0})u_{y}(z_{0})+v(z_{0})v_{y}(z_{0})=0.
+\end{aligned}$
+
+</center>
+
+<p>但$u(z_0),v(z_0)$不完全为0，因此，为了证明导数为0，由于$u,v$不同时为0，这说明存在非零解，因而$u_x,v_x$的关系如下：</p>
+<center>
+
+$\begin{aligned}
+    \det\begin{pmatrix}u_x\left(z_0\right)& v_x\left(z_0\right)\\u_y\left(z_0\right) &v_y\left(z_0\right)\end{pmatrix}=0.
+\end{aligned}$
+
+</center>
+
+<p>由柯西-黎曼等式，可知解析函数$f$有$u^2_x(z_0)+v^2_x(z_0) =0$，因此$f’(z_0) = 0$确实成立。</p>
+<p>反之，若$f’(z_0) =0$，$f(z_0)\neq 0$，则$u_x(z_0)$和$v_x(z_0)$都是0，利用柯西-黎曼定理，则$g_x = g_y=0$在$z-0$处同样成立。那么带入到$g$的微分中可得$g_x=g_y=0$在$z_0$处成立。利用定理5和最小模原理，$z_0$不是极大值和极小值。因此它是鞍点。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%90%861"><span class="toc-number">1.</span> <span class="toc-text">定理1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.1.</span> <span class="toc-text">例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E3%80%81%E4%B8%AD%E5%80%BC%E3%80%81%E6%9C%80%E5%A4%A7%E6%A8%A1%E5%8E%9F%E7%90%86%EF%BC%9B%E4%B8%B4%E7%95%8C%E7%82%B9%E5%92%8C%E9%9E%8D%E7%82%B9"><span class="toc-number"></span> <span class="toc-text">唯一性、中值、最大模原理；临界点和鞍点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%862"><span class="toc-number">0.1.</span> <span class="toc-text">定理2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%863"><span class="toc-number">0.2.</span> <span class="toc-text">定理3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E3%80%82"><span class="toc-number">0.3.</span> <span class="toc-text">唯一性定理。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%AE%BA"><span class="toc-number">0.4.</span> <span class="toc-text">推论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%864"><span class="toc-number">0.5.</span> <span class="toc-text">定理4</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86"><span class="toc-number">0.6.</span> <span class="toc-text">中值定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%A8%A1%E5%AE%9A%E7%90%86"><span class="toc-number">0.7.</span> <span class="toc-text">最大模定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E6%A8%A1%E5%AE%9A%E7%90%86"><span class="toc-number">0.8.</span> <span class="toc-text">最小模定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%865"><span class="toc-number">0.9.</span> <span class="toc-text">定理5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%9A%E9%9E%8D%E7%82%B9"><span class="toc-number">0.10.</span> <span class="toc-text">定义：鞍点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E7%90%866"><span class="toc-number">0.11.</span> <span class="toc-text">定理6</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&text=任意开集的解析性质"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&is_video=false&description=任意开集的解析性质"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=任意开集的解析性质&body=Check out this article: https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&title=任意开集的解析性质"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&name=任意开集的解析性质&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/08/26/%E4%BB%BB%E6%84%8F%E5%BC%80%E9%9B%86%E7%9A%84%E8%A7%A3%E6%9E%90%E6%80%A7%E8%B4%A8/&t=任意开集的解析性质"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
