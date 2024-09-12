@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="我们这章短暂的回顾一下群论。 这个章节从我们强调一些$F^*_p$中乘法的重要属性，并指出这些属性出现许多情况下。 那么对基础的$F^*_p$的属性探讨一下：  存在元素$1\in F^_p$满足对所有的$a\in F^_p$有$1\cdot a &#x3D; a$ 每个 $a\in F^_p$都存在$a^{-1}\in F^_p$满足$a\cdot a^{-1} &#x3D; a^{-1}\cdot a &#x3D; 1$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="群论概述">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="我们这章短暂的回顾一下群论。 这个章节从我们强调一些$F^*_p$中乘法的重要属性，并指出这些属性出现许多情况下。 那么对基础的$F^*_p$的属性探讨一下：  存在元素$1\in F^_p$满足对所有的$a\in F^_p$有$1\cdot a &#x3D; a$ 每个 $a\in F^_p$都存在$a^{-1}\in F^_p$满足$a\cdot a^{-1} &#x3D; a^{-1}\cdot a &#x3D; 1$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-09-12T13:22:29.000Z">
+<meta property="article:modified_time" content="2024-09-12T14:32:18.020Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="密码学">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>群论概述</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/09/09/ElGamal%E5%85%AC%E9%92%A5%E7%B3%BB%E7%BB%9F/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&text=群论概述"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&is_video=false&description=群论概述"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=群论概述&body=Check out this article: https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&name=群论概述&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&t=群论概述"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">定义1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">定义2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%981%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">命题1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%982%EF%BC%9A%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">命题2：拉格朗日定理</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        群论概述
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-09-12T13:22:29.000Z" class="dt-published" itemprop="datePublished">2024-09-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>我们这章短暂的回顾一下群论。</p>
+<p>这个章节从我们强调一些$F^*_p$中乘法的重要属性，并指出这些属性出现许多情况下。</p>
+<p>那么对基础的$F^*_p$的属性探讨一下：</p>
+<ul>
+<li>存在元素$1\in F^<em>_p$满足对所有的$a\in F^</em>_p$有$1\cdot a = a$</li>
+<li>每个 $a\in F^<em>_p$都存在$a^{-1}\in F^</em>_p$满足$a\cdot a^{-1} = a^{-1}\cdot a = 1$</li>
+<li>满足乘法结合律 $a\cdot (b\cdot c) = (a\cdot b)\cdot c$对所有$a,b,c\in F^*_p$成立。</li>
+<li>满足交换 $a\cdot b = b \cdot a$对所有$a,b\in F^*_p$成立。</li>
+</ul>
+<p>对群的研究是从加法和乘法开始的。这是群概念的由来：</p>
+<h4 id="定义1："><a href="#定义1：" class="headerlink" title="定义1："></a>定义1：</h4><p>集合$G$和一些规则组成一个群，我们使用$*$表示这种规则，它用于将两个元素$a,b\in G$组合得到一个元素，但要完成运算需要具备如下三个条件</p>
+<ul>
+<li><p>[单位] 存在$e\in G$使得 $e<em>a = a</em>e = a$对所有$a\in G$成立，</p>
+</li>
+<li><p>[逆] 对每个$a\in G$存在唯一的$a^{-1} \in G$使得$a*a^{-1} = e$</p>
+</li>
+<li><p>[结合] 对所有$a,b,c\in G$有$a<em>(b</em>c) = (a<em>b)</em>c$</p>
+</li>
+</ul>
+<p>满足下述条件的群我们称为阿贝尔群</p>
+<ul>
+<li>[交换] 对所有的$a,b,c\in G$有$a<em>b = b</em>a $</li>
+</ul>
+<p>若$G$有有限个元素，则称$G$为有限群，$G$的阶指的是$G$中元素的数量，一般使用$\mid G\mid$或者$#G$表示。</p>
+<p>我们将$g<em>g</em>g<em>\cdots </em>g$(n次)称为$g$的次幂，记为$g^n$</p>
+<h4 id="定义2："><a href="#定义2：" class="headerlink" title="定义2："></a>定义2：</h4><p>设$G$是群，$a\in G$是群中的一个元素，设存在一个正整数$d$，使得$a^d =e$，这个最小的$d$称为$a$的阶。如果不存在这样的$d$，则称$a$具有无限阶。</p>
+<h4 id="命题1："><a href="#命题1：" class="headerlink" title="命题1："></a>命题1：</h4><p>令$g$是有限群，则每个$G$的元素都是有限阶的。进一步说，若$a\in G$阶为$d$且$a^k = e$，则$d\mid k$</p>
+<p><strong>证明：</strong> 由于$G$有限，序列</p>
+<center>
+
+$\begin{aligned}
+    a,a^2,a^3,a^4,\cdots
+\end{aligned}$
+
+</center>
+
+<p>这个序列最终是一定会重复的，即存在正整数$i,j$且$i &lt; j$使得$a^i=a^j$。将两边乘上一个$a^{-i}$就有$a^{i-j} =e$，因为$i - j&gt;0$，这证明了$a$的某个幂等于$e$。不妨设$d$是满足条件$a^d = e$的最小正整数。</p>
+<p>现在设$k\geq d$也满足$a^k = e$。我们用$k$去除$d$，将得到</p>
+<center>
+
+$\begin{aligned}
+    k = dq+r , 0 \leq r < d
+\end{aligned}$
+
+</center>
+
+<p>由于$a^k = a^d = r$，比较两边幂次就有</p>
+<center>
+
+$\begin{aligned}
+    e = a^k = a^{dq+r} = e^q*e^r = a^r
+\end{aligned}$
+
+</center>
+
+<p>由于$d$是$a$的最小幂次，则$r$必须是$0$。因此我们得到$k = dq$有$d\mid q$</p>
+<h4 id="命题2：拉格朗日定理"><a href="#命题2：拉格朗日定理" class="headerlink" title="命题2：拉格朗日定理"></a>命题2：拉格朗日定理</h4><p>令$G$是有限群和令$a\in G$，则$a$的阶被$G$的阶整除。</p>
+<p>更具体一点的，令$n = \mid G\mid $是$G$的阶，令$a\in G$的阶是$d$，则</p>
+<center>
+
+$\begin{aligned}
+    a^n = e 和 d\mid n
+\end{aligned}$
+
+</center>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%891%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">定义1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%892%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">定义2：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%981%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">命题1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E9%A2%982%EF%BC%9A%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%AE%9A%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">命题2：拉格朗日定理</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&text=群论概述"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&is_video=false&description=群论概述"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=群论概述&body=Check out this article: https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&title=群论概述"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&name=群论概述&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/09/12/%E7%BE%A4%E8%AE%BA%E6%A6%82%E8%BF%B0/&t=群论概述"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
