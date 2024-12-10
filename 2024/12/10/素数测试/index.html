@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在前两章的学习之后，我们了解了RSA加密原理。现在Bob准备用他的密钥和Alice进行通讯。为了创建RSA密钥，首先我们需要选择大素数p,q，主要的原因是，若p,q不是素数，则Bob需要对其进行因式分解再运算，其次，若素数不够大，则Eve可以对pq进行因式分解从而破解密码。 所以这节的主旨是，如何寻找大素数，只需要用到几个很简单的结论即可。例如，我们设Bob已经选择了一个大数   $\begin{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="素数测试">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="在前两章的学习之后，我们了解了RSA加密原理。现在Bob准备用他的密钥和Alice进行通讯。为了创建RSA密钥，首先我们需要选择大素数p,q，主要的原因是，若p,q不是素数，则Bob需要对其进行因式分解再运算，其次，若素数不够大，则Eve可以对pq进行因式分解从而破解密码。 所以这节的主旨是，如何寻找大素数，只需要用到几个很简单的结论即可。例如，我们设Bob已经选择了一个大数   $\begin{">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-09T18:10:34.000Z">
+<meta property="article:modified_time" content="2024-12-10T06:18:58.216Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="密码学">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>素数测试</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2024/09/16/%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3%E5%92%8CRSA/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&text=素数测试"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&is_video=false&description=素数测试"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=素数测试&body=Check out this article: https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&name=素数测试&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&t=素数测试"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86%EF%BC%88%E7%89%88%E6%9C%AC2"><span class="toc-number">1.</span> <span class="toc-text">费马小定理（版本2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">4.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1"><span class="toc-number">5.</span> <span class="toc-text">命题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">5.1.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%902"><span class="toc-number">5.2.</span> <span class="toc-text">例子2</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        素数测试
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-09T18:10:34.000Z" class="dt-published" itemprop="datePublished">2024-12-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>在前两章的学习之后，我们了解了RSA加密原理。现在Bob准备用他的密钥和Alice进行通讯。为了创建RSA密钥，首先我们需要选择大素数p,q，主要的原因是，若p,q不是素数，则Bob需要对其进行因式分解再运算，其次，若素数不够大，则Eve可以对pq进行因式分解从而破解密码。</p>
+<p>所以这节的主旨是，如何寻找大素数，只需要用到几个很简单的结论即可。例如，我们设Bob已经选择了一个大数</p>
+<center>
+
+$\begin{aligned}
+    n = 31987937737479355332620068643713101490952335301
+\end{aligned}$
+
+</center>
+
+<p>现在我们来判断其是否是素数，首先的是，经过简单的计算，小于100,0000的素数都不是其的因子。我们怀疑可能是真的素数，现在，我们计算$2^{n-1} \mod n$的值，那么经过计算机可以得到：</p>
+<center>
+
+$\begin{aligned}
+    2^{n-1} \equiv 1281265953551359064133601216247151836053160074 \mod n
+\end{aligned}$
+
+</center>
+
+<p>那么利用费马小定理，若p是素数，则$a^{p-1}\equiv 1 \mod p$（除非p$\mid $a，则由该同余式子，我们知道其是合数。现在我们描述一个更强一点的费马小定理</p>
+<h2 id="费马小定理（版本2"><a href="#费马小定理（版本2" class="headerlink" title="费马小定理（版本2"></a>费马小定理（版本2</h2><p>令p是素数，则</p>
+<center>
+
+$\begin{aligned}
+    a^p\equiv a \mod p ~~~\text{对所有整数a成立}
+\end{aligned}$
+
+</center>
+
+<p><strong>证明：</strong> 若$p\nmid a$，由费马小定理$a^{p-1}\equiv 1 \mod p$两边乘a就可以得到$a^p \equiv a \mod p$。其次，若$p\mid a$，由整除性，$a \equiv 0 \mod p$意味着定理两边都是0，矛盾。</p>
+<p>现在，鲍勃可以利用它找到一个大素数</p>
+<center>
+
+$\begin{aligned}
+    n = 2967952985951692762820418740138329004315165131
+\end{aligned}$
+
+</center>
+
+<p>现在鲍勃选择计算$2^n \equiv 2 \mod n$，它现在准备逆用费马小定理的版本2.但这可能成功吗，答案是不一定的，考虑</p>
+<center>
+
+$\begin{aligned}
+    2^{341} \equiv 2 \mod 341 ，但 341=11*31
+\end{aligned}$
+
+</center>
+
+<p>所以341不是一个素数。但这是个不错的开始，我们开始能缩小范围寻找素数。这促使我们做出如下的定义</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>固定整数n，我们说整数a是判断n的合数性的证据，则</p>
+<center>
+
+$\begin{aligned}
+    a^n\not\equiv a \mod n
+\end{aligned}$
+
+</center>
+
+<p>所以，若这种证据只有一个，则结合版本2的费马小定理则很容易验证n是否为合数，其次，讨论n是否是质数一个方法就是尝试非常多的数字$a_1,\cdots$。若其中有一个满足上述条件可以作为证据，则n是合数。但是，由于刚才的例子，若其中没有可以证明n是合数的证据，则我们继续对n是否是素数保持怀疑。</p>
+<p>所以鲍勃需要一个比费马小定理更强的定理来生成素数。</p>
+<h2 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h2><p>令p是奇素数且记</p>
+<center>
+
+$\begin{aligned}
+    p-1 = 2^kq & 其中q是奇数
+\end{aligned}$
+
+</center>
+
+<p>再设a是任何不被p整除的数，则a满足下述两个条件之一</p>
+<ul>
+<li>$a^q\equiv 1 \mod p$</li>
+<li>$a^q,a^{2q},\cdots ,a^{2^{q-1}q},a^{2^kq}$其中有一个模$p$与 $-1$同余</li>
+</ul>
+<p><strong>证明：</strong> 费马小定理告诉我们$a^{p-1}\equiv 1\mod p$，则对列表</p>
+<center>
+
+$\begin{aligned}
+    a^q,a^{2q},\cdots ,a^{2^{q-1}q},a^{2^kq}
+\end{aligned}$
+
+</center>
+
+<p>的最后一个数有$\mod p$为1，注意列表每个数字都是前一个数字的平方，那么会有两种情况：</p>
+<ol>
+<li>列表中第一个数模$p$余1.</li>
+<li>列表中一些数字不模$p$余1，但它的平方模$p$余1.</li>
+</ol>
+<p>但唯一满足两个条件的数</p>
+<center>
+
+$\begin{aligned}
+    b\not\equiv 1\mod p ~~~ 和 ~~~ b^2\equiv 1\mod p
+\end{aligned}$
+
+</center>
+
+<p>是$-1$，因此表中应该有一个数与$-1$同余。</p>
+<p>现在我们给出一种较强的米勒-拉宾合数检验流程：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">给定测试数n，令a是待检验的合数性证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1.</td>
+<td style="text-align:left">若n是偶数或者1 &lt; gcd(a,n)，则n是合数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">2.</td>
+<td style="text-align:left">记n-1 = $2^kq$，其中$q$是奇数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">3.</td>
+<td style="text-align:left">令$a = a^q\mod n$</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">4.</td>
+<td style="text-align:left">若a$\equiv 1\mod n$，则测试失败，n不一定是合数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">5.</td>
+<td style="text-align:left">做循环$i=0,1,\cdots,k-1$</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">6.若$a\equiv -1\mod n$，则测试失败</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">7.令$a=a^2\mod n$</td>
+</tr>
+<tr>
+<td style="text-align:left">8.</td>
+<td style="text-align:left">增加i的次数并持续的做步骤5的循环验证</td>
+</tr>
+<tr>
+<td style="text-align:left">9.</td>
+<td style="text-align:left">得到n是合数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从上述流程，我们把它重写为定义。</p>
+<h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>设$n$是奇数且记$n-1 = 2^kq$，其中$q$是奇数。则满足gcd(a,n) =1且满足下述两个条件的整数$a$称为a是n的米勒-拉宾的合数性证据</p>
+<ul>
+<li>$a^q\equiv 1 \mod n$</li>
+<li>$a^{2^iq}\not\equiv -1 \mod n$对所有$i=0,1,\cdots,k-1$成立。</li>
+</ul>
+<p>所以由上述流程，若a是n的一个合数性证据，则n一定是合数。现在假设 Bob 想要检查大数 n 是否可能是素数。为此，他使用一组随机选择的 a 值运行米勒-拉宾检验。为什么这比使用费马小定理检验更好？答案是，对于米勒-拉宾检验，我们可以避免诸如之前341这样的奇葩例子存在。因为我们严格的检验每个小于n-1的2的平方。而每个合数都有非常多的合数性证据。他们如下述定理所描述：</p>
+<h2 id="命题-1"><a href="#命题-1" class="headerlink" title="命题"></a>命题</h2><p>令$n$是奇合数，则$1$到$n-1$的数字a中至少有$75\%$都是n关于米勒-拉宾的合数性证据</p>
+<p>这意味着Bob在寻找合数的时候都有75%的概率找到。假设Bob十次都没有找到合数的证据，这样的概率是$(25\%)^{10}$，如果找了100次，这个概率将低至$(25\%)^{100}\approx 10^{-60}$</p>
+<p>现在给出一个例子</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>我们选择$a=2$和$n=561$做合数检验，现在有</p>
+<script type="math/tex; mode=display">
+n-1 = 560 = 2^4 \cdot 35</script><p>那么就有</p>
+<center>
+
+$\begin{aligned}
+    2^35 \equiv& 264 \mod 561\\
+    2^{2*35}\equiv& 263^2 \equiv 166 \mod 561\\
+    2^{4*35} \equiv& 166^2 \equiv 67 \mod 561\\
+    2^{8*35} \equiv& 67^2 \equiv 1\mod 561
+\end{aligned}$
+
+</center>
+
+<p>由于第一个数字是$\mod 561$既不是1也不是余1，所以它是合数。其他数最后也不是mod 561 余-1，所以定理告诉我们它是合数。</p>
+<h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><p>我们取$n = 172947529$和$n-1 = 2^3 \cdot 21618441 = 2^3\cdot q$</p>
+<p>我们引用检验法在$a = 17$上并试着找</p>
+<script type="math/tex; mode=display">
+17^q \equiv 1\mod n</script><p>对于第一个数$a^q, $它是$17^{21618441} \equiv 1\mod n$。测试不通过，现在尝试$a=3$，则$3^q \equiv -1 \mod n$，测试也不通过，但我们选择$a=23$的时候，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+    23^q \equiv 40063806 \mod n\\
+    23^{2q}\equiv 2257065 \mod n\\
+    23^{4q} \equiv 1 \mod n
+\end{aligned}</script><p>所以$n$也是一个合数，但就是有点难发现。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86%EF%BC%88%E7%89%88%E6%9C%AC2"><span class="toc-number">1.</span> <span class="toc-text">费马小定理（版本2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">命题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="toc-number">4.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E9%A2%98-1"><span class="toc-number">5.</span> <span class="toc-text">命题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">5.1.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%902"><span class="toc-number">5.2.</span> <span class="toc-text">例子2</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&text=素数测试"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&is_video=false&description=素数测试"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=素数测试&body=Check out this article: https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&title=素数测试"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&name=素数测试&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2024/12/10/%E7%B4%A0%E6%95%B0%E6%B5%8B%E8%AF%95/&t=素数测试"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
