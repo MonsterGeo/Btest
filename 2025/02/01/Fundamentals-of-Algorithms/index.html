@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="数学基础估算算法复杂度是一个理论问题，所以我们需要一套系统构架，先从下述的几个数学定义开始： 定义1： 令$c,n_0$是一些正常数，再令$f,T$是两个函数，这时若存在一个常数$N\geq n_0$使得$T(N) \leq cf(N)$，则我们说$T(N) &#x3D; O(f(N))$ 现在，给定函数$f(x) &#x3D; x^2, T(x) &#x3D; x$是两个函数。我们断言一定有$T(x) &#x3D;O(f(x)) $，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fundamentals of Algorithms">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="数学基础估算算法复杂度是一个理论问题，所以我们需要一套系统构架，先从下述的几个数学定义开始： 定义1： 令$c,n_0$是一些正常数，再令$f,T$是两个函数，这时若存在一个常数$N\geq n_0$使得$T(N) \leq cf(N)$，则我们说$T(N) &#x3D; O(f(N))$ 现在，给定函数$f(x) &#x3D; x^2, T(x) &#x3D; x$是两个函数。我们断言一定有$T(x) &#x3D;O(f(x)) $，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-01-31T19:45:04.000Z">
+<meta property="article:modified_time" content="2025-02-01T18:03:31.855Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Fundamentals of Algorithms</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2025/02/01/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&text=Fundamentals of Algorithms"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&is_video=false&description=Fundamentals of Algorithms"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Fundamentals of Algorithms&body=Check out this article: https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&name=Fundamentals of Algorithms&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&t=Fundamentals of Algorithms"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">数学基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">运行时间计算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">4.</span> <span class="toc-text">简单的例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%B3%95%E5%88%99"><span class="toc-number">5.</span> <span class="toc-text">一般法则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text">最大子序列和问题的解</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Fundamentals of Algorithms
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-01-31T19:45:04.000Z" class="dt-published" itemprop="datePublished">2025-02-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/algorithms/" rel="tag">algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h1><p>估算算法复杂度是一个理论问题，所以我们需要一套系统构架，先从下述的几个数学定义开始：</p>
+<p><strong>定义1：</strong> 令$c,n_0$是一些正常数，再令$f,T$是两个函数，这时若存在一个常数$N\geq n_0$使得$T(N) \leq cf(N)$，则我们说$T(N) = O(f(N))$</p>
+<p>现在，给定函数$f(x) = x^2, T(x) = x$是两个函数。我们断言一定有$T(x) =O(f(x)) $，但怎么证明呢，定义让我们寻找出一个常数$c$和常数$n$，只要在数轴的某个数$N$之后有$T \leq cf$就可以了。现在，对$x^2$，我们知道在$0&lt; x&lt; 1$的时候有$x &gt; x^2$，所以我们不应该在这个区间内去验证定义，我们选大点的数字，例如$N = 10000$,那么对$N$之后的数字$x$一定有$x &lt; x^2$。所以这个时候我们可以说$T(3x) = O(f(x))$。</p>
+<p>注意：该定义反过来是不一定成立的，注意到对$x$，只需要构造函数$3x$。我们只需要找任意大于3的常数$c$，就能得到$3x &lt; cx$，就有$3x = O(x)$。所以该定义不是一个严格的偏序定义。等会我们将继续分析和给出更严格的定义。</p>
+<p><strong>定义2：</strong> 若存在正常数$c,n_0$和函数$T,g$。使得当$N \geq n_0$有$T(N) \geq cg(N)$，则记作$T(N) = \Omega (g(N))$</p>
+<p>我们使用刚才的反例，令$T = 3x$和$g = x$，只需要找任意的一个小于3的常数$c$，就有$T(x) \geq g(x)$</p>
+<p><strong>定义3：</strong> 我们说$T(N) = \Theta(h(N))$，这是指$T(N)$和函数$h(N)$都满足定义1和定义2。即：$T(N) = O(h(N))$和$T(N) = \Omega(h(N))$</p>
+<p>若我们都选择$N\to \infty$，则这个时候在数学上叫同阶无穷小。</p>
+<p><strong>定义4：小o表示</strong> 若$T(N) = O(h(N))$但$T(N)\neq \Theta(h(N))$，则我们说$T(N) = o(h(N))$</p>
+<p>在数学上，令$N\to\infty$则称其为高阶无穷小。</p>
+<p>这样的分析促使我们其寻找一个更简便的方法，回看定义3，此时我们发现和$\epsilon -\delta$语言是类似的，也就是说这依然停留在数列极限的范畴上，也就是说该定义在$x\to\infty$可以重写为：</p>
+<center>
+
+$\begin{aligned}
+    \lim\limits_{x\to \infty} \frac{T(x)}{h(x)} = c
+\end{aligned}$
+
+</center>
+
+<p>其中$c$是任意的不等于0的常数。而当$c=0$时，则是定义4的结果。</p>
+<p>我们费尽心思定义的这些是为了估算在编程中函数运算的“时间”数量级有多大，当我们给定任意两个函数，也许会存在一些点，在这些点上使得一个函数的值小于另一个函数。所以一般情况下的比较$f(x) &lt; g(x)$是没有意义的，我们一般考虑函数的相对增长率。</p>
+<p>如同我刚才所说，当$N$较小时，$1000N$比$N^2$是要大的。但考虑到在某些点后，函数就会爆发式的增长。在实际编程中，这些点就是我们代码执行的步数情况。考虑一些较小的数据通常是没有意义的。所以引入定义来做比较度量算法的能效性是有用的。</p>
+<p>当我们说$N= O(N^2)$时，实际上是在说$N$的增长不比$N^2$快，所以此时我们说$N^2$是$N$的上界。但他不一定是比较好的上界，因为他们相差太大了。另外，若$f(N) = \Omega(T(N))$，同样的我们可以说$T(N)$是$f(N)$的一个下界，意味着每个$f(N)$在$N$之后都大于$T(N)$的值。</p>
+<p>接下來拓展一下。</p>
+<p><strong>法则1</strong></p>
+<p>若$T_1(N) = O(f(N))$且$T_2(N) = O(g(N))$，那么</p>
+<ul>
+<li>$T_1(N) +T_2(N) = \max \{O(f(N)) ,O(g(N))\}$</li>
+<li>$T_1(N) \times T_2(N) =O(f(N) * g(N))$</li>
+</ul>
+<p><strong>法则2</strong> </p>
+<p>若$T(N)$是$k$次多项式，则$T(N) = \Theta(N^k)$</p>
+<p><strong>法则3</strong></p>
+<p>对任意常数$k$，$\log^k N = O(N)$。</p>
+<p>对法则1,我们设$O(f(N)) = x^3$，$O(g(N)) - x^4$，可以看出$x^3 $在$x=1$之后有$x^3 &lt; x^4$<sup><a href="#fn_1" id="reffn_1">1</a></sup>。所以是$x^3 = O(x^4)$。那么$T_1(N)+T_2(N) = O(x^4)+O(x^3) = O(x^4)$，也就是定义$\max\{O(f(N)),O(g(N))\}$。对第二个法则，$x^3 \times x^4 =x^7$，所以$T_1(N) <em> T_2(N) = x^3</em>x^4=x^7$</p>
+<p>我们可以皆由推广到任意的多项式。设$O(f(x)) = kx^3+sx^2+vx+e$是一个3次多项式。令$O(g(x)) = lx^4+ax^3+bx^2+cx+d$三一个任意的4次多项式，其中$k,s,v,e,l,a,b,c,d$是任意的常数。利用定义1,在一个足够大的$N$后，我们选择比$k$大的常数$k’$和$l$的常数$l’$，就有$k’x^3 \geq O(f(x)) \Rightarrow k’x^3 = \Omega(f(x))$和$l’x^4 \geq O(g(x)) \Rightarrow l’x^4 = \Omega (g(x))$。这些都可以通过取$x\to\infty$求其极限得到。</p>
+<p>所以自然的对法则2,k次多项式的一个好的估算就是$\Theta(x^k)$。</p>
+<p>最后，我们证明对常数$k,\log^kN = O(N)$：</p>
+<p>考虑极限</p>
+<center>
+
+$\begin{aligned}
+    \lim\limits_{x\to\infty}\frac{\log^k(x)}{x} = \frac{k\log(x)}{x}\overset{I'H}{==}\frac{k*1/x}{1} = k*1/x =0
+\end{aligned}$
+
+</center>
+
+<p>其中$I’H$是洛必达定理的缩写。</p>
+<p>所以，当你不确定函数的相对增长率时，你就可以通过计算极限$\lim\limits_{x\to\infty}f(x)/g(x)$来确定f和g的相对增长率。极限是0,就是定义4的情况，极限是任意常数，则它是定义3的情况。若极限是$\infty$，则$g(x) = o(f(x))$</p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>我们需要一个模型帮助分析算法，因此作出如下假设：在机器中，指令是按照顺序执行的。该模型存在一个简单的指令系统满足加法、乘法、比较和赋值等。</p>
+<h1 id="运行时间计算"><a href="#运行时间计算" class="headerlink" title="运行时间计算"></a>运行时间计算</h1><p>我们分析的主要问题是运行时间，有一些因素影响程序的运行时间，例如计算机的性能或者编译器。作为考察实际运行时间是不合理的，因为性能不同的电脑会有不一样的时间。为此我们引入一些简单的概念，我们计算程序实际运行的步数为多少，例如下述计算1到100的伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int sum=0;</span><br><span class="line">for &#123;int i = 1; i &lt;= 100;i++&#125;</span><br><span class="line">    sum = sum + i;</span><br></pre></td></tr></table></figure>
+<p>第三行会执行100次，所以我们可以说他的时间单位大概（忽略初始化等代码）就是100.一般来说我们称其为多项式时间。不过我们不拘泥于细枝末节，在数据量足够大的时候，考虑其他数量级小的步骤是没有意义的，因此我们的重点在于如何估算大O时间。所以我们会抛弃低价项。转而考虑他的上界大O。</p>
+<h1 id="简单的例子"><a href="#简单的例子" class="headerlink" title="简单的例子"></a>简单的例子</h1><p>我们来计算$\sum^N_{i=1} i^3$。以下是一段简单的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sum(int N)&#123;</span><br><span class="line">    int i ,PartialSum;</span><br><span class="line">    PartialSum = 0;</span><br><span class="line">    for (i=1;i &lt;= N ; i++)&#123;</span><br><span class="line">       PartialSum = i*i*i&#x27;</span><br><span class="line">       return PartialSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这个程序分析起来不难，注意3和6行各执行了1步，第5行一步花费4个时间单位，2次乘法，一次加法和赋值。执行了N次就是$4N$。第4行的初始化i用了一个单位，测试所有i花费了N+1个。以及自曾运算i++实际作了N次，所以一共是花费2N+2,全部加起来就是6N+4。6N+4和N同阶，所以我们说该程序是$O(N)$的。</p>
+<p>所以我们可以总结出一些法则：</p>
+<h1 id="一般法则"><a href="#一般法则" class="headerlink" title="一般法则"></a>一般法则</h1><p><strong>法则1：for循环</strong></p>
+<p>一次for循环的运行时间之多是for循环内语句的运行时间乘以迭代的次数。</p>
+<p><strong>法则2：嵌套的for循环</strong></p>
+<p>可以利用法则1算出下述代码的时间是$O(N^2)$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(i=0;i &lt; N ;i++)&#123;</span><br><span class="line">    for (j=0;j &lt; N ;j++)</span><br><span class="line">        k++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>k自增+1,j次循环然后再进行i次。</p>
+<p><strong>法则3：顺序语句</strong></p>
+<p>将各个语句的时间求和即可。例如下述代码，先运行$O(N)$，然后是$O(N^2)$，最后加起来是$O(N^2)$第一节的法则2可算出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for (i=0;i&lt; N;i++)</span><br><span class="line">    A[i] = 0 /*A是数组*/</span><br><span class="line">for (i=0;i&lt; N;i++)&#123;</span><br><span class="line">    for (j=0;j &lt; N ;j++)</span><br><span class="line">        A[i] = A[j] + i + j</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>法则4：if/else语句</strong></p>
+<p>对程序片段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (condition)</span><br><span class="line">    S1</span><br><span class="line">else</span><br><span class="line">    S2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>他的时间不超过判断加上S1或者S2中运行时间较长的总的时间。</p>
+<p>不妨上一个难点的例子，我们分析下述对斐波那契数列的程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">long int </span><br><span class="line">Fib( int N)&#123;</span><br><span class="line">    if (N &lt;= 1)</span><br><span class="line">        return 1;</span><br><span class="line">    else</span><br><span class="line">        return Fib(N-1) + Fib(N-2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这看起来是一个完美的程序，但实际上有很多的冗余导致这个程序运行缓慢。首先注意他的时间公式为：</p>
+<center>
+
+$\begin{aligned}
+    T(n) = T(n-1) + T(n-2) + 2    
+\end{aligned}$
+
+</center>
+
+<p>但每次调用的时候$T(n-1)$的计算实际上包含了$T(n-2)$，但由于程序这时候只需要$T(n-1)$，所以会将其抛弃，而在加号右边则重新算$T(n-2)$。经过递归后合成造成大量的浪费。</p>
+<h1 id="最大子序列和问题的解"><a href="#最大子序列和问题的解" class="headerlink" title="最大子序列和问题的解"></a>最大子序列和问题的解</h1><p>我们用一些例子来叙述如何解决最大子序列问题，首先是一个暴力计算的方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int MaxSubsequenceSum( const int A[ ], int N )</span><br><span class="line">&#123;</span><br><span class="line">    int ThisSum, MaxSum, i, j, k;</span><br><span class="line"></span><br><span class="line">    MaxSum = 0;</span><br><span class="line">    for( i = 0; i &lt; N; i++ )</span><br><span class="line">        for( j = i; j &lt; N; j++ )</span><br><span class="line">        &#123;</span><br><span class="line">            ThisSum = 0;</span><br><span class="line">            for( k = i; k &lt;= j; k++ )</span><br><span class="line">                ThisSum += A[ k ];</span><br><span class="line"></span><br><span class="line">            if( ThisSum &gt; MaxSum )</span><br><span class="line">                MaxSum = ThisSum;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    return MaxSum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>该算法可以很快的估算出时间为$O(N^3)$。这取决12行厘米的$O(1)$语句，第三个循环的大小是$j-i+1$。所以总数不超过N，全部和起来就是$O(1\cdot N\cdot N\cdot N) = O(N^3)$。但实际上，更精确的上界是$\Theta(N^3)$。我们考虑最特殊的情况，一个全是1的序列。那么他的最大子序列就是$\sum^{N-1}_{i=0}\sum^{N-1}_{j=i}\sum^j_{k=i} 1 $，为了求解这个级数的和，首先注意到$\sum^{j}_{k=i}1$，它是$j-i+1$。</p>
+<p>接着，对第二个求和有</p>
+<center>
+
+$\begin{aligned}
+    \sum^{N-1}_{j=i} (j-i+1) = \frac{(N-i+1)(N-i)}{2}
+\end{aligned}$
+
+</center>
+
+<p>这里我们用到了等差数列的求和公式，注意每一项都是前一项+1。那么末项是$(N-1)-i+1 = N-i$，首项就是$i-i+1=1$。用等差数列的求和公式就有上述的式子了。</p>
+<p>最后我们处理剩下的求和符号。</p>
+<p>注意</p>
+<center>
+
+$\begin{aligned}
+ & \sum_{i=0}^{N-1}\frac{(N-i+1)(N-i)}{2}=\sum_{i=1}^{N}\frac{(N-i+1)(N-i+2)}{2} \\
+ & =\frac{1}{2}\sum_{i=1}^{N}i^{2}-\left(N+\frac{3}{2}\right)\sum_{i=1}^{N}i+\frac{1}{2}(N^{2}+3N+2)\sum_{i=1}^{N}1 \\
+ & =\frac{1}{2}\frac{N(N+1)(2N+1)}{6}-\left(N+\frac{3}{2}\right)\frac{N(N+1)}{2}+\frac{N^{2}+3N+2}{2}N \\
+ & =\frac{N^{3}+3N^{2}+2N}{6}
+\end{aligned}$
+
+</center>
+
+<p>但我们可以做的更好，第一个序列需要计算所有子序列的和其比较，我们改进的算法如下，它是$O(N^2)$的。具体思路如下：我们放弃计算所有的子序列，注意在我们按照顺序去计算序列的时候，我们也许会作很多重复的事情，例如$A_2+A_3$首先会在$i=2$的时候$j=3$计算一次，在$j&gt;3$的时候又会计算一次，这很大程度上浪费了计算机的资源，因此我们接下来就是为了避免重复计算。</p>
+<p>只需要遍历一次从$j=i$为起点，以$N-1$为终点，然后取里面最大的和作为基准，接着令$j=i+1$加到已经取到的最大和里去作比较。这样就避免了每自增一次就得从头开始遍历的问题。通过这种方法我们可以“创造”出最大的子序列和。通过不断的添加大元素得到。</p>
+<p>代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">int MaxSubSequenceSum( const int A[ ], int N ) &#123;</span><br><span class="line">    int ThisSum, MaxSum, i, j;</span><br><span class="line"></span><br><span class="line">    MaxSum = 0;</span><br><span class="line">    for( i = 0; i &lt; N; i++ ) &#123;</span><br><span class="line">        ThisSum = 0;  // 重新计算从 i 开始的子序列</span><br><span class="line">        for( j = i; j &lt; N; j++ ) &#123;</span><br><span class="line">            ThisSum += A[ j ];  // 直接在前一次的 ThisSum 基础上加 A[j]</span><br><span class="line"></span><br><span class="line">            if( ThisSum &gt; MaxSum )</span><br><span class="line">                MaxSum = ThisSum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return MaxSum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们还可以作的更好吗？显然是可以的，我们采用二分法的形式。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">数学基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">运行时间计算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">4.</span> <span class="toc-text">简单的例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%B3%95%E5%88%99"><span class="toc-number">5.</span> <span class="toc-text">一般法则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text">最大子序列和问题的解</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&text=Fundamentals of Algorithms"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&is_video=false&description=Fundamentals of Algorithms"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Fundamentals of Algorithms&body=Check out this article: https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&title=Fundamentals of Algorithms"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&name=Fundamentals of Algorithms&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2025/02/01/Fundamentals-of-Algorithms/&t=Fundamentals of Algorithms"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
