@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Josephus 问题是下面的游戏：N 个人从 1 到 N 编号，围坐成一个圆圈。从 1 号开始传递一个热土豆。经过 M 次传递后拿着热土豆的人被清除离座，围坐的圆圈缩紧，由坐在被清除的人后面的人拿起热土豆继续进行游戏。最后剩下的人取胜。因此，如果M &#x3D;0和N&#x3D;5，则依次清除后5号获胜，若M &#x3D; 1和 N &#x3D; 5，则清除顺序是2,4,1,5。  编写一个程序解决M和N在一般值下的Josephus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="热土豆问题">
+<meta property="og:url" content="https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Marcus&#39;s Blog">
+<meta property="og:description" content="Josephus 问题是下面的游戏：N 个人从 1 到 N 编号，围坐成一个圆圈。从 1 号开始传递一个热土豆。经过 M 次传递后拿着热土豆的人被清除离座，围坐的圆圈缩紧，由坐在被清除的人后面的人拿起热土豆继续进行游戏。最后剩下的人取胜。因此，如果M &#x3D;0和N&#x3D;5，则依次清除后5号获胜，若M &#x3D; 1和 N &#x3D; 5，则清除顺序是2,4,1,5。  编写一个程序解决M和N在一般值下的Josephus">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-06T13:57:14.726Z">
+<meta property="article:author" content="Marcus">
+<meta property="article:tag" content="algorithms">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/Btest/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/Btest/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/Btest/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>热土豆问题</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/Btest/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/Btest/2025/02/12/Ring_buffer/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&text=热土豆问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&is_video=false&description=热土豆问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=热土豆问题&body=Check out this article: https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&name=热土豆问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&t=热土豆问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        热土豆问题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Marcus</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-03-04T16:00:00.000Z" class="dt-published" itemprop="datePublished">2025-03-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/Btest/tags/algorithms/" rel="tag">algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Josephus 问题是下面的游戏：N 个人从 1 到 N 编号，围坐成一个圆圈。从 1 号开始传递一个热土豆。经过 M 次传递后拿着热土豆的人被清除离座，围坐的圆圈缩紧，由坐在被清除的人后面的人拿起热土豆继续进行游戏。最后剩下的人取胜。因此，如果M =0和N=5，则依次清除后5号获胜，若M = 1和 N = 5，则清除顺序是2,4,1,5。</p>
+<ul>
+<li><p>编写一个程序解决M和N在一般值下的Josephus 问题，应使你的程序尽可能地高效，要确保能够清除单元。</p>
+</li>
+<li><p>你的程序的运行时间是多少？</p>
+</li>
+<li>若M = 1你的程序运行时间为多少，对于大的N(N&gt;10000) ，其free例程是如何影响实际速度的。</li>
+</ul>
+<p>首先我们给出一段非常简单的代码</p>
+<p>要做的事情是，首先定义链表结构体，它是一个储存1到N的编号的链表。</p>
+<p>那么我是使用链表完成的，以下是重要的代码讲解：</p>
+<p>首先是定义链表结构体<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;Node;</span><br></pre></td></tr></table></figure></p>
+<p>该结构体创建了一个储存编号的变量data和一个指向下一个单元的指针next。接着我们定义一个数量为n的表，它用来初始化游戏需要的条件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Node * <span class="title function_">create</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="comment">//初始化头结点</span></span><br><span class="line">    Node * head = <span class="literal">NULL</span>,*p=<span class="literal">NULL</span>, *r=<span class="literal">NULL</span>;</span><br><span class="line">    head = (Node * )<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;申请内存失败...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    head-&gt;data = <span class="number">1</span>;</span><br><span class="line">    head-&gt;next = head;</span><br><span class="line">    p = head;</span><br><span class="line">    <span class="comment">//创建剩余的节点</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i =<span class="number">2</span>; i &lt;=n ;i++ )&#123;</span><br><span class="line">        r = (Node * )<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">        r-&gt;data=i;</span><br><span class="line">        r-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        p-&gt;next = r;</span><br><span class="line">        p=r;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next = head;</span><br><span class="line">    p = head;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>该函数返回一个指向Node结构的指针， head是表头，p和r是两个用来交换数据的临时变量。该函数首先初始化一个表头head，令编号为1，下一个指针指向自己进行初始化。在for循环里面，开始创建2到n的单元，p-&gt;next =r完成尾插任务，让前一个单元的指向下一个元素的指针按自然数顺序排列。最后，令p指向head完成循环列表的创建。</p>
+<p>最后是约瑟夫问题的求解</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">joseph</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> m)</span>&#123;</span><br><span class="line">    Node *<span class="built_in">list</span> = create(n); <span class="comment">//创建长度为n的约瑟夫环</span></span><br><span class="line">    Node *temp = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node)); <span class="comment">//临时变量</span></span><br><span class="line">    Node *r = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node)); <span class="comment">//储存要删除的临时变量</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">list</span>-&gt;next != <span class="built_in">list</span>) <span class="comment">//判断表是否删干净</span></span><br><span class="line">    &#123;   </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( m == <span class="number">0</span> )&#123;</span><br><span class="line">            <span class="comment">//m=0按顺序把表打印出来然后free元素</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i =<span class="number">0</span>;i &lt; n<span class="number">-1</span>; i++)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%d out &quot;</span>,<span class="built_in">list</span>-&gt;data);</span><br><span class="line">                r = <span class="built_in">list</span>; <span class="comment">//储存要删除的变量</span></span><br><span class="line">                <span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next;</span><br><span class="line">                <span class="built_in">free</span>(r);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;m;i++)&#123; <span class="comment">//若没到m就继续向前推进单元</span></span><br><span class="line">                 temp = <span class="built_in">list</span>;</span><br><span class="line">                 <span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; %d out  &quot;</span>,<span class="built_in">list</span>-&gt;data); <span class="comment">//打印出列的人</span></span><br><span class="line">            r = <span class="built_in">list</span>;</span><br><span class="line">            temp-&gt;next = <span class="built_in">list</span>-&gt;next; <span class="comment">//让前一个元素的指针指向出列单元的下一个</span></span><br><span class="line">            <span class="built_in">list</span> = <span class="built_in">list</span>-&gt;next;</span><br><span class="line">            <span class="built_in">free</span>(r);</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ser = <span class="built_in">list</span>-&gt;data;</span><br><span class="line">    <span class="keyword">return</span> ser;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>while循环的条件list-&gt;next == list的时候意味着表里只有一个元素。此时中断循环。否则进入循环，若m==0，也就是不按间隔让人出列，此时只需要按顺序打印链表并free打印的元素即可。若m 不等于0。则进入另一个for循环中当没有循环m次的时候，让单元做一次移动，移动了m-1次后循环停止，for循环后面的语句处理出列的人，首先是打印出列的人的编号list-&gt;data。接着r是用来储存需要free的元素，temp-&gt;next 指向list的下一个元素，最后令list = List-&gt;next 即可把原来的单元变成单独的单元，此时只需要free(r)即可释放原来的单元。最后，再经过函数删除表的过程后剩下的单元素给返回即可。</p>
+<p>接下来是一个创建20个人，出列间隔为2的简单示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> ser = joseph(<span class="number">100</span>,<span class="number">2</span>); <span class="comment">//进行20人,间隔为2的游戏</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot; %d live&quot;</span>, ser); <span class="comment">//打印幸存者</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后我们解决第二个问题，我们使用了一个while循环和一个2for循环，根据算法时间度的定义，for循环+for循环的时间是O(n)的，而while嵌套for循环的时间是O(n<em>n)。再这个代码中，我们的表有n个，因此while最差的时间复杂度为O(n)。接着，第二个for循环每次循环m次，所以最坏的结果是O(m </em> n)。而m=0的情况是O(n)。</p>
+<p>最后是第三个问题，若不用free，我们可以减轻很多的步骤，至少是使用free的1/3。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/Btest/">Home</a></li>
+        
+          <li><a href="/Btest/tags/math/">数学</a></li>
+        
+          <li><a href="/Btest/tags/complex-analysis">复变分析</a></li>
+        
+          <li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li>
+        
+          <li><a href="/Btest/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&text=热土豆问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&is_video=false&description=热土豆问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=热土豆问题&body=Check out this article: https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&title=热土豆问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&name=热土豆问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://monstergeo.github.io/Btest/2025/03/05/Josephus%E9%97%AE%E9%A2%98/&t=热土豆问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2025
+    Marcus
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/Btest/">Home</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/math/">数学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/complex-analysis">复变分析</a></li><!--
+     --><!--
+       --><li><a href="/Btest/tags/%E5%AF%86%E7%A0%81%E5%AD%A6">密码学</a></li><!--
+     --><!--
+       --><li><a href="/Btest/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/Btest/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
