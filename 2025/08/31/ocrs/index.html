@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://i.upmath.me/svgb/hVLLrtowEN3nK2aDBJJx_YidBJRV_6BdAguTDIlVk6SO03sp4t8rQm6gVat6NTNnzpkztvfBfvvZY7jiD_QX6GwRBo-faB8uDvOrsw3Cmy1DnTOaqC7cbrDoMUCJJzO4AM8GCC08emA6UbQ_YmWb633GpHzbvU9K5DIHfWEc5mtO3h8RP0SLoSna8xmbAPYEHr8P1uMG9p0JNSwZkYyttpMVaypvzuDwFKAPxgcwARgB05RQmx5qtFUdoD2BZCyKFl9r0-EGvmARTFM5hJ0tN2UXa55lUjEmdJKmQsoDRPvSmzeA3ck6l199dSQglNp4LAlwuYXKIzYE2BaObkACDG4A5N4NbWcKGy45hwMsZUJSvYL1GpZcaSr-yASTdCrI5CUrLoVD2M6WP1tfPP2KWOk05jxNuYy1jv_jVyg1Gx7jh2Wh1D9Ma0EzwuOYpiugFIq2Cb51_QcgNOXZarzlZZLQLCOcc8rH3mWmqX7Jn1zOFRX8AxrJXDIqZ707e6r8ZfSEaEnjmT4pJilVr8Pn_MmebD6QkfxYZZK7c1-XfnmB8eyxKX_7zL8A">
 <meta property="og:image" content="https://i.upmath.me/svgb/lZPPjuIwDMbvfQpfkEAKmTj9D-K0b7B7BA6hddtoQ9tJw86wiHdf0XZKZzSXzcmx_X3-WVEOTv_-25G70R-yV2h15i6WXnjnroZ2N6Nrgjedu2oneBy27n6HRUcOcirUxTh4NoBrYOiB8Xje4USlrm-PGaPzff8-OrHrFHSZMrRbI3sfIjx6i0udNecz1Q50AZZeL9rSBg6tchUsBfOFWG1HFK1Kq85gqHDQOWUdKAeCgapzqFQHFemyctAU4AvheYtflWppAz8pc6ouDcFe55u8xSANUz-IMRIo0iRIjuAdcqveAPaFNmZ3s-WJgQzDjaWcAYotlJaoZiC2cDIXYiDgDsAe3dC0KtPuukM4whJ9nyViBes1LGUoufxywzTm0ZB4tD6v2TUzBNsJ-oe22UQcJQH6KcowiSPEGGfAWWMa-5VYBtGELAP5AS0D2WP30hn2t1v_z9JhwlOGfsKTFXAOWVM725huqkjBMV3177TE2OdpylCEHPvuJaaSR7PEUy4RucSPUi-XMuL-5PiQj5lvpo-VMObBJB8dY8nDT9OnxAx-JB1KA_ywz-jYy-e7z97xcQ5U55_-xD8">
 <meta property="article:published_time" content="2025-08-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-03T16:07:06.376Z">
+<meta property="article:modified_time" content="2025-09-04T16:05:16.674Z">
 <meta property="article:author" content="Marcus">
 <meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary">
@@ -100,6 +100,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/Btest/2025/09/10/%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/Btest/2025/07/27/matlab%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -293,6 +295,32 @@ $G(x) * G(y) = \begin{array}{ccc}
 \end{array}$
 
 </center>
+
+<p>高斯模糊能起作用主要依赖于正态分布函数的标准差，在中心的周围1个标准差的距离是样本点最多的地方，2个标准差就开始减少，直到3个标准差，在大就没有意义了，因为3个标准差内包含99.7%的样本点。所以我们可以用这个特性加权。因此，我们可以如下的创建一个高斯模糊核，他用于和图片上的像素矩阵平均运算。离中心越远，则利用高斯曲线的特性快速下降权重，反之越靠近中心权重就越大，对结果影响也越大</p>
+<p>给定标准差$\sigma = 1$，我们开始计算权重。给定一个$3\times 3$的矩阵$A = \{a_{ij}\}_{3\times 3}$，和$\sigma = 1$，矩阵的中心是$a_{22}$，以此为点$(0,0)$，则矩阵的第一个元素$a_{11}$相对于$a_{22}$是左上角，坐标为$(-1,1)$，右下角的是$(1,-1)$，右上角为$(1,1)$，左下角是$(-1,-1)$，我们只需要把坐标带入高斯函数，比如$G(a_{22}) = G(0,0) = 1/(2\pi)e^{-1} \approx 0.1592 $，那么高斯核就是</p>
+<center>
+
+$G = \left(\begin{array}{ccc}
+    0.0545 & 0.0965 & 0.0545\\
+    0.0965 & 0.1592 & 0.0965\\
+    0.0545 & 0.0965 & 0.0545
+\end{array}\right)$
+
+</center>
+
+<p>接着需要归一化，若矩阵中的元素加起来不是1，则直接除以总数即可。</p>
+<p>老套路，将高斯核$G$和图片的矩阵相乘即可得到平滑后的图片$G * A$，其中$A$是图片上提取的$3\times 3$像素。我们可以使用如下函数来调用高斯模糊</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">blurred = cv2.GaussianBlur(img,(<span class="number">3</span>,<span class="number">3</span>),<span class="number">0</span>) <span class="comment">#第一个参数是图片，第二是高斯核大小，第三是sigma值，即标准差，设置为0则程序会自动计算合适的标准差值</span></span><br></pre></td></tr></table></figure>
+<p>接着和之前一样，使用sobel算子算出梯度强度和方向</p>
+<center>
+
+$G = \sqrt{G_x^2+G_y^2}$
+和
+$\theta = \arctan(G_y/G_x)$
+</center>
+
+<p>最后一步，我们做范围的切割，$\theta \in [157.5,180] \cup [0,22.5]$的范围内，被定义为$0$。在$[22.5,67.5]$的范围内，$\theta$定义为$45$度，在$[67.5,112.5]$范围内被定义为$90$度。在$[112.5,157.5]$内被定义为$135$度</p>
+
   </div>
 </article>
 
